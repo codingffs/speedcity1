@@ -29,8 +29,12 @@ use App\Http\Controllers\CategoryFaqController;
 use App\Http\Controllers\CategorySubFaqController;
 use App\Http\Controllers\CmsController;
 use App\Http\Controllers\AdditionalServiceController;
-use App\Http\Controllers\CarePackageController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\CarePackageController;
+
+
+use App\Http\Controllers\OfficesController;
+use App\Http\Controllers\LocalPackageController;
 
 @include_once('admin_web.php');
 Route::group(['prefix' => 'admin'], function()
@@ -159,6 +163,10 @@ Route::group(['middleware' => ['auth']], function()
     
     Route::resource('staff', StaffController::class);
 
+
+    Route::resource('offices', OfficesController::class);
+    Route::resource('localPackage', LocalPackageController::class);
+
     // Consignment
     Route::get("consignment",[ConsignmentController::class, "list"])->name("consignment");
     Route::get("consignment/create",[ConsignmentController::class, "create"])->name("consignment.create"); 
@@ -167,6 +175,11 @@ Route::group(['middleware' => ['auth']], function()
     Route::post('consignment/update/{id}', [ConsignmentController::class, "update"])->name('consignment.update');
     Route::delete('consignment/delete/{id}', [ConsignmentController::class, "delete"])->name('consignment.delete');
     Route::post('get_product_detail_for_consignment', [ConsignmentController::class, "get_product_detail_for_consignment"])->name('get_product_detail_for_consignment');
+    
+
+    // Route::get('offices', [OfficesController::class,'offices'])->name('offices');
+
+
 });
 });
 
