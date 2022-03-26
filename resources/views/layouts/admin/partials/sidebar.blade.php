@@ -14,6 +14,27 @@
                             href="{{ route('index') }}"><i data-feather="home"></i><span>Dashboard</span></a>
                     </li>
 
+                    <li class="dropdown"><a class="nav-link menu-title link-nav"
+                        href="{{ route('Courierlist.index') }}"><i data-feather="archive"></i></i><span>Courier Items</span></a>
+                     </li>
+                     <li class="dropdown"><a class="nav-link menu-title link-nav"
+                        href="{{ route('offices.index') }}"><i data-feather="package"></i><span>Offices</span></a></li>
+                             
+                    <li class="dropdown"><a class="nav-link menu-title link-nav"
+                        href="{{ route('localPackage.index') }}"><i data-feather="package"></i><span>Local Package</span></a></li>
+
+                     {{-- <li class="dropdown"><a class="nav-link menu-title link-nav"
+                        href="{{ route('Courierlist') }}"><i data-feather="archive"></i></i><span>Parcel Management</span></a>
+                     </li>
+
+                     <li class="dropdown"><a class="nav-link menu-title link-nav"
+                        href="{{ route('Courierlist') }}"><i data-feather="archive"></i></i><span>Local Package</span></a>
+                     </li>
+
+                     <li class="dropdown"><a class="nav-link menu-title link-nav"
+                        href="{{ route('Courierlist') }}"><i data-feather="archive"></i></i><span>Domestic Package</span></a>
+                     </li> --}}
+
                     {{-- dropdown master--}}
                     {{-- <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i
                         data-feather="menu"></i><span>Master</span><div class="according-menu"></div></a>
@@ -26,12 +47,12 @@
                             data-feather="server"></i><span>Services</span></a></li>
                     @endcan --}}
 
-                    {{-- @can('role-list')
-                        <li class="dropdown"><a
+                    {{-- @can('role-list') --}}
+                        {{-- <li class="dropdown"><a
                             class="nav-link menu-title link-nav {{ routeActive('roles.index') }}{{ routeActive('roles.create') }}{{ routeActive('roles.edit') }}"
                             href="{{ route('roles.index') }}"><i data-feather="aperture"></i><span>Roles</span></a>
-                        </li>
-                    @endcan --}}
+                        </li> --}}
+                    {{-- @endcan --}}
 
                     {{-- @can('permission-list')
                         <li class="dropdown"><a
@@ -146,18 +167,6 @@
                         </ul>
                       </li> --}}
                  {{-- end --}}
-                    {{-- dd --}}
-                    <li class="dropdown"><a
-                        class="nav-link menu-title link-nav"
-                        href="{{ route('offices.index') }}"><i
-                            data-feather="package"></i><span>Offices</span></a></li>
-                             
-                    <li class="dropdown"><a
-                        class="nav-link menu-title link-nav"
-                        href="{{ route('localPackage.index') }}"><i
-                            data-feather="package"></i><span>Local Package</span></a></li>
-                             
-                    {{-- dd --}}
                     <li class="dropdown"><a class="nav-link menu-title link-nav"
                             href="{{ route('logout') }}"><i data-feather="lock"></i><span>Log Out</span></a></li>
 
