@@ -2,35 +2,36 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MedicalApplianceController;
-use App\Http\Controllers\SupplierController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ActivityLogController;
-use App\Http\Controllers\OnlinePlatformController;
-use App\Http\Controllers\AttributeController;       
-use App\Http\Controllers\SubAttributeController;
-use App\Http\Controllers\ProductController;
+// use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CourierItemsController;
+// use App\Http\Controllers\MedicalApplianceController;
+// use App\Http\Controllers\SupplierController;
+// use App\Http\Controllers\RoleController;
+// use App\Http\Controllers\PermissionController;
+// use App\Http\Controllers\UserController;
+// use App\Http\Controllers\DashboardController;
+// use App\Http\Controllers\ActivityLogController;
+// use App\Http\Controllers\OnlinePlatformController;
+// use App\Http\Controllers\AttributeController;       
+// use App\Http\Controllers\SubAttributeController;
+// use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ServicesController;
+// use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\SettingController;
-use App\Http\Controllers\ConsignmentController;
-use App\Http\Controllers\StaffController;
-use App\Http\Controllers\DoctorController;
-use App\Http\Controllers\DegreeController;
-use App\Http\Controllers\DiseaseController;
-use App\Http\Controllers\CountryController;
-use App\Http\Controllers\StateController;
-use App\Http\Controllers\CityController;
-use App\Http\Controllers\CategoryFaqController;
-use App\Http\Controllers\CategorySubFaqController;
-use App\Http\Controllers\CmsController;
-use App\Http\Controllers\AdditionalServiceController;
-use App\Http\Controllers\CarePackageController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
+// use App\Http\Controllers\ConsignmentController;
+// use App\Http\Controllers\StaffController;
+// use App\Http\Controllers\DoctorController;
+// use App\Http\Controllers\DegreeController;
+// use App\Http\Controllers\DiseaseController;
+// use App\Http\Controllers\CountryController;
+// use App\Http\Controllers\StateController;
+// use App\Http\Controllers\CityController;
+// use App\Http\Controllers\CategoryFaqController;
+// use App\Http\Controllers\CategorySubFaqController;
+// use App\Http\Controllers\CmsController;
+// use App\Http\Controllers\AdditionalServiceController;
+// use App\Http\Controllers\CarePackageController;
+// use App\Http\Controllers\Auth\ForgotPasswordController;
 
 @include_once('admin_web.php');
 Route::group(['prefix' => 'admin'], function()
@@ -39,6 +40,7 @@ Route::get("login", [LoginController::class, "showLoginForm"])->name("login");
 // Route::get('login', function () {
 //     return view('adminlogin');
 // });
+
 Route::get("register", [HomeController::class, "showRegisterForm"])->name("register");
 Route::post("register", [HomeController::class, "register_submit"])->name("register_submit");
 Route::post("login", [LoginController::class, "login"])->name("login_submit");
@@ -55,6 +57,10 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 Route::group(['middleware' => ['auth']], function()
 {
     Route::view('/dashboard', 'admin.dashboard.dashboard')->name('index');
+    // Route::get("/Courierlist", [CourierItemsController::class, "Courierlist"])->name("Courierlist");
+    Route::resource('Courierlist', CourierItemsController::class);
+
+
     Route::get('/suppliers', [SupplierController::class, "list"])->name('suppliers');
     Route::get('suppliers/edit/{id}', [SupplierController::class, "edit"])->name('suppliers.edit');
     Route::post('suppliers/update/{id}', [SupplierController::class, "update"])->name('suppliers.update');

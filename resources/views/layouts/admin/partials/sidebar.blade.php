@@ -14,23 +14,39 @@
                             href="{{ route('index') }}"><i data-feather="home"></i><span>Dashboard</span></a>
                     </li>
 
-                    {{-- dropdown master--}}
-                    <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i
-                        data-feather="menu"></i><span>Master</span><div class="according-menu"></div></a>
-                        <ul class="nav-submenu menu-content">
+                    <li class="dropdown"><a class="nav-link menu-title link-nav"
+                        href="{{ route('Courierlist.index') }}"><i data-feather="archive"></i></i><span>Courier Items</span></a>
+                     </li>
 
-                    @can('services-list')
+                     {{-- <li class="dropdown"><a class="nav-link menu-title link-nav"
+                        href="{{ route('Courierlist') }}"><i data-feather="archive"></i></i><span>Parcel Management</span></a>
+                     </li>
+
+                     <li class="dropdown"><a class="nav-link menu-title link-nav"
+                        href="{{ route('Courierlist') }}"><i data-feather="archive"></i></i><span>Local Package</span></a>
+                     </li>
+
+                     <li class="dropdown"><a class="nav-link menu-title link-nav"
+                        href="{{ route('Courierlist') }}"><i data-feather="archive"></i></i><span>Domestic Package</span></a>
+                     </li> --}}
+
+                    {{-- dropdown master--}}
+                    {{-- <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i
+                        data-feather="menu"></i><span>Master</span><div class="according-menu"></div></a>
+                        <ul class="nav-submenu menu-content"> --}}
+
+                    {{-- @can('services-list')
                         <li class="dropdown"><a
                             class="nav-link menu-title link-nav {{ routeActive('services.index') }}{{ routeActive('services.create') }}"{{ routeActive('services.edit') }}
                             href="{{ route('services.index') }}"><i
                             data-feather="server"></i><span>Services</span></a></li>
-                    @endcan
+                    @endcan --}}
 
                     {{-- @can('role-list') --}}
-                        <li class="dropdown"><a
+                        {{-- <li class="dropdown"><a
                             class="nav-link menu-title link-nav {{ routeActive('roles.index') }}{{ routeActive('roles.create') }}{{ routeActive('roles.edit') }}"
                             href="{{ route('roles.index') }}"><i data-feather="aperture"></i><span>Roles</span></a>
-                        </li>
+                        </li> --}}
                     {{-- @endcan --}}
 
                     {{-- @can('permission-list')
@@ -46,7 +62,7 @@
                                 href="{{ route('user.index') }}"><i data-feather="airplay"></i><span>User</span></a>
                         </li>
                     @endcan --}}
-                    @can('staff-list')
+                    {{-- @can('staff-list')
                         <li class="dropdown"><a
                             class="nav-link menu-title link-nav {{ routeActive('staff.index') }}{{ routeActive('staff.create') }}{{ routeActive('staff.edit') }}"
                             href="{{ route('staff.index') }}"><i data-feather="user"></i><span>Staff</span></a>
@@ -111,7 +127,7 @@
                             class="nav-link menu-title link-nav {{ routeActive('medicalappliance.index') }}{{ routeActive('medicalappliance.create') }}{{ routeActive('medicalappliance.edit') }}"
                             href="{{ route('medicalappliance.index') }}"><i data-feather="plus-circle"></i><span>Medical Appliance</span></a>
                         </li>
-                    @endcan
+                    @endcan --}}
                     
                     {{-- @can('setting-list')
                         <li class="dropdown"><a
@@ -119,11 +135,11 @@
                                 href="{{ route('settings.index') }}"><i
                                     data-feather="airplay"></i><span>Settings</span></a></li>
                     @endcan --}}
-                        </ul>
-                      </li>
+                        {{-- </ul> --}}
+                      {{-- </li> --}}
                      
                     {{-- dropdown location--}}
-                    <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="map-pin"></i><span>Location</span><div class="according-menu"></div></a>
+                    {{-- <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="map-pin"></i><span>Location</span><div class="according-menu"></div></a>
                         <ul class="nav-submenu menu-content">
                             @can('country-list')
                             <li class="dropdown"><a
@@ -144,7 +160,7 @@
                             </li>
                         @endcan
                         </ul>
-                      </li>
+                      </li> --}}
                  {{-- end --}}
                     
                     <li class="dropdown"><a class="nav-link menu-title link-nav"
