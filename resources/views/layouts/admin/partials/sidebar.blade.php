@@ -14,15 +14,15 @@
                             href="{{ route('index') }}"><i data-feather="home"></i><span>Dashboard</span></a>
                     </li>
 
-                    <li class="dropdown"><a class="nav-link menu-title link-nav"
+                    <li class="dropdown"><a class="nav-link menu-title link-nav {{ routeActive('Courierlist.index') }}"
                         href="{{ route('Courierlist.index') }}"><i data-feather="archive"></i></i><span>Courier Items</span></a>
                      </li>
 
-                     {{-- <li class="dropdown"><a class="nav-link menu-title link-nav"
-                        href="{{ route('Courierlist') }}"><i data-feather="archive"></i></i><span>Parcel Management</span></a>
+                     <li class="dropdown"><a class="nav-link menu-title link-nav {{ routeActive('species.index') }}"
+                        href="{{ route('species.index') }}"><i data-feather="archive"></i></i><span>Parcel Management</span></a>
                      </li>
 
-                     <li class="dropdown"><a class="nav-link menu-title link-nav"
+                     {{-- <li class="dropdown"><a class="nav-link menu-title link-nav"
                         href="{{ route('Courierlist') }}"><i data-feather="archive"></i></i><span>Local Package</span></a>
                      </li>
 
