@@ -1,0 +1,421 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    overflow-x: hidden;
+}
+@font-face {
+    font-family: 'Gilroy-Black';
+    src: url(../fonts/gilroy/Gilroy-Black.ttf);
+}
+@font-face {
+    font-family: 'Gilroy-Bold';
+    src: url(../fonts/gilroy/Gilroy-Bold.ttf);
+}
+@font-face {
+    font-family: 'Gilroy-Extrabold';
+    src: url(../fonts/gilroy/Gilroy-ExtraBold.ttf);
+}
+@font-face {
+    font-family: 'Gilroy-Heavy';
+    src: url(../fonts/gilroy/Gilroy-Heavy.ttf);
+}
+@font-face {
+    font-family: 'Gilroy-Light';
+    src: url(../fonts/gilroy/Gilroy-Light.ttf);
+}
+@font-face {
+    font-family: 'Gilroy-Medium';
+    src: url(../fonts/gilroy/Gilroy-Medium.ttf);
+}
+@font-face {
+    font-family: 'Gilroy-Regular';
+    src: url(../fonts/gilroy/Gilroy-Regular.ttf);
+}
+@font-face {
+    font-family: 'Gilroy-SemiBold';
+    src: url(../fonts/gilroy/Gilroy-SemiBold.ttf);
+}
+@font-face {
+    font-family: 'Gilroy-Thin';
+    src: url(../fonts/gilroy/Gilroy-Thin.ttf);
+}
+@font-face {
+    font-family: 'Gilroy-UltraLight';
+    src: url(../fonts/gilroy/Gilroy-UltraLight.ttf);
+}
+body{
+    font-family: 'Gilroy-Regular';
+}
+.left-log-in {
+    
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+.logo-main{
+    margin-top: 50px;
+}
+.artisan-logo-1{
+    display: none;
+}
+.log-in-detail{
+    position: absolute;
+    bottom: 50px;
+    left: 135px;
+}
+.log-in-detail h4{
+    color: #fff;
+    font-family: 'Gilroy-SemiBold';
+    
+}
+.log-in-detail p{
+    color: #F4F7FE;
+    font-size: 16px;
+    font-family: 'Gilroy-Medium';
+    line-height: 32px;
+    padding-right: 100px;
+    
+}
+.login-form .form-group{
+    padding: 10px 0;
+    position: relative;
+    width: 100%;
+}
+.login-form .form-control{
+    padding: 10px !important;
+    border-radius: 7px;
+    border: 1px solid #3C475424;
+}
+.login-form label{
+    padding-bottom: 2px;
+    
+}
+.login-form .label-bold{
+    font-weight: 600;
+    color: #455060;
+    letter-spacing: 0.5px;
+}
+.login-form .form-control:focus{
+    box-shadow: none;
+    border-color: #777;
+}
+.login-heading{
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #707070;
+    padding-bottom: 20px;
+    /* font-family: 'Gilroy-Bold'; */
+    
+}
+.login-form .eye{
+    font-size: 13px;
+}
+.login-form .toggle {
+    background: none;
+    border: none;
+    color: #777;
+    font-weight: 600;
+    position: absolute;
+    right: 10px;
+    top:44px;
+    z-index: 9;
+}
+.login-form .log-in-btn{
+    padding-top: 20px;
+    width: 100%;
+}
+.login-form .log-in-btn .btn{
+    width: 100%;
+    background: #ce4469;
+    padding: 10px ;
+    color: #fff;
+}
+.login-form .log-in-btn .btn:focus{
+    box-shadow: none;
+}
+.login-form .form-check .form-check-input{
+    margin-left: 0;
+    margin-right: 10px;
+    border: 1px solid #3C4754;
+}
+.login-form .form-check .form-check-input:focus{
+    box-shadow: none;
+}
+.login-form .form-check-label{
+    color: #455060;
+    font-family: 'Gilroy-Medium';
+    
+}
+.sign-up{
+    position: absolute;
+    bottom: 15px;
+    left: 62%;
+}
+.sign-up span{
+    font-weight: 600;
+    padding-right: 5px;
+}
+.sign-up .sign-up-a{
+    font-weight: 400;
+}
+.main-forgot .frgt-pwd a{
+    color: #2759E4;
+    font-family: 'Gilroy-Medium';
+    
+}
+.register-form{
+    margin: 20px 0;
+}
+.register-form .login-heading {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #707070;
+    padding-bottom: 0;
+}
+.register-form .form-group {
+    padding: 5px 0;
+    position: relative;
+    width: 100%;
+}
+/* .register-form .sign-up {
+    position: absolute;
+    bottom: 4px;
+    left: 62%;
+} */
+
+.register-form .sign-up {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    padding-top: 20px;
+}
+
+@media (max-width:1366px){
+    .log-in-detail p {
+        padding-right: 70px;
+    }
+    .log-in-detail {
+        left: 96px;
+    }
+    
+}
+@media (max-width:1280px){
+    body{
+        overflow: hidden;
+    }
+    .login-form .form-group ,.login-form .log-in-btn{
+        width: 77%;
+    }
+}
+@media(max-width:1199px){
+    .login-form .reset-btn .btn {
+        width: 100%;
+        background: #ce4469;
+        padding: 10px;
+        color: #fff;
+        font-size: 15px;
+    }
+}
+@media (max-width:1024px){
+    .login-form .form-group, .login-form .log-in-btn {
+        width: 85%;
+    }
+    .log-in-detail {
+        left: 72px;
+    }
+    .log-in-detail p {
+        padding-right: 50px;
+        font-size: 15px;
+        line-height: 29px;
+    }
+     .login-form .reset-btn {
+        width: 87%;
+    }
+    .logo-main {
+        margin-top: 150px !important;
+    }
+    
+}
+@media (max-width:991px){
+    .login-form{
+        margin-left: 50px;
+    }
+    .frgt-pwd{
+        text-align: end;
+    }
+    .login-form .form-group, .login-form .log-in-btn{
+        width: 100%;
+    }
+    
+    .sign-up{
+        left: 60%;
+    }
+    .register-sign-up{
+        left: 63%;
+
+    }
+}
+
+@media (max-width:820px){
+    .login-form {
+        margin-left: 30px;
+    }
+}
+@media (max-width:800px){
+    .login-form .reset-btn .btn {
+        font-size: 14px;
+    }
+}
+@media (max-width:768px){
+    .login-form{
+        margin-left: 10px;
+    }
+    .sign-up {
+        left: 55%;
+    }
+    .log-in-detail p {
+        padding-right: 24px;
+        font-size: 14px;
+        line-height: 27px;
+    }
+}
+@media (max-width:767px){
+    .left-log-in{
+        display: none;
+    }
+    .artisan-logo-1{
+        display: flex;
+        justify-content: center;
+        margin: 50px 0;
+    }
+    .artisan-logo-1 img{
+        width: 200px;
+    }
+    .login-form {
+        margin: 120px 100px;
+    }
+    .login-form .form-group, .login-form .log-in-btn{
+        width:100%
+    }
+    
+    .sign-up{
+        left: 34%;
+    }
+    .register-logo{
+        margin: 0;
+    }
+    .register-form{
+        margin: 55px 100px;
+    }
+    .login-form .reset-btn .btn {
+        font-size: 16px;
+    }
+}
+@media (max-width:640px){
+    .sign-up {
+        left: 28%;
+    }
+    .login-form {
+        margin: 120px 60px;
+    }
+    .register-form {
+        margin: 55px 100px;
+    }
+}
+@media (max-width:576px){
+    .artisan-logo-1 {
+        margin: 70px 0;
+    }
+    .artisan-logo-1 img {
+        width: 160px;
+    }
+    .sign-up {
+        left: 27%;
+    }
+    .register-logo {
+        margin: 0;
+    }
+   
+}
+@media (max-width:480px){
+    .login-form {
+        margin: 100px 50px;
+    }
+    .sign-up {
+        left: 22%;
+    }
+    .artisan-logo-1 img {
+        width: 140px;
+    }
+    .register-form {
+        margin: 55px 60px;
+    }
+}
+@media (max-width:414px){
+    .login-form {
+        margin: 145px 30px;
+    }
+    .register-form {
+        margin: 55px 40px;
+    }
+}
+@media (max-width:393px){
+    .login-form {
+        margin: 150px 10px;
+    }
+}
+@media (max-width:390px){
+    .login-form {
+        margin: 150px 10px;
+    }
+}
+@media (max-width:384px){
+    .login-form {
+        margin: 143px 20px;
+    }
+    .sign-up {
+        left: 17%;
+    }
+    .artisan-logo-1 {
+        margin: 50px 0;
+    }
+    .register-logo {
+        margin: 0;
+    }
+    .register-form {
+        margin: 55px 40px;
+    }
+}
+@media (max-width:375px){
+    .login-form {
+        margin: 60px 20px;
+    }
+}
+@media (max-width:360px){
+    .frgt-form{
+        margin: 222px 20px;
+    }
+}
+@media(max-width:320px){
+    .login-form {
+        margin: 143px 10px;
+    }
+    .sign-up {
+        left: 11%;
+    }
+    .artisan-logo-1 img {
+        width: 120px;
+    }
+    .register-form {
+        margin: 55px 10px;
+    }
+    .frgt-form {
+        margin: 185px 20px;
+    }
+}

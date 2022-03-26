@@ -1,0 +1,117 @@
+@extends('layouts.admin.master')
+
+@section('title')
+    Cms
+@endsection
+
+@push('css')
+@endpush
+
+@section('content')
+    @component('components.breadcrumb')
+        <li class="breadcrumb-item"><a href="{{ route('cms.index') }}">Cms</a></li>
+        <li class="breadcrumb-item active">Create</li>
+    @endcomponent
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-xl-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form class="theme-form" id="cms_Create" method="POST"
+                            action="{{ route('cms.store') }}" enctype="multipart/form-data">
+                            <div class="card">
+                                <div class="card-header pb-0">
+                                    <h5>Create Cms</h5>
+                                </div>
+                                <div class="card-body">
+
+                                    @csrf
+
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label" for="title">Cms Title <span
+                                                class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" id="title" class="form-control" name="title"
+                                                placeholder="Title" value="{{ old('title') }}" required />
+                                            @error('title')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label" for="description">Cms Description </label>
+                                        <div class="col-sm-9">
+                                            <textarea type="text" id="description" class="form-control" name="description"
+                                                placeholder="Description" >{{ old('description') }}</textarea>
+                                            @error('description')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label" for="image">Cms Image </label>
+                                        <div class="col-sm-9">
+                                            <input type="file" id="image" class="form-control" name="image"
+                                                placeholder="image" value="{{ old('image') }}" />
+                                            @error('image')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <a href="{{ route('cms.index') }}" class="btn btn-secondary">Cancel</a>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    @push('scripts')
+        <script>
+            $(document).ready(function() {
+                CKEDITOR.replace('description');
+
+                $("#cms_Create").validate({
+                    // rules: {
+                    //     title: {
+                    //         maxlength: 50,
+                    //         remote: {
+                    //             type: 'get',
+                    //             url: '{{ route('check_title_exists_service') }}',
+                    //             data: {
+                    //                 'title': function() {
+                    //                     return $("#title").val();
+                    //                 }
+                    //             },
+                    //             dataFilter: function(data) {
+                    //                 var json = JSON.parse(data);
+                    //                 if (json.status == 0) {
+                    //                     return "\"" + json.message + "\"";
+                    //                 } else {
+                    //                     return 'true';
+                    //                 }
+                    //             }
+                    //         }
+                    //     },
+                    // },
+                    errorPlacement: function(error, element) {
+                        if (element.attr("type") == "text") {
+                            error.appendTo(element.parent("div"));
+                        } else if (element.attr("type") == "file") {
+                            error.appendTo(element.parent("div"));
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    }
+                });
+            });
+        </script>
+    @endpush
+@endsection

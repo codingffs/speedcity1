@@ -1,0 +1,170 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    overflow: hidden;  
+}
+@font-face {
+    font-family: 'Gilroy-Black';
+    src: url(../fonts/gilroy/Gilroy-Black.ttf);
+}
+@font-face {
+    font-family: 'Gilroy-Bold';
+    src: url(../fonts/gilroy/Gilroy-Bold.ttf);
+}
+@font-face {
+    font-family: 'Gilroy-Extrabold';
+    src: url(../fonts/gilroy/Gilroy-ExtraBold.ttf);
+}
+@font-face {
+    font-family: 'Gilroy-Heavy';
+    src: url(../fonts/gilroy/Gilroy-Heavy.ttf);
+}
+@font-face {
+    font-family: 'Gilroy-Light';
+    src: url(../fonts/gilroy/Gilroy-Light.ttf);
+}
+@font-face {
+    font-family: 'Gilroy-Medium';
+    src: url(../fonts/gilroy/Gilroy-Medium.ttf);
+}
+@font-face {
+    font-family: 'Gilroy-Regular';
+    src: url(../fonts/gilroy/Gilroy-Regular.ttf);
+}
+@font-face {
+    font-family: 'Gilroy-SemiBold';
+    src: url(../fonts/gilroy/Gilroy-SemiBold.ttf);
+}
+@font-face {
+    font-family: 'Gilroy-Thin';
+    src: url(../fonts/gilroy/Gilroy-Thin.ttf);
+}
+@font-face {
+    font-family: 'Gilroy-UltraLight';
+    src: url(../fonts/gilroy/Gilroy-UltraLight.ttf);
+}
+body{
+   font-family: 'Gilroy-Regular';
+}
+.left-log-in img{
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+.artisan-logo{
+    position: absolute;
+    top: 50px;
+    left: 100px;
+}
+.artisan-logo img{
+    width: 150px;
+}
+.log-in-detail{
+    position: absolute;
+    bottom: 50px;
+    left: 100px;
+}
+.log-in-detail h4{
+    color: #fff;
+    font-family: 'Gilroy-SemiBold';
+
+}
+.log-in-detail p{
+    color: #F4F7FE;
+    width: 32%;
+    font-size: 16px;
+    font-family: 'Gilroy-Medium';
+    line-height: 32px;
+
+}
+.login-form .form-group{
+    padding: 10px 0;
+    position: relative;
+    width: 70%;
+}
+.login-form .form-control{
+    padding: 10px !important;
+    border-radius: 7px;
+    border: 1px solid #3C475424;
+}
+.login-form label{
+    padding-bottom: 2px;
+
+}
+.login-form .label-bold{
+    font-weight: 600;
+    color: #455060;
+    letter-spacing: 0.5px;
+}
+.login-form .form-control:focus{
+    box-shadow: none;
+    border-color: #777;
+}
+.login-heading{
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #707070;
+    padding-bottom: 20px;
+    /* font-family: 'Gilroy-Bold'; */
+
+}
+.login-form .eye{
+    font-size: 13px;
+}
+.login-form .toggle {
+    background: none;
+    border: none;
+    color: #777;
+    font-weight: 600;
+    position: absolute;
+    right: 10px;
+    top:44px;
+    z-index: 9;
+}
+.login-form .log-in-btn{
+    padding-top: 20px;
+    width: 70%;
+}
+.login-form .log-in-btn .btn{
+    width: 100%;
+    background: #ce4469;
+    padding: 10px ;
+    color: #fff;
+}
+.login-form .log-in-btn .btn:focus{
+    box-shadow: none;
+}
+.login-form .form-check .form-check-input{
+    margin-left: 0;
+    margin-right: 10px;
+    border: 1px solid #3C4754;
+}
+.login-form .form-check .form-check-input:focus{
+    box-shadow: none;
+}
+.login-form .form-check-label{
+    color: #455060;
+    font-family: 'Gilroy-Medium';
+
+}
+.sign-up{
+    position: absolute;
+    bottom: 30px;
+    left: 58%;
+}
+.sign-up span{
+    font-weight: 600;
+    padding-right: 5px;
+}
+.sign-up .sign-up-a{
+    font-weight: 400;
+}
+.main-forgot .frgt-pwd a{
+    color: #2759E4;
+    font-family: 'Gilroy-Medium';
+
+}

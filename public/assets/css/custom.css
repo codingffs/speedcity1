@@ -1,0 +1,14 @@
+.margin-div{
+    margin-top: 7px;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+-webkit-appearance: none; 
+margin: 0; 
+}
+.btn-info:hover {
+    color: #fff;
+}
+.col-form-label{
+    padding-right: 1px;
+}

@@ -1,0 +1,29 @@
+0000000000000000000000000000000000000000 6b6e5b3523ccbd03ca2543421e11862953e9f4a8 dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1641971606 +0530	commit (initial): first commit
+6b6e5b3523ccbd03ca2543421e11862953e9f4a8 6b6e5b3523ccbd03ca2543421e11862953e9f4a8 dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1641971614 +0530	Branch: renamed refs/heads/master to refs/heads/main
+6b6e5b3523ccbd03ca2543421e11862953e9f4a8 7ce8aeee98b97f89245ee0d8aabad507ab786503 dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1641991172 +0530	commit: Setup theme and changes
+7ce8aeee98b97f89245ee0d8aabad507ab786503 122935b40f7fa94ab28a2459098760060bd6277a dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1642064706 +0530	commit: User role and permission
+122935b40f7fa94ab28a2459098760060bd6277a 2c6bc50b7b52fab3e0b0ed2f3d24e6c324e3c272 dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1642423487 +0530	commit: Forget password
+2c6bc50b7b52fab3e0b0ed2f3d24e6c324e3c272 8e1833306570ee3711d9d6ff394a54a582ba671c dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1642489099 +0530	commit: User crund and supplier approve, reject mail
+8e1833306570ee3711d9d6ff394a54a582ba671c e7698c0228e080d85291f431a3d572d688d43a75 dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1642571523 +0530	commit: Activity log
+e7698c0228e080d85291f431a3d572d688d43a75 a1b50ceffbeba83b874ffc08ec07f85371eb9114 dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1642682126 +0530	commit: Create online platform screen
+a1b50ceffbeba83b874ffc08ec07f85371eb9114 7b98854c5e9cf49bafa40e1fa70423a18a0d1e86 dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1642682530 +0530	commit: Change
+7b98854c5e9cf49bafa40e1fa70423a18a0d1e86 a446a722d6248447c51884f0964e2a5d11a9454c dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1642855422 +0530	commit: Attribute crud
+a446a722d6248447c51884f0964e2a5d11a9454c 6d513044d10d0e0cae000abfa029e839770cb6a0 dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1643028285 +0530	commit: Product add and edit
+6d513044d10d0e0cae000abfa029e839770cb6a0 dbfb737c0edbd834b2d6171a7862189986d67ac8 dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1643114518 +0530	commit: Product comeplet
+dbfb737c0edbd834b2d6171a7862189986d67ac8 23c69781aa1b063359fb0e0f7ab46ebec190270e dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1643194309 +0530	commit: Settinh menu
+23c69781aa1b063359fb0e0f7ab46ebec190270e c30505f99e5779cc891987749177b41252fb1b4a dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1643269044 +0530	commit: Permission
+c30505f99e5779cc891987749177b41252fb1b4a d52869cc833328ca75b2d2d80e47f5f675f056bc dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1643366705 +0530	commit: Add filter and bug fix
+d52869cc833328ca75b2d2d80e47f5f675f056bc b8d9edb4245b4fb922146d2a727d91e5f12ecef6 dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1643460126 +0530	commit: Activity log
+b8d9edb4245b4fb922146d2a727d91e5f12ecef6 205ccad197e3c8b02ebb3c2102b716e7851a8b3f dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1643609508 +0530	commit: Attribute manage
+205ccad197e3c8b02ebb3c2102b716e7851a8b3f 7a8ab814eab380468dff6dece52ac3e8967704e0 dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1643626140 +0530	commit: Bug fix and changes
+7a8ab814eab380468dff6dece52ac3e8967704e0 9a1f2738a9f6d15947260ab9cd8305b0e6990ff7 dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1643685892 +0530	commit: side menu
+9a1f2738a9f6d15947260ab9cd8305b0e6990ff7 ae10993768f38d589ff0f5e82a3fb32cb9915664 dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1643795034 +0530	pull: Fast-forward
+ae10993768f38d589ff0f5e82a3fb32cb9915664 7d7d22dcc7fe93bd7503a68f39b0cd6a5e9679e3 dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1644058750 +0530	commit: login reg.forgt design issue
+7d7d22dcc7fe93bd7503a68f39b0cd6a5e9679e3 e55e7e5e74aa0a2fc74ad3249b8ecbec3569bb56 dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1644928474 +0530	commit: Some changes
+e55e7e5e74aa0a2fc74ad3249b8ecbec3569bb56 7712ffc812f0b3ce1e6016d3908cbb8d0652eb26 dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1645009247 +0530	commit: Product sync in shopify
+7712ffc812f0b3ce1e6016d3908cbb8d0652eb26 33f65836c5d6c4e6b4983b6cf8fc099cd4833e83 dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1645101467 +0530	commit: Product and sku
+33f65836c5d6c4e6b4983b6cf8fc099cd4833e83 cc65ebb3d5fb3af71978e7e486272e3940e8b993 dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1645188079 +0530	commit: Changes
+cc65ebb3d5fb3af71978e7e486272e3940e8b993 c9824d20c56bd10c6a44fe72600681e667666e55 dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1645439353 +0530	commit: Some changes
+c9824d20c56bd10c6a44fe72600681e667666e55 254f3a6486b80a90c514b6d61429aa8e7c12eced dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1645446348 +0530	commit: Some changes
+254f3a6486b80a90c514b6d61429aa8e7c12eced 0eee2c3fa36850fa9158840cedd45648bcd686ec dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1645869772 +0530	commit: - sidebar project setup
+0eee2c3fa36850fa9158840cedd45648bcd686ec 24f06968e34fab2e52839bbb59d5796024468ad8 dshaktiwebsolution <dharmik.shaktiwebsolutions@gmail.com> 1645870400 +0530	revert: Revert "- sidebar project setup"
