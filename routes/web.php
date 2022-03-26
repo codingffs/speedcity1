@@ -16,6 +16,7 @@ use App\Http\Controllers\CourierItemsController;
 // use App\Http\Controllers\SubAttributeController;
 // use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SpeciesController;
 // use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\SettingController;
 
@@ -49,7 +50,7 @@ Route::group(['middleware' => ['auth']], function()
     Route::view('/dashboard', 'admin.dashboard.dashboard')->name('index');
     // Route::get("/Courierlist", [CourierItemsController::class, "Courierlist"])->name("Courierlist");
     Route::resource('Courierlist', CourierItemsController::class);
-
+    Route::resource('species', SpeciesController::class);
 
     Route::get('/suppliers', [SupplierController::class, "list"])->name('suppliers');
     Route::get('suppliers/edit/{id}', [SupplierController::class, "edit"])->name('suppliers.edit');
