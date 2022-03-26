@@ -36,9 +36,6 @@ Local Package
                                         <th>City</th>
                                         <th>State</th>
                                         <th>Zip Code</th>
-                                        <th style="width=20%">Distance</th>
-                                        {{-- <th>Price(km)</th> --}}
-                                        {{-- <th>Notes</th> --}}
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -90,18 +87,6 @@ Local Package
                     {
                         data: 'zip_code',
                         name: 'zip_code'
-                    },
-                    {
-                        data: 'distance',
-                        name: 'distance'
-                    },
-                    {
-                        data: 'price_per_km',
-                        name: 'price_per_km'
-                    },
-                    {
-                        data: 'notes',
-                        name: 'notes'
                     },
                     {
                         data: 'action',

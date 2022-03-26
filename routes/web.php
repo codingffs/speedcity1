@@ -21,6 +21,7 @@ use App\Http\Controllers\SettingController;
 
 use App\Http\Controllers\OfficesController;
 use App\Http\Controllers\LocalPackageController;
+use App\Http\Controllers\DomesticPackageController;
 
 @include_once('admin_web.php');
 Route::group(['prefix' => 'admin'], function()
@@ -157,6 +158,7 @@ Route::group(['middleware' => ['auth']], function()
 
     Route::resource('offices', OfficesController::class);
     Route::resource('localPackage', LocalPackageController::class);
+    Route::resource('domesticpackages', DomesticPackageController::class);
 
     // Consignment
     Route::get("consignment",[ConsignmentController::class, "list"])->name("consignment");

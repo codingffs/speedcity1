@@ -8,6 +8,7 @@ use App\Models\Degree;
 use App\Models\Categoryfaq;
 use App\Models\Category;
 use App\Models\Cms;
+use App\Models\CourierItems;
 
 function logoimage($val){
    
@@ -82,5 +83,9 @@ function getCmsDetail($slug)
 function getcatgoryname($id){
     $category = Category::find($id);
     return $category->title;
+}
+function getItemName($id){
+    $name = CourierItems::find($id);
+    return $name->item_name;
 }
 ?>

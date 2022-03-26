@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use App\Models\Localpackages;
+use App\Models\Domesticpackages;
 use App\Models\CourierItems;
 use Validator;
 use DB;
 use Auth;
 use DataTables;
 
-class LocalPackageController extends Controller
+class DomesticPackageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,17 +20,17 @@ class LocalPackageController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $localPackage = Localpackages::latest()->get();
-            return Datatables::of($localPackage)
+            $domesticpackages = Domesticpackages::latest()->get();
+            return Datatables::of($domesticpackages)
                     ->addIndexColumn()
                     ->editColumn('id', function($row){
                         return str_pad($row->id, 6, '0', STR_PAD_LEFT);
                     })
                     ->addColumn('action', function($row){
                         $btn = "";
-                            $btn .= '<a href="'. route('localPackage.edit', $row->id) .'" class="edit btn btn-primary btn-sm m-5" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
-                            $btn .= '<a href="javascript:void(0)" data-url="'. route('localPackage.destroy', $row->id) .'" class="delete_btn btn btn-danger btn-sm m-5" data-id="'. $row->id .'" ><i class="fa fa-trash" aria-hidden="true"></i></a>';
-                            $btn .= '<a href="'. route('localPackage.show', $row->id) .'" class="edit btn btn-info btn-sm m-5" ><i class="fa fa-eye" aria-hidden="true"></i></a>';
+                            $btn .= '<a href="'. route('domesticpackages.edit', $row->id) .'" class="edit btn btn-primary btn-sm m-5" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
+                            $btn .= '<a href="javascript:void(0)" data-url="'. route('domesticpackages.destroy', $row->id) .'" class="delete_btn btn btn-danger btn-sm m-5" data-id="'. $row->id .'" ><i class="fa fa-trash" aria-hidden="true"></i></a>';
+                            $btn .= '<a href="'. route('domesticpackages.show', $row->id) .'" class="edit btn btn-info btn-sm m-5" ><i class="fa fa-eye" aria-hidden="true"></i></a>';
                         
                         return $btn;
                     })
@@ -39,7 +38,7 @@ class LocalPackageController extends Controller
                     ->make(true);
         }
         
-        return view('admin.localpackage.list');
+        return view('admin.domesticpackages.list');
     }
 
     /**
@@ -50,7 +49,7 @@ class LocalPackageController extends Controller
     public function create()
     {
         $CourierItems = CourierItems::get();
-        return view('admin.localpackage.create',compact('CourierItems'));
+        return view('admin.domesticpackages.create',compact('CourierItems'));
     }
 
     /**
@@ -72,7 +71,7 @@ class LocalPackageController extends Controller
             'price_per_km' => 'required',
             'notes' => 'required'
         ]);
-        $localPackage = array(
+        $domesticpackages = array(
             "itemsID" => $request->itemsID,
             "source_address" => $request->source_address,
             "destination_address" => $request->destination_address,
@@ -83,9 +82,9 @@ class LocalPackageController extends Controller
             "price_per_km" => $request->price_per_km,
             "notes" => $request->notes
         );
-        Localpackages::create($localPackage);
+        Domesticpackages::create($domesticpackages);
 
-        return redirect()->route("localPackage.index")->with("success", "Local Package created successfully.");
+        return redirect()->route("domesticpackages.index")->with("success", "Local Package created successfully.");
     }
 
     /**
@@ -96,8 +95,8 @@ class LocalPackageController extends Controller
      */
     public function show($id)
     {
-        $localPackage = Localpackages::find($id);
-        return view('admin.localpackage.show',compact('localPackage'));
+        $domesticpackages = Domesticpackages::find($id);
+        return view('admin.domesticpackages.show',compact('domesticpackages'));
     }
 
     /**
@@ -108,10 +107,10 @@ class LocalPackageController extends Controller
      */
     public function edit($id)
     {
-        $localPackage = Localpackages::find($id);
+        $domesticpackages = Domesticpackages::find($id);
         $CourierItems = CourierItems::get();
 
-        return view('admin.localpackage.edit', compact('localPackage','CourierItems'));
+        return view('admin.domesticpackages.edit', compact('domesticpackages','CourierItems'));
     }
 
     /**
@@ -123,7 +122,7 @@ class LocalPackageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $localPackage = Localpackages::find($id);
+        $domesticpackages = Domesticpackages::find($id);
         $request->validate([
             'itemsID' => 'required',
             'source_address' => 'required',
@@ -135,7 +134,7 @@ class LocalPackageController extends Controller
             'price_per_km' => 'required',
             'notes' => 'required'
         ]);
-        $localPackage = array(
+        $domesticpackages = array(
             "itemsID" => $request->itemsID,
             "source_address" => $request->source_address,
             "destination_address" => $request->destination_address,
@@ -146,9 +145,9 @@ class LocalPackageController extends Controller
             "price_per_km" => $request->price_per_km,
             "notes" => $request->notes
         );
-        Localpackages::whereId($id)->update($localPackage);
+        Domesticpackages::whereId($id)->update($domesticpackages);
 
-        return redirect()->route("localPackage.index")->with("success", "Local Package updated successfully.");
+        return redirect()->route("domesticpackages.index")->with("success", "Local Package updated successfully.");
     }
 
     /**
@@ -159,7 +158,7 @@ class LocalPackageController extends Controller
      */
     public function destroy($id)
     {
-        if(Localpackages::whereId($id)->delete()){
+        if(Domesticpackages::whereId($id)->delete()){
             return response()->json(["status" => 1]);
         } else {
             return response()->json(["status" => 0]);

@@ -9,7 +9,7 @@ Local Package
 
 @section('content')
     @component('components.breadcrumb')
-        <li class="breadcrumb-item"><a href="{{ route('localpackage.index') }}">Local Package</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('localPackage.index') }}">Local Package</a></li>
         <li class="breadcrumb-item active">Edit</li>
     @endcomponent
 
@@ -18,8 +18,8 @@ Local Package
             <div class="col-sm-12 col-xl-12">
                 <div class="row">
                     <div class="col-sm-12">
-                        <form class="theme-form" id="office_edit" method="POST"
-                            action="{{ route('localpackage.update', $office->id) }}" enctype="multipart/form-data">
+                        <form class="theme-form" id="localPackage_edit" method="POST"
+                            action="{{ route('localPackage.update', $localPackage->id) }}" enctype="multipart/form-data">
                             <div class="card">
                                 <div class="card-header pb-0">
                                     <h5>Edit Local Package</h5>
@@ -30,35 +30,37 @@ Local Package
                                     @method('PATCH')
 
                                     <div class="mb-3 row">
-                                        <input id="id" name="id" type="hidden" value="{{ $office->id }}"/>
-                                        <label class="col-sm-3 col-form-label" for="branch_name">Branch Name <span
+                                        <label class="col-sm-3 col-form-label" for="itemsID">Item Name <span
                                                 class="text-danger">*</span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" id="branch_name" class="form-control" name="branch_name"
-                                                placeholder="Title" value="{{ old('branch_name', $office->branch_name) }}" required />
-                                            @error('branch_name')
+                                            <select name="country_id" id="country_id" class="form-control" required >
+                                                @foreach($CourierItems as $Courier)
+                                                <option value="{{ $Courier->id }}" {{ isset($localPackage->itemsID) && $localPackage->itemsID == $Courier->id ? 'selected' : ''}}>{{ $Courier->item_name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('itemsID')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label" for="branch_code">Branch Code <span
+                                        <label class="col-sm-3 col-form-label" for="source_address">Souce Address <span
                                                 class="text-danger">*</span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" id="branch_code" class="form-control" name="branch_code"
-                                                placeholder="Branch Code" value="{{ old('branch_code', $office->branch_code) }}" required />
-                                            @error('branch_code')
+                                            <input type="text" id="source_address" class="form-control" name="source_address"
+                                                placeholder="Souce Address" value="{{ old('source_address', $localPackage->source_address) }}" required />
+                                            @error('source_address')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label" for="street">Street <span
+                                        <label class="col-sm-3 col-form-label" for="destination_address">Destination Address <span
                                                 class="text-danger">*</span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" id="street" class="form-control" name="street"
-                                                placeholder="Street" value="{{ old('street', $office->street) }}" required />
-                                            @error('street')
+                                            <input type="text" id="destination_address" class="form-control" name="destination_address"
+                                                placeholder="Destination Address" value="{{ old('destination_address', $localPackage->destination_address) }}" required />
+                                            @error('destination_address')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -68,7 +70,7 @@ Local Package
                                                 class="text-danger">*</span></label>
                                         <div class="col-sm-9">
                                             <input type="text" id="city" class="form-control" name="city"
-                                                placeholder="City" value="{{ old('city', $office->city) }}" required />
+                                                placeholder="City" value="{{ old('city', $localPackage->city) }}" required />
                                             @error('city')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -79,7 +81,7 @@ Local Package
                                                 class="text-danger">*</span></label>
                                         <div class="col-sm-9">
                                             <input type="text" id="state" class="form-control" name="state"
-                                                placeholder="State" value="{{ old('state', $office->state) }}" required />
+                                                placeholder="State" value="{{ old('state', $localPackage->state) }}" required />
                                             @error('state')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -90,28 +92,51 @@ Local Package
                                                 class="text-danger">*</span></label>
                                         <div class="col-sm-9">
                                             <input type="text" id="zip_code" class="form-control" name="zip_code"
-                                                placeholder="Zip Code" value="{{ old('zip_code', $office->zip_code) }}" required />
+                                                placeholder="Zip Code" value="{{ old('zip_code', $localPackage->zip_code) }}" required />
                                             @error('zip_code')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label" for="contact">Contact Detail <span
+                                        <label class="col-sm-3 col-form-label" for="distance">Distance <span
                                                 class="text-danger">*</span></label>
                                         <div class="col-sm-9">
-                                            <textarea id="contact" class="form-control" name="contact"
-                                                placeholder="Contact Detail" value="{{ old('contact', $office->contact) }}" required ></textarea>
-                                            @error('contact')
+                                            <input type="text" id="Distance" class="form-control" name="distance"
+                                                placeholder="distance" value="{{ old('distance', $localPackage->distance) }}" required />
+                                            @error('zip_code')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label" for="price_per_km">Price(km) <span
+                                                class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input type="text" id="price_per_km" class="form-control" name="price_per_km"
+                                                placeholder="Price(km)" value="{{ old('price_per_km', $localPackage->price_per_km) }}" required />
+                                            @error('price_per_km')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label" for="notes">Notes <span
+                                                class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <textarea id="notes" class="form-control" name="notes"
+                                                placeholder="Notes" value="{{ old('notes') }}" required >{{  $localPackage->notes }}</textarea>
+                                            @error('notes')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
                                     </div>
 
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
-                                    <a href="{{ route('localpackage.index') }}" class="btn btn-secondary">Cancel</a>
+                                    <a href="{{ route('localPackage.index') }}" class="btn btn-secondary">Cancel</a>
                                 </div>
                         </form>
                     </div>
@@ -124,7 +149,8 @@ Local Package
     @push('scripts')
         <script>
             $(document).ready(function() {
-                $("#office_edit").validate({
+                CKEDITOR.replace('notes');
+                $("#localPackage_edit").validate({
                     rules: {
                         // title: {
                         //     maxlength: 50,

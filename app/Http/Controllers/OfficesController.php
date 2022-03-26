@@ -26,6 +26,10 @@ class OfficesController extends Controller
                     ->editColumn('id', function($row){
                         return str_pad($row->id, 6, '0', STR_PAD_LEFT);
                     })
+                    ->editcolumn('contact', function($row){
+                        $contact = $row->contact ;
+                        return $contact;
+                    })
                     ->addColumn('action', function($row){
                         $btn = "";
                             $btn .= '<a href="'. route('offices.edit', $row->id) .'" class="edit btn btn-primary btn-sm m-5" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
@@ -33,7 +37,7 @@ class OfficesController extends Controller
                         
                         return $btn;
                     })
-                    ->rawColumns(['action'])
+                    ->rawColumns(['action','contact'])
                     ->make(true);
         }
         

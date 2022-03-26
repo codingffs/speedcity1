@@ -9,7 +9,7 @@ Local Package
 
 @section('content')
     @component('components.breadcrumb')
-        <li class="breadcrumb-item"><a href="{{ route('localpackage.index') }}">Local Package</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('localPackage.index') }}">Local Package</a></li>
         <li class="breadcrumb-item active">Create</li>
     @endcomponent
 
@@ -19,7 +19,7 @@ Local Package
                 <div class="row">
                     <div class="col-sm-12">
                         <form class="theme-form" id="localpackage_Create" method="POST"
-                            action="{{ route('localpackage.store') }}" enctype="multipart/form-data">
+                            action="{{ route('localPackage.store') }}" enctype="multipart/form-data">
                             <div class="card">
                                 <div class="card-header pb-0">
                                     <h5>Create Local Package</h5>
@@ -28,34 +28,37 @@ Local Package
 
                                 @csrf
                                 <div class="mb-3 row">
-                                    <label class="col-sm-3 col-form-label" for="itemsID">Branch Name <span
+                                    <label class="col-sm-3 col-form-label" for="itemsID">Item Name <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-9">
-                                        <input type="text" id="itemsID" class="form-control" name="itemsID"
-                                            placeholder="Branch Name" value="{{ old('itemsID') }}" required />
+                                        <select name="itemsID" id="itemsID" class="form-control" required >
+                                            @foreach($CourierItems as $CourierItems)
+                                            <option value="{{ $CourierItems->id }}">{{ $CourierItems->item_name }}</option>
+                                            @endforeach
+                                        </select>
                                         @error('itemsID')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-sm-3 col-form-label" for="branch_code">Branch Code <span
+                                    <label class="col-sm-3 col-form-label" for="source_address">Souce Address <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-9">
-                                        <input type="text" id="branch_code" class="form-control" name="branch_code"
-                                            placeholder="Branch Code" value="{{ old('branch_code') }}" required />
-                                        @error('branch_code')
+                                        <input type="text" id="source_address" class="form-control" name="source_address"
+                                            placeholder="Source Address" value="{{ old('source_address') }}" required />
+                                        @error('source_address')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-sm-3 col-form-label" for="street">Street <span
+                                    <label class="col-sm-3 col-form-label" for="destination_address">Destination Address <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-9">
-                                        <input type="text" id="street" class="form-control" name="street"
-                                            placeholder="Street" value="{{ old('street') }}" required />
-                                        @error('street')
+                                        <input type="text" id="destination_address" class="form-control" name="destination_address"
+                                            placeholder="Destination Address" value="{{ old('destination_address') }}" required />
+                                        @error('destination_address')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -94,12 +97,34 @@ Local Package
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-sm-3 col-form-label" for="contact">Contact Detail <span
+                                    <label class="col-sm-3 col-form-label" for="distance">Distance <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-9">
-                                        <textarea id="contact" class="form-control" name="contact"
-                                            placeholder="Contact Detail" value="{{ old('contact') }}" required ></textarea>
-                                        @error('contact')
+                                        <input type="text" id="Distance" class="form-control" name="distance"
+                                            placeholder="distance" value="{{ old('distance') }}" required />
+                                        @error('zip_code')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-sm-3 col-form-label" for="price_per_km">Price(km) <span
+                                            class="text-danger">*</span></label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="price_per_km" class="form-control" name="price_per_km"
+                                            placeholder="Price(km)" value="{{ old('price_per_km') }}" required />
+                                        @error('price_per_km')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-sm-3 col-form-label" for="notes">Notes <span
+                                            class="text-danger">*</span></label>
+                                    <div class="col-sm-9">
+                                        <textarea id="notes" class="form-control" name="notes"
+                                            placeholder="Notes" value="{{ old('notes') }}" required ></textarea>
+                                        @error('notes')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -108,7 +133,7 @@ Local Package
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
-                                    <a href="{{ route('localpackage.index') }}" class="btn btn-secondary">Cancel</a>
+                                    <a href="{{ route('localPackage.index') }}" class="btn btn-secondary">Cancel</a>
                                 </div>
                         </form>
                     </div>
@@ -121,7 +146,7 @@ Local Package
     @push('scripts')
         <script>
             $(document).ready(function() {
-                CKEDITOR.replace('contact');
+                CKEDITOR.replace('notes');
                 $("#localpackage_Create").validate({
                     rules: {
                         // title: {

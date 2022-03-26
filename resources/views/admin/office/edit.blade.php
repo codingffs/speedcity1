@@ -101,7 +101,7 @@ Office
                                                 class="text-danger">*</span></label>
                                         <div class="col-sm-9">
                                             <textarea id="contact" class="form-control" name="contact"
-                                                placeholder="Contact Detail" value="{{ old('contact', $office->contact) }}" required ></textarea>
+                                                placeholder="Contact Detail" value="{{ old('contact') }}" required >{{ $office->contact }}</textarea>
                                             @error('contact')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -124,6 +124,7 @@ Office
     @push('scripts')
         <script>
             $(document).ready(function() {
+                CKEDITOR.replace('contact');
                 $("#office_edit").validate({
                     rules: {
                         // title: {
