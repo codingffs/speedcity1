@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Domesticpackages;
 use App\Models\CourierItems;
 use Validator;
@@ -20,17 +21,16 @@ class DomesticPackageController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $domesticpackages = Domesticpackages::latest()->get();
-            return Datatables::of($domesticpackages)
+            $Domesticpackages = Domesticpackages::latest()->get();
+            return Datatables::of($Domesticpackages)
                     ->addIndexColumn()
                     ->editColumn('id', function($row){
                         return str_pad($row->id, 6, '0', STR_PAD_LEFT);
                     })
                     ->addColumn('action', function($row){
                         $btn = "";
-                            $btn .= '<a href="'. route('domesticpackages.edit', $row->id) .'" class="edit btn btn-primary btn-sm m-5" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
-                            $btn .= '<a href="javascript:void(0)" data-url="'. route('domesticpackages.destroy', $row->id) .'" class="delete_btn btn btn-danger btn-sm m-5" data-id="'. $row->id .'" ><i class="fa fa-trash" aria-hidden="true"></i></a>';
-                            $btn .= '<a href="'. route('domesticpackages.show', $row->id) .'" class="edit btn btn-info btn-sm m-5" ><i class="fa fa-eye" aria-hidden="true"></i></a>';
+                            $btn .= '<a href="'. route('domesticpackage.edit', $row->id) .'" class="edit btn btn-primary btn-sm m-5" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
+                            $btn .= '<a href="javascript:void(0)" data-url="'. route('domesticpackage.destroy', $row->id) .'" class="delete_btn btn btn-danger btn-sm m-5" data-id="'. $row->id .'" ><i class="fa fa-trash" aria-hidden="true"></i></a>';
                         
                         return $btn;
                     })
@@ -38,7 +38,7 @@ class DomesticPackageController extends Controller
                     ->make(true);
         }
         
-        return view('admin.domesticpackages.list');
+        return view('admin.domesticpackage.list');
     }
 
     /**
@@ -48,8 +48,7 @@ class DomesticPackageController extends Controller
      */
     public function create()
     {
-        $CourierItems = CourierItems::get();
-        return view('admin.domesticpackages.create',compact('CourierItems'));
+        return view('admin.domesticpackage.create');
     }
 
     /**
@@ -61,30 +60,22 @@ class DomesticPackageController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'itemsID' => 'required',
-            'source_address' => 'required',
-            'destination_address' => 'required',
-            'city' => 'required',
-            'state' => 'required',
-            'zip_code' => 'required',
-            'distance' => 'required',
-            'price_per_km' => 'required',
-            'notes' => 'required'
+            'item_name' => 'required',
+            'source_city' => 'required',
+            'destination_city' => 'required',
+            'price' => 'required',
+            'notes' => 'required',
         ]);
-        $domesticpackages = array(
-            "itemsID" => $request->itemsID,
-            "source_address" => $request->source_address,
-            "destination_address" => $request->destination_address,
-            "city" => $request->city,
-            "state" => $request->state,
-            "zip_code" => $request->zip_code,
-            "distance" => $request->distance,
-            "price_per_km" => $request->price_per_km,
+        $Domesticpackages = array(
+            "itemsID" => $request->item_name,
+            "source_city" => $request->source_city,
+            "destination_city" => $request->destination_city,
+            "price" => $request->price,
             "notes" => $request->notes
         );
-        Domesticpackages::create($domesticpackages);
+        Domesticpackages::create($Domesticpackages);
 
-        return redirect()->route("domesticpackages.index")->with("success", "Local Package created successfully.");
+        return redirect()->route("domesticpackage.index")->with("success", "Domestic Package created successfully.");
     }
 
     /**
@@ -95,8 +86,7 @@ class DomesticPackageController extends Controller
      */
     public function show($id)
     {
-        $domesticpackages = Domesticpackages::find($id);
-        return view('admin.domesticpackages.show',compact('domesticpackages'));
+       //
     }
 
     /**
@@ -107,10 +97,9 @@ class DomesticPackageController extends Controller
      */
     public function edit($id)
     {
-        $domesticpackages = Domesticpackages::find($id);
-        $CourierItems = CourierItems::get();
+        $Domesticpackages = Domesticpackages::find($id);
 
-        return view('admin.domesticpackages.edit', compact('domesticpackages','CourierItems'));
+        return view('admin.domesticpackage.edit', compact('Domesticpackages'));
     }
 
     /**
@@ -122,32 +111,24 @@ class DomesticPackageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $domesticpackages = Domesticpackages::find($id);
+        $Domesticpackages = Domesticpackages::find($id);
         $request->validate([
-            'itemsID' => 'required',
-            'source_address' => 'required',
-            'destination_address' => 'required',
-            'city' => 'required',
-            'state' => 'required',
-            'zip_code' => 'required',
-            'distance' => 'required',
-            'price_per_km' => 'required',
-            'notes' => 'required'
+            'item_name' => 'required',
+            'source_city' => 'required',
+            'destination_city' => 'required',
+            'price' => 'required',
+            'notes' => 'required',
         ]);
-        $domesticpackages = array(
-            "itemsID" => $request->itemsID,
-            "source_address" => $request->source_address,
-            "destination_address" => $request->destination_address,
-            "city" => $request->city,
-            "state" => $request->state,
-            "zip_code" => $request->zip_code,
-            "distance" => $request->distance,
-            "price_per_km" => $request->price_per_km,
+        $Domesticpackages = array(
+            "itemsID" => $request->item_name,
+            "source_city" => $request->source_city,
+            "destination_city" => $request->destination_city,
+            "price" => $request->price,
             "notes" => $request->notes
         );
-        Domesticpackages::whereId($id)->update($domesticpackages);
+        Domesticpackages::whereId($id)->update($Domesticpackages);
 
-        return redirect()->route("domesticpackages.index")->with("success", "Local Package updated successfully.");
+        return redirect()->route("domesticpackage.index")->with("success", "Domestic Package updated successfully.");
     }
 
     /**

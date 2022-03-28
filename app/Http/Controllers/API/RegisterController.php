@@ -13,35 +13,29 @@ class RegisterController extends Controller
 {
 
     public function userRegister(Request $request){
-        
         $rules = [
-            'full_name' => 'required',
-            'username' => 'required|unique:users,username',
-            'mobile_no' => 'required|unique:users,mobile_no',
-            'password' => 'required|min:6',
+            'name' => 'required',
+            'mobile' => 'required|digits:10',
+            'email' => 'required|email|unique:users',
+            'confirm_email' => 'required|same:email'
         ];
 
         $validator = Validator::make($request->all(), $rules);
+        $input = $request->all();
+        $input['password'] =  Hash::make("qwertyuiop@123");
 
         if ($validator->fails()) {
             $errorMessage = $validator->messages();
             $message = $validator->errors()->first();
             return errorResponse($message, $errorMessage);
         }
-
-        $data = [
-            'name' => $request->full_name,
-            'username' => $request->username,
-            'mobile_no' => $request->mobile_no,
-            'password' => Hash::make($request->password),
-            'doctor_status' => '3',
-        ];
         
-        $user = User::create($data);
+        $user = User::create($input);
+        $data = User::find($user->id);
 
         //$user->token =  $user->createToken('Cancer')->accessToken;
         if(!empty($user)) {
-            return successResponse("Register Successfully", $user);
+            return successResponse("Register Successfully", $data);
         } else {
             return errorResponse("Something went wrong, Please try again later", $errorMessage);
         }
@@ -56,16 +50,15 @@ class RegisterController extends Controller
         ];
 
         $validator = Validator::make($request->all(), $rules);
-
+        
         if ($validator->fails()) {
             $errorMessage = $validator->messages();
             $message = $validator->errors()->first();
             return errorResponse($message, $errorMessage);
         }
-        
-        if(Auth::attempt(['username' => $request->username, 'password' => $request->password])){ 
-            $user = Auth::user(); 
+        if(Auth::attempt(['name' => $request->username, 'password' => $request->password])){ 
             $user->token =  $user->createToken('Cancer')-> accessToken; 
+            $user = Auth::user(); 
    
             return successResponse('User login successfully', $user);
         } else{ 

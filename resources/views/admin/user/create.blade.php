@@ -50,36 +50,27 @@
                                     </div>
 
                                     <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label" for="phone">Phone <span class="text-danger">*</span></label>
+                                        <label class="col-sm-3 col-form-label" for="password">Password <span class="text-danger">*</span></label>
                                         <div class="col-sm-9">
-                                            <input type="number" id="phone" class="form-control" name="phone"
-                                                placeholder="Phone" value="{{ old('phone') }}" required />
-                                            @error('phone')
+                                            <input type="number" id="password" class="form-control" name="password"
+                                                placeholder="password" value="{{ old('password') }}" required />
+                                            @error('password')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
                                         </div>
                                     </div>
 
                                     <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label" for="address">Address <span class="text-danger">*</span></label>
+                                        <label class="col-sm-3 col-form-label" for="confirm_password">Confirm Password <span class="text-danger">*</span></label>
                                         <div class="col-sm-9">
-                                            <textarea name="address" id="address" class="form-control" placeholder="Address" required></textarea>
-                                            @error('address')
+                                            <input name="confirm_password" id="confirm_password" class="form-control" placeholder="confirm password" required/>
+                                            @error('confirm_password')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
                                         </div>
                                     </div>
 
-                                    <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label">User Role <span class="text-danger">*</span></label>
-                                        <div class="col-sm-9">
-                                            <select name="type" id="type" class="form-control" required>
-                                                @foreach ($Role as $value)
-                                                    <option value="{{ $value->id }}">{{ $value->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
+                                   
 
                                 </div>
                                 <div class="card-footer">
@@ -99,10 +90,13 @@
             $(document).ready(function() {
                 $("#user_Create").validate({ 
                     rules: {
-                        phone:{
-                            number: true,
-                            minlength: 10,
-                            maxlength: 10
+                        password:{
+                            minlength: 6
+                        },
+                        confirm_password:{
+                            minlength: 6,
+                            equalTo: "#password",
+                            return: true,
                         },
                         email: {
                             maxlength: 90,
