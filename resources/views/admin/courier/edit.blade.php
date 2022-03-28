@@ -34,7 +34,7 @@
                                         <label class="col-sm-3 col-form-label" for="country_name">Country Name <span class="text-danger">*</span></label>
                                         <div class="col-sm-9">
                                             <input type="text" id="item_name" class="form-control" name="item_name"
-                                                placeholder="item Name" value="{{ $CourierItems->item_name }}" />
+                                                placeholder="item Name" value="{{ $CourierItems->item_name }}" required />
                                             @error('item_name')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
@@ -72,9 +72,10 @@
 
                 $("#Courierlist_edit").validate({
                     errorPlacement: function(error, element) {
-                        if (element.attr("name") == "discount_type") {
-                            error.appendTo(element.parent("div").parent("div").parent('div'));
-                        } else {
+                        if (element.attr("type") == "text") {
+                            error.appendTo(element.parent("div"));
+                        }
+                         else {
                             error.insertAfter(element);
                         }
                     }

@@ -120,31 +120,41 @@ class SpeciesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Category::find($id);
-        if(!Auth::user()->can('category-edit')){
-            return back()->with(['error' => 'Unauthorized Access.']);
-        }
+        $Species = Species::find($id);
         $request->validate([
-            'title' => 'required|unique:categories,title,'.$id,
+            'species_name' => 'required',
+            'scientific_name' => 'required',
+            'family' => 'required',
+            'silvicultural_requirements' => 'required',
+            'species_description' => 'required',
+            'utility' => 'required',
         ]);
-        $Category = array(
-            "title" => $request->title,
-        );
+        $imagename = $Species->image;
         if(isset($request->image) && !empty($request->image)){
-            if(isset($category->image) && $category->image != ""){
-            $image_path=public_path('images/category').'/'.$category->image;
+            if(isset($Species->image) && $Species->image != ""){
+            $image_path=public_path('/species').'/'.$Species->image;
                 if(file_exists($image_path)){
                     unlink($image_path);
                 }
             }
             $imagename = rand(0000,9999).$request->image->getclientoriginalname();
-            $request->image->move(public_path('images/category'),$imagename);
-            $Category['image'] = $imagename;
+            $request->image->move(public_path('/species'),$imagename);
+            $Species['image'] = $imagename;
            }
+        $Species = array(
+            "species_name" => $request->species_name,
+            "scientific_name" => $request->scientific_name,
+            "family" => $request->family,
+            "silvicultural_requirements" => $request->silvicultural_requirements,
+            "species_description" => $request->species_description,
+            "utility" => $request->utility,
+            "image" => $imagename,
+        );
+       
 
-        Category::whereId($id)->update($Category);
+        Species::whereId($id)->update($Species);
 
-        return redirect()->route("categories.index")->with("success", "Medical Category updated successfully.");
+        return redirect()->route("species.index")->with("success", "Species updated successfully.");
     }
 
     /**

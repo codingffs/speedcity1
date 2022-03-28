@@ -1,7 +1,7 @@
 @extends('layouts.admin.master')
 
 @section('title')
-Species
+Local Package
 @endsection
 
 @push('css')
@@ -9,7 +9,7 @@ Species
 
 @section('content')
     @component('components.breadcrumb')
-        <li class="breadcrumb-item"><a href="{{ route('species.index') }}">Species</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('localPackage.index') }}">Local Package</a></li>
         <li class="breadcrumb-item active">Create</li>
     @endcomponent
 
@@ -41,7 +41,7 @@ Species
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label" for="scientific_name">Scientific Name <span class="text-danger">*</span></label>
                                     <div class="col-sm-9">
-                                        <input type="text" id="scientific_name" class="form-control" name="scientific_name" placeholder="species_name" value="{{ old('scientific_name') }}" />
+                                        <input type="text" id="scientific_name" class="form-control" name="scientific_name" placeholder="species_name" value="{{ old('scientific_name') }}" required />
                                         @error('scientific_name')
                                             <div class="text-danger">{{ $message }}
                                             </div>
@@ -115,31 +115,7 @@ Species
     @push('scripts')
         <script>
             $(document).ready(function() {
-                CKEDITOR.replace('description');
-
                 $("#species_Create").validate({
-                    rules: {
-                        // title: {
-                        //     maxlength: 50,
-                        //     remote: {
-                        //         type: 'get',
-                        //         url: '{{ route('check_title_exists') }}',
-                        //         data: {
-                        //             'title': function() {
-                        //                 return $("#title").val();
-                        //             }
-                        //         },
-                        //         dataFilter: function(data) {
-                        //             var json = JSON.parse(data);
-                        //             if (json.status == 0) {
-                        //                 return "\"" + json.message + "\"";
-                        //             } else {
-                        //                 return 'true';
-                        //             }
-                        //         }
-                        //     }
-                        // },
-                    },
                     errorPlacement: function(error, element) {
                         if (element.attr("type") == "text") {
                             error.appendTo(element.parent("div"));

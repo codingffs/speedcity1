@@ -69,8 +69,8 @@
 
                 $("#Courierlist_create").validate({ 
                     errorPlacement: function(error, element) {
-                        if (element.attr("name") == "discount_type") {
-                            error.appendTo(element.parent("div").parent("div").parent('div'));
+                        if (element.attr("type") == "text") {
+                            error.appendTo(element.parent("div"));
                         } else {
                             error.insertAfter(element);
                         }
