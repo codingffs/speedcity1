@@ -59,7 +59,7 @@ class RegisterController extends Controller
         
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
             $user = Auth::user(); 
-            $user->token =  $user->createToken('Cancer')-> accessToken; 
+            $user->token =  $user->createToken('cityspeed')-> accessToken; 
    
             return successResponse('User login successfully', $user);
         } else{ 
