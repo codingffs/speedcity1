@@ -1,28 +1,28 @@
 @extends('layouts.admin.master')
 
 @section('title')
-User
+Domestic Package Item
 @endsection
 
 @push('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
-@endpush
+    @endpush
 
-@section('content')
-    @component('components.breadcrumb')
-        <li class="breadcrumb-item">User </li>
-    @endcomponent
+    @section('content')
+        @component('components.breadcrumb')
+            <li class="breadcrumb-item">Domestic Package </li>
+        @endcomponent
 
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Feature Unable /Disable Order Starts-->
-            <div class="col-sm-12">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Feature Unable /Disable Order Starts-->
+                <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>User
-                            @can('user-create')
-                                <a href="{{ route('user.create') }}" class="btn btn-primary float_right">Create User</a>
-                            @endcan
+                        <h5>Domestic Package Item
+                            {{-- @can('country-create') --}}
+                                <a href="{{ route('domesticpackage.create') }}" class="btn btn-primary float_right">Create DomesticPackage Item</a>
+                            {{-- @endcan --}}
                         </h5>
                     </div>
                     <div class="card-body">
@@ -31,9 +31,11 @@ User
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Action</th>
+                                        <th>Item Name</th>
+                                        <th>Source City</th>
+                                        <th>Destination City</th>
+                                        <th>Price</th>
+                                        <th>Option</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -56,18 +58,26 @@ User
             var table = $('#data_table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('user.index') }}",
+                ajax: "{{ route('domesticpackage.index') }}",
                 columns: [{
                         data: 'id',
                         name: 'id'
                     },
                     {
-                        data: 'name',
-                        name: 'name'
+                        data: 'itemsID',
+                        name: 'itemsID'
                     },
                     {
-                        data: 'email',
-                        name: 'email'
+                        data: 'source_city',
+                        name: 'source_city'
+                    },
+                    {
+                        data: 'destination_city',
+                        name: 'destination_city'
+                    },
+                    {
+                        data: 'price',
+                        name: 'price'
                     },
                     {
                         data: 'action',
@@ -111,7 +121,7 @@ User
                                     "closeButton" : true,
                                     "progressBar" : true
                                     }
-                                    toastr.success("User Deleted Successfully!");
+                                    toastr.success("Domesticpackage Deleted Successfully!");
                                 } else {
                                     return false;
                                 }
