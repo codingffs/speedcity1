@@ -13,9 +13,8 @@ class OrderHistoryController extends Controller
 {
     public function list($status)
     {
-        $user = Auth::user(); 
-        dd($user);
-        $Orderlist = BookOrder::where('status',$status)->get();
+        $user = Auth::guard('api')->user()->id;
+        $Orderlist = BookOrder::where('status',$status)->where('id')->get();
         return $Orderlist;
     }
 }

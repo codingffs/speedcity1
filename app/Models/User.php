@@ -13,6 +13,7 @@ use Laravel\Passport\HasApiTokens;
 
 
 
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
@@ -30,6 +31,10 @@ class User extends Authenticatable
         'password',
         'role',
         'active',
+        'otp',
+        'access_token',
+        'remember_token',
+
     ];
 
     /**
@@ -39,7 +44,6 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
         'created_at',
         'updated_at',
         'email_verification_code',
@@ -47,7 +51,7 @@ class User extends Authenticatable
         'email_verified_at',
         'forgotten_password_code',
         'forgotten_password_time',
-        'access_token',
+      
     ];
 
     /**

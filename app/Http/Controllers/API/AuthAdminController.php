@@ -58,9 +58,6 @@ class AuthAdminController extends BaseController
         return response()->json([
             'message' => 'Successfully logged out'
         ]);
-        // if(Auth::guard('api')->check()){
-        //     Auth::logout();
-        // }
         $success['status'] = 500;
         return $this->sendResponse($success, 'User logout successfully.');
     }

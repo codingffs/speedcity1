@@ -52,6 +52,7 @@ class LoginController extends Controller
         ]);
         
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            
             if (auth()->user()->active == 0) {
                 $status = auth()->user()->active;
                 Auth::logout();

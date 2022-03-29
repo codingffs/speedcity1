@@ -11,10 +11,13 @@ class NotificationController extends Controller
 {
     public function list()
     {
-        $user = $user = Auth::user(); 
-        // $notification = Notification::where('user_id',$user->id)->first();
-        $notification = Notification::get();
-
-        return $notification;
+        $user_id = $user = Auth::guard('api')->user()->id;
+        $notification = Notification::where('user_id',$user_id)->get();
+        // $notification = Notification::get();
+        if($notification){
+            // return $notification;
+              return successResponse('User login successfully', $notification);
+        }
+            return errorResponse('No Data Found!');
     }
 }
