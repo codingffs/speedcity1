@@ -8,6 +8,9 @@ use App\Http\Controllers\API\FaqController;
 use App\Http\Controllers\API\NotificationController;
 use App\Http\Controllers\API\OrderHistoryController;
 use App\Http\Controllers\API\AuthAdminController;
+use App\Http\Controllers\API\BookOrderController;
+use App\Http\Controllers\API\ParcelWeightController;
+use App\Http\Controllers\API\ParcelTypeController;
 
 
 /*
@@ -32,7 +35,11 @@ Route::prefix('admin')->group( function (){
     Route::get('cms/{slug?}', [CmsController::class,"cmslist"]); 
     Route::get('notification', [NotificationController::class,"list"]); 
     Route::get('orderhistory/{status}', [OrderHistoryController::class,"list"]); 
-    Route::post('user-login',[RegisterController::class,'userLogin'])->name('user-login');
+    Route::post('user-login',[RegisterController::class,'userLogin1'])->name('user-login');
+    Route::post('bookorder',[BookOrderController::class,'bookorder'])->name('bookorder');
+    Route::get('parcelweight',[ParcelWeightController::class,'parcelweight'])->name('parcelweight');
+    Route::get('parceltype',[ParcelTypeController::class,'parceltype'])->name('parceltype');
+    Route::get('parceltype',[OrderHistoryController::class,'parceltype'])->name('parceltype');
 
     Route::post('user-register',[RegisterController::class,'userRegister'])->name('user-register');
 Route::post('register', [AuthAdminController::class,"register"]); 

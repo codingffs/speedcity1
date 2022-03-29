@@ -4,12 +4,12 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\ParcelType;
+use App\Models\CourierItems;
 
 class ParcelTypeController extends Controller
 {
         public function parceltype(){
-            $parceltype = ParcelType::get();
+            $parceltype = CourierItems::get();
             return $parceltype;
         }
 }

@@ -4,15 +4,14 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Controllers\API\BaseController as BaseController;
-use App\BookOrder;
+use App\Models\BookOrder;
 use Validator; 
 use Auth; 
 
-class BookOrderController extends BaseController
+class BookOrderController extends Controller
 {
     public function bookorder(Request $request){
-       
+
         $validator = Validator::make($request->all(), [
             'local_services' => 'required',
             'pickup_address' => 'required',
@@ -26,11 +25,11 @@ class BookOrderController extends BaseController
             'total_amount' => 'required',
         ]);  
         if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors());     
+            return errorResponse('Validation Error.', $validator->errors());     
         }
         $input = $request->all();
         $user = BookOrder::create($input);
         $success['status'] = 200;
-        return $this->sendResponse($success, 'Order Booked Successfully.');
+        return successResponse('Order Booked Successfully.',$success);
     }
 }

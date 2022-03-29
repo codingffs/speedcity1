@@ -53,13 +53,13 @@ class LoginController extends Controller
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             
-            if (auth()->user()->status != 'Approve') {
-                $status = auth()->user()->status;
+            if (auth()->user()->active == 0) {
+                $status = auth()->user()->active;
                 Auth::logout();
                 return back()->with("error", "Your Account is " . $status);
             }
 
-            if (auth()->user()->type == '1') {
+            if (auth()->user()->role == '1') {
                 return redirect()->route('index');
             } else {
                 return redirect()->route('index');

@@ -42,36 +42,29 @@ class RegisterController extends Controller
         
     }
 
-    public function userLogin(Request $request){
+    public function userLogin1(Request $request){
         
         $rules = [
-            'username' => 'required',
+            'email' => 'required',
             'password' => 'required',
         ];
 
         $validator = Validator::make($request->all(), $rules);
-        
+
         if ($validator->fails()) {
             $errorMessage = $validator->messages();
             $message = $validator->errors()->first();
             return errorResponse($message, $errorMessage);
         }
-        if(Auth::attempt(['name' => $request->username, 'password' => $request->password])){ 
-            $user->token =  $user->createToken('Cancer')-> accessToken; 
+        
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
             $user = Auth::user(); 
+            $user->token =  $user->createToken('Cancer')-> accessToken; 
    
             return successResponse('User login successfully', $user);
         } else{ 
             return errorResponse('Unauthorised');
         } 
-        
-    }
-
-    public function userTest(Request $request){
-        $user = auth()->guard('api')->user(); 
-        $user->token =  $user->createToken('Cancer')-> accessToken; 
-
-        return successResponse('User login successfully', $user);
         
     }
 }
