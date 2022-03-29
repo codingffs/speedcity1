@@ -16,7 +16,7 @@ class NotificationController extends Controller
         // $notification = Notification::get();
         if($notification){
             // return $notification;
-              return successResponse('User login successfully', $notification);
+              return successResponse('Notification List', $notification);
         }
             return errorResponse('No Data Found!');
     }

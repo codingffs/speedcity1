@@ -41,9 +41,10 @@ Route::prefix('admin')->group( function (){
         Route::any('send-otp',[RegisterController::class,'sendotp'])->name('send-otp');
         Route::post('bookorder',[BookOrderController::class,'bookorder'])->name('bookorder');
         Route::get('parcelweight',[ParcelWeightController::class,'parcelweight'])->name('parcelweight');
-        Route::get('parceltype',[ParcelTypeController::class,'parceltype'])->name('parceltype');
+        // Route::get('parceltype',[ParcelTypeController::class,'parceltype'])->name('parceltype');
+        Route::get('parceltype',[OrderHistoryController::class,'parceltype'])->name('parceltype');
+        // Route::post('send-otp',[RegisterController::class,'sendotp'])->name('send-otp');
         // Route::get('parceltype',[OrderHistoryController::class,'parceltype'])->name('parceltype');
-        Route::post('send-otp',[RegisterController::class,'sendotp'])->name('send-otp');
         Route::post('otp-verify',[RegisterController::class,'otpverify'])->name('otp-verify');
     
     });
