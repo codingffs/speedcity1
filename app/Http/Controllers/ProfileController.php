@@ -7,7 +7,7 @@ use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
-class DashboardController extends Controller
+class ProfileController extends Controller
 {
     public function edit_profile(){
         
@@ -19,9 +19,8 @@ class DashboardController extends Controller
         $user = array(
             "name" => $request->name,
             "email" => $request->email,
-            "phone" => $request->phone, 
+            "mobile" => $request->mobile, 
             "address" => $request->address,
-            "about_supplier" => $request->about_supplier,
         );
 
         User::whereId(auth()->user()->id)->update($user);

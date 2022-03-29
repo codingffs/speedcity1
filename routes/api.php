@@ -49,7 +49,6 @@ Route::prefix('admin')->group( function (){
         // Route::get('parceltype',[OrderHistoryController::class,'parceltype'])->name('parceltype');
         Route::post('otp-verify',[RegisterController::class,'otpverify'])->name('otp-verify');
     
-        
     });
 });
 
