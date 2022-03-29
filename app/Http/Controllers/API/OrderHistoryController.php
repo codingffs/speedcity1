@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BookOrder;
@@ -12,7 +13,8 @@ class OrderHistoryController extends Controller
 {
     public function list($status)
     {
-        $user = $user = Auth::user(); 
+        $user = Auth::user(); 
+        dd($user);
         $Orderlist = BookOrder::where('status',$status)->get();
         return $Orderlist;
     }

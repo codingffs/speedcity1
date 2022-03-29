@@ -33,10 +33,10 @@ Route::prefix('admin')->group( function (){
     Route::get('notification', [NotificationController::class,"list"]); 
     Route::get('orderhistory/{status}', [OrderHistoryController::class,"list"]); 
     Route::post('user-login',[RegisterController::class,'userLogin'])->name('user-login');
-    Route::post('send-otp',[RegisterController::class,'sendotp'])->name('send-otp');
+    Route::any('send-otp',[RegisterController::class,'sendotp'])->name('send-otp');
 
     Route::post('user-register',[RegisterController::class,'userRegister'])->name('user-register');
-Route::post('register', [AuthAdminController::class,"register"]); 
+    Route::post('register', [AuthAdminController::class,"register"]); 
 });
 // Route::get('/faq-detail',[FaqController::class,'faqdetail'])->name('faqdetail');
 

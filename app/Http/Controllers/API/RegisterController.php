@@ -72,7 +72,7 @@ class RegisterController extends Controller
 
     public function userTest(Request $request){
         $user = auth()->guard('api')->user(); 
-        $user->token =  $user->createToken('Cancer')-> accessToken; 
+        $user->token =  $user->createToken('Cityspeed')-> accessToken; 
 
         return successResponse('User login successfully', $user);
         
