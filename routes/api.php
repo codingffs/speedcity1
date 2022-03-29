@@ -31,10 +31,12 @@ Route::prefix('admin')->group( function (){
     Route::post('user-register',[RegisterController::class,'userRegister'])->name('user-register');
     Route::post('register', [AuthAdminController::class,"register"]); 
     Route::get('logout', [RegisterController::class,"logout"]); 
+    Route::get("faq", [FaqController::class, "index1"]);
+    Route::get('cms/{slug?}', [CmsController::class,"cmslist"]);
+    
     Route::group(['middleware' => ['passportapi']], function(){
 
-        Route::get("faq", [FaqController::class, "index1"]);
-        Route::get('cms/{slug?}', [CmsController::class,"cmslist"]); 
+        
         Route::get('notification', [NotificationController::class,"list"]); 
         Route::get('orderhistory/{status}', [OrderHistoryController::class,"list"]); 
         // Route::post('user-login',[RegisterController::class,'userLogin'])->name('user-login');

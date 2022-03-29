@@ -13,8 +13,7 @@ class NotificationController extends Controller
     {
         $user_id = $user = Auth::guard('api')->user()->id;
         $notification = Notification::where('user_id',$user_id)->get();
-        // $notification = Notification::get();
-        if($notification){
+        if($notification != '[]'){
             // return $notification;
               return successResponse('Notification List', $notification);
         }

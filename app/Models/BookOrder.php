@@ -22,6 +22,7 @@ class BookOrder extends Model
         'delivery_contact',
         'delivery_others',
         'parcel_type',
+        'parcel_id',
         'parcel_weight',
         'total_amount',
         'status',

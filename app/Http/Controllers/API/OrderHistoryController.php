@@ -14,7 +14,7 @@ class OrderHistoryController extends Controller
     public function list($status)
     {
         $user = Auth::guard('api')->user()->id;
-        $Orderlist = BookOrder::where('status',$status)->where('id')->get();
+        $Orderlist = BookOrder::where('status',$status)->get();
         return $Orderlist;
     }
 }

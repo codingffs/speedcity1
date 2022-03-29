@@ -23,9 +23,13 @@ class CourierItemsController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = CourierItems::get();
+            $data = CourierItems::orderBy('id', 'DESC')->get();
+            // $posts = Post::orderBy('id', 'DESC')->get();
             return Datatables::of($data)
             ->addIndexColumn()
+            ->editColumn('id', function($row){
+                return str_pad($row->id, 5, '0', STR_PAD_LEFT);
+            })
             ->addColumn('action', function($row){
                         $btn = "";
                             $btn .= '<a href="'. route('Courierlist.edit', $row->id) .'" class="edit btn btn-primary btn-sm m-1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
@@ -33,7 +37,7 @@ class CourierItemsController extends Controller
 
                         return $btn;
                     })
-                    ->rawColumns(['action'])
+                    ->rawColumns(['action','id'])
                     ->make(true);
         }
         return view('admin.courier.list');
