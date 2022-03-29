@@ -22,6 +22,9 @@
                              
                     <li class="dropdown"><a class="nav-link menu-title link-nav"
                         href="{{ route('localPackage.index') }}"><i data-feather="package"></i><span>Local Package</span></a></li>
+                    
+                    <li class="dropdown"><a class="nav-link menu-title link-nav"
+                        href="{{ route('domesticpackages.index') }}"><i data-feather="package"></i><span>Domestic Package</span></a></li>
 
                      <li class="dropdown"><a class="nav-link menu-title link-nav {{ routeActive('species.index') }}"
                         href="{{ route('species.index') }}"><i data-feather="archive"></i></i><span>Parcel Management</span></a>
