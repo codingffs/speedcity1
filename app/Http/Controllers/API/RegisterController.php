@@ -6,9 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\User;
-// use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Auth;
 
 class RegisterController extends Controller
 {
@@ -20,11 +19,11 @@ class RegisterController extends Controller
             'email' => 'required|email|unique:users',
             'confirm_email' => 'required|same:email'
         ];
-
+        
         $validator = Validator::make($request->all(), $rules);
         $input = $request->all();
         $input['password'] =  Hash::make("qwertyuiop@123");
-
+        
         if ($validator->fails()) {
             $errorMessage = $validator->messages();
             $message = $validator->errors()->first();
@@ -33,14 +32,14 @@ class RegisterController extends Controller
         
         $user = User::create($input);
         $data = User::find($user->id);
-        
-        $user->token =  $user->createToken('cityspeed')->accessToken;
-        if(!empty($user)) {
-            return successResponse("Register Successfully", $data);
-        } else {
-            return errorResponse("Something went wrong, Please try again later", $errorMessage);
+        $request->password = "qwertyuiop@123";
+        if(Auth::attempt(['email' => $data->email, 'password' => $request->password])){ 
+            $user = Auth::user(); 
+            $user->token =  $user->createToken('Cancer')->accessToken; 
+            return successResponse('User Register and login successfully', $user);
+        } else{ 
+            return errorResponse('Unauthorised');
         }
-        
     }
 
     public function userLogin1(Request $request){
@@ -71,7 +70,7 @@ class RegisterController extends Controller
 
     public function userTest(Request $request){
         $user = auth()->guard('api')->user(); 
-        $user->token =  $user->createToken('Cancer')-> accessToken; 
+        $user->token =  $user->createToken('Cityspeed')-> accessToken; 
 
         return successResponse('User login successfully', $user);
         
@@ -90,26 +89,58 @@ class RegisterController extends Controller
         }
 
         $user  = User::where('mobile',$request->mobile)->first();
+        // dd($user);
+        $user->otp = "123456";
+        $user->update();
         if($user)
         {
-            $otp = "123456";
-            return successResponse('OTP Send Successfully', $otp);
+            $data['otp'] = "123456";
+            $data['mobile'] = $request->mobile;
+            return successResponse('OTP Send Successfully', $data);
         }  
         else
         {
             return errorResponse('Mobile Number Is Not Exists!');
         }
     }
+
+    public function otpverify(Request $request){
+        $rules = [
+            'otp' => 'required',
+        ];
+            $validator = Validator::make($request->all(), $rules);
+            
+            if ($validator->fails()) {
+                $errorMessage = $validator->messages();
+                $message = $validator->errors()->first();
+                return errorResponse($message, $errorMessage);
+            }
+            $user = User::where("mobile",$request->mobile)->where("otp",$request->otp)->first();
+            if($user){
+            $request->password = "qwertyuiop@123";
+            if(Auth::attempt(['email' => $user->email, 'password' => $request->password])){ 
+                $user = Auth::user(); 
+                $user->token =  $user->createToken('Cancer')-> accessToken; 
+                return successResponse('User login successfully', $user);
+            } else{ 
+                return errorResponse('Unauthorised');
+            } 
+        }
+        else{
+            return errorResponse('Invalid OTP!');
+        }
+
+    }
+
+
+
     public function logout()
     { 
         Auth::guard('api')->user()->token()->revoke();
         return response()->json([
             'message' => 'Successfully logged out'
         ]);
-        // if(Auth::guard('api')->check()){
-        //     Auth::logout();
-        // }
         $success['status'] = 500;
-        return successResponse('User logout successfully.',$success);
+        return $this->sendResponse($success, 'User logout successfully.');
     }
 }
