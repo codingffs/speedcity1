@@ -24,7 +24,6 @@ use App\Http\Controllers\API\ParcelTypeController;
 |
 */
 
-// Route::group(['middleware' => ['passportapi']], function(){
 //     Route::post('user-test',[RegisterController::class,'userTest'])->name('user-test');
 // });
 
@@ -36,14 +35,18 @@ Route::prefix('admin')->group( function (){
     Route::get('notification', [NotificationController::class,"list"]); 
     Route::get('orderhistory/{status}', [OrderHistoryController::class,"list"]); 
     Route::post('user-login',[RegisterController::class,'userLogin1'])->name('user-login');
-    Route::post('bookorder',[BookOrderController::class,'bookorder'])->name('bookorder');
     Route::get('parcelweight',[ParcelWeightController::class,'parcelweight'])->name('parcelweight');
     Route::get('parceltype',[ParcelTypeController::class,'parceltype'])->name('parceltype');
     Route::get('parceltype',[OrderHistoryController::class,'parceltype'])->name('parceltype');
     Route::post('send-otp',[RegisterController::class,'sendotp'])->name('send-otp');
-
+    Route::get('logout',[RegisterController::class,'logout'])->name('logout');
+    
     Route::post('user-register',[RegisterController::class,'userRegister'])->name('user-register');
-Route::post('register', [AuthAdminController::class,"register"]); 
+    
+    Route::group(['middleware' => ['passportapi']], function(){
+
+    Route::post('bookorder',[BookOrderController::class,'bookorder'])->name('bookorder');
+    });
 });
 // Route::get('/faq-detail',[FaqController::class,'faqdetail'])->name('faqdetail');
 

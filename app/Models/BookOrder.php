@@ -11,6 +11,8 @@ class BookOrder extends Model
     
     protected $fillable = [
         'id',
+        'user_id',
+        'local_services',
         'pickup_address',
         'sender_name',
         'pickup_contact',

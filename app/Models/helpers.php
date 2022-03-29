@@ -54,7 +54,6 @@ function systemResponse($message) {
         "status" => 401,
 
     ]);
-    //return response()->json(['error' => $status, 401]);
 }
 function getcountryname($country_id){
     $country = Country::find($country_id);

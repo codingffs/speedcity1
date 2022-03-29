@@ -11,7 +11,7 @@ use Auth;
 class BookOrderController extends Controller
 {
     public function bookorder(Request $request){
-
+        $user = Auth::guard('api')->user();
         $validator = Validator::make($request->all(), [
             'local_services' => 'required',
             'pickup_address' => 'required',
@@ -28,8 +28,12 @@ class BookOrderController extends Controller
             return errorResponse('Validation Error.', $validator->errors());     
         }
         $input = $request->all();
-        $user = BookOrder::create($input);
+        $input['user_id'] = $user->id;
+        $bookorder = BookOrder::create($input);
         $success['status'] = 200;
+
+        $success['data'] = $bookorder;
         return successResponse('Order Booked Successfully.',$success);
     }
+
 }
