@@ -46,7 +46,6 @@ Route::prefix('admin')->group( function (){
         Route::post('send-otp',[RegisterController::class,'sendotp'])->name('send-otp');
         Route::post('otp-verify',[RegisterController::class,'otpverify'])->name('otp-verify');
     
-        
     });
 });
 

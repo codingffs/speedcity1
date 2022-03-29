@@ -46,7 +46,7 @@
                                         <div class="col-sm-9">
                                             <input type="email" id="email" class="form-control" name="email"
                                                 placeholder="Email" value="{{ old('name', auth()->user()->email) }}"
-                                                required />
+                                                required readonly/>
                                             @error('email')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -54,45 +54,28 @@
                                     </div>
 
                                     <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label" for="name">Phone <span
+                                        <label class="col-sm-3 col-form-label" for="name">Mobile <span
                                                 class="text-danger">*</span></label>
                                         <div class="col-sm-9">
-                                            <input type="number" id="phone" class="form-control" name="phone"
-                                                placeholder="Phone" value="{{ old('phone', auth()->user()->phone) }}"
+                                            <input type="number" id="mobile" class="form-control" name="mobile"
+                                                placeholder="Mobile" value="{{ old('mobile', auth()->user()->mobile) }}"
                                                 required />
-                                            @error('phone')
+                                            @error('mobile')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
 
                                     <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label" for="address">Address <span
-                                                class="text-danger">*</span></label>
+                                        <label class="col-sm-3 col-form-label" for="address">Address </label>
                                         <div class="col-sm-9">
                                             <textarea id="address" class="form-control" name="address"
-                                                placeholder="Address"
-                                                required>{{ old('address', auth()->user()->address) }}</textarea>
+                                                placeholder="Address">{{ old('address', auth()->user()->address) }}</textarea>
                                             @error('address')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
-
-                                    @if (auth()->user()->type == '2')
-                                        <div class="mb-3 row">
-                                            <label class="col-sm-3 col-form-label" for="about_supplier">About Supplier <span
-                                                    class="text-danger">*</span></label>
-                                            <div class="col-sm-9">
-                                                <textarea id="about_supplier" class="form-control" name="about_supplier"
-                                                    placeholder="About Supplier"
-                                                    required>{{ old('about_supplier', auth()->user()->about_supplier) }}</textarea>
-                                                @error('about_supplier')
-                                                    <div class="text-danger">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    @endif
 
                                 </div>
                                 <div class="card-footer">

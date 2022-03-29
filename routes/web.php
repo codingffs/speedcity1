@@ -9,16 +9,17 @@ use App\Http\Controllers\CourierItemsController;
 // use App\Http\Controllers\RoleController;
 // use App\Http\Controllers\PermissionController;
 // use App\Http\Controllers\UserController;
-// use App\Http\Controllers\DashboardController;
 // use App\Http\Controllers\ActivityLogController;
 // use App\Http\Controllers\OnlinePlatformController;
 // use App\Http\Controllers\AttributeController;       
 // use App\Http\Controllers\SubAttributeController;
+// use App\Http\Controllers\ServicesController;
 // use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SpeciesController;
-// use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\SettingController;
+// use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\OfficesController;
 use App\Http\Controllers\LocalPackageController;
@@ -54,6 +55,12 @@ Route::group(['middleware' => ['auth']], function()
     Route::resource('Courierlist', CourierItemsController::class);
     Route::resource('species', SpeciesController::class);
     Route::resource('domesticpackage', DomesticPackageController::class);
+
+    Route::get("edit_profile", [ProfileController::class, "edit_profile"])->name("edit_profile");
+    Route::post("update_profile", [ProfileController::class, "update_profile"])->name("update_profile");
+    Route::get("change_password", [ProfileController::class, "change_password"])->name("change_password");
+    Route::post("change_password", [ProfileController::class, "change_password_post"])->name("change_password_post");
+
 
     // Route::get('/suppliers', [SupplierController::class, "list"])->name('suppliers');
     // Route::get('suppliers/edit/{id}', [SupplierController::class, "edit"])->name('suppliers.edit');
@@ -141,15 +148,12 @@ Route::group(['middleware' => ['auth']], function()
 
     // Route::delete('product_image_delete', [ProductController::class, "product_image_delete"])->name('product_image_delete');
 
-    Route::get("edit_profile", [DashboardController::class, "edit_profile"])->name("edit_profile");
-    Route::post("update_profile", [DashboardController::class, "update_profile"])->name("update_profile");
+   
     
     // Route::get("online_platform", [OnlinePlatformController::class, "index"])->name("online_platform");
     // Route::post("online_platform", [OnlinePlatformController::class, "store"])->name("online_platform.store");
     
-    Route::get("change_password", [DashboardController::class, "change_password"])->name("change_password");
-    Route::post("change_password", [DashboardController::class, "change_password_post"])->name("change_password_post");
-
+    
     // Route::resource('roles', RoleController::class);
     
     // Route::resource('permission', PermissionController::class);
