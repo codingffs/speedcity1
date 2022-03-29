@@ -20,9 +20,9 @@ User
                 <div class="card">
                     <div class="card-header">
                         <h5>User
-                            @can('user-create')
+                            {{-- @can('user-create') --}}
                                 <a href="{{ route('user.create') }}" class="btn btn-primary float_right">Create User</a>
-                            @endcan
+                            {{-- @endcan --}}
                         </h5>
                     </div>
                     <div class="card-body">
