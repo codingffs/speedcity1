@@ -40,6 +40,7 @@ Route::prefix('admin')->group( function (){
     Route::get('parcelweight',[ParcelWeightController::class,'parcelweight'])->name('parcelweight');
     Route::get('parceltype',[ParcelTypeController::class,'parceltype'])->name('parceltype');
     Route::get('parceltype',[OrderHistoryController::class,'parceltype'])->name('parceltype');
+    Route::post('send-otp',[RegisterController::class,'sendotp'])->name('send-otp');
 
     Route::post('user-register',[RegisterController::class,'userRegister'])->name('user-register');
 Route::post('register', [AuthAdminController::class,"register"]); 
