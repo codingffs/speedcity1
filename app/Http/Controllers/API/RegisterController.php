@@ -15,7 +15,7 @@ class RegisterController extends Controller
     public function userRegister(Request $request){
         $rules = [
             'name' => 'required',
-            'mobile' => 'required|digits:10',
+            'mobile' => 'required|unique:users|digits:10',
             'email' => 'required|email|unique:users',
             'confirm_email' => 'required|same:email'
         ];
@@ -57,8 +57,11 @@ class RegisterController extends Controller
             return errorResponse($message, $errorMessage);
         }
         if(Auth::attempt(['name' => $request->username, 'password' => $request->password])){ 
-            $user->token =  $user->createToken('Cancer')-> accessToken; 
             $user = Auth::user(); 
+            // $user->token =  $user->createToken('Admin')->accessToken; 
+            // $user = Auth::user(); 
+            $success['token'] =  $user->createToken('Cityspeed')->accessToken; 
+            $success['name'] =  $user->name;  
    
             return successResponse('User login successfully', $user);
         } else{ 
@@ -73,5 +76,29 @@ class RegisterController extends Controller
 
         return successResponse('User login successfully', $user);
         
+    }
+
+    public function sendotp(Request $request){
+        $rules = [
+            'mobile' => 'required|digits:10'
+        ];
+        $validator = Validator::make($request->all(), $rules);
+        
+        if ($validator->fails()) {
+            $errorMessage = $validator->messages();
+            $message = $validator->errors()->first();
+            return errorResponse($message, $errorMessage);
+        }
+
+        $user  = User::where('mobile',$request->mobile)->first();
+        if($user)
+        {
+            $otp = "123456";
+            return successResponse('OTP Send Successfully', $otp);
+        }  
+        else
+        {
+            return errorResponse('Mobile Number Is Not Exists!');
+        }
     }
 }
