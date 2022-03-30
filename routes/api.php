@@ -31,18 +31,20 @@ Route::prefix('admin')->group( function (){
     Route::get('logout', [RegisterController::class,"logout"]); 
     Route::get("faq", [FaqController::class, "index1"]);
     Route::get('cms/{slug?}', [CmsController::class,"cmslist"]);
-    
-    Route::group(['middleware' => ['passportapi']], function(){
+    Route::get('parcelweight',[ParcelWeightController::class,'parcelweight'])->name('parcelweight');
+    Route::any('send-otp',[RegisterController::class,'sendotp'])->name('send-otp');
+    Route::post('otp-verify',[RegisterController::class,'otpverify'])->name('otp-verify');
+    Route::get("orderstatus", [OrderHistoryController::class,"orderstatus"]);
 
+    Route::get('parceltype',[ParcelTypeController::class,'parceltype'])->name('parceltype');
+    Route::group(['middleware' => ['passportapi']], function(){
+        
         
         Route::get('notification', [NotificationController::class,"list"]); 
         Route::get('orderhistory/{status}', [OrderHistoryController::class,"list"]); 
-        Route::any('send-otp',[RegisterController::class,'sendotp'])->name('send-otp');
+        Route::get("orderdetail/{id}", [OrderHistoryController::class,"orderdetail"]);
         Route::post('bookorder',[BookOrderController::class,'bookorder'])->name('bookorder');
-        Route::get('parcelweight',[ParcelWeightController::class,'parcelweight'])->name('parcelweight');
-        Route::get('parceltype',[ParcelTypeController::class,'parceltype'])->name('parceltype');
-        Route::post('otp-verify',[RegisterController::class,'otpverify'])->name('otp-verify');
-    
+        
     });
 });
 
