@@ -6,6 +6,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BookOrder;
+use App\Models\Orderstatus;
 use Auth;
 
 
@@ -28,7 +29,6 @@ class OrderHistoryController extends Controller
         if($daydata != '[]'){
             return successResponse('Order Details',$daydata);
         }
-            return errorResponse('No Data Found!');
     }
 
     public function monthOrderDetail($startDate,$endDate)
@@ -52,5 +52,22 @@ class OrderHistoryController extends Controller
     }
     public function allOrder(){
         
+    }
+    public function orderstatus(Request $request)
+    {
+        $orderstatus = Orderstatus::get();
+        if($orderstatus != '[]'){
+            return successResponse('',$orderstatus);
+        }
+            return errorResponse('No Data Found!');
+    }
+    
+    public function orderdetail(Request $request,$id)
+    {
+        $orderdetail = BookOrder::where('user_id',$id)->get();
+        if($orderdetail != '[]'){
+            return successResponse('',$orderdetail);
+        }
+            return errorResponse('No Data Found!');
     }
 }
