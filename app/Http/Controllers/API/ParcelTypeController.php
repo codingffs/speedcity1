@@ -10,6 +10,10 @@ class ParcelTypeController extends Controller
 {
         public function parceltype(){
             $parceltype = CourierItems::get();
-            return $parceltype;
+            if($parceltype != '[]'){
+                // return $notification;
+                  return successResponse('Parcel type List', $parceltype);
+            }
+                return errorResponse('No Data Found!');
         }
 }

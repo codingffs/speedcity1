@@ -13,7 +13,11 @@ class FaqController extends Controller
     public function index1()
     {
         $faq = Faq::with(['sub_faq'])->get();
-        return $faq;
+        if($faq != '[]'){
+            // return $notification;
+              return successResponse('faq List', $faq);
+        }
+            return errorResponse('No Data Found!');
     } 
     
 

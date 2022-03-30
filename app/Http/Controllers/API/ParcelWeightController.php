@@ -10,6 +10,10 @@ class ParcelWeightController extends Controller
 {
     public function parcelweight(){
         $weight = ParcelWeight::get();
-        return $weight;
+        if($weight != '[]'){
+            // return $notification;
+              return successResponse('Parcel Weight List', $weight);
+        }
+            return errorResponse('No Data Found!');
     }
 }
