@@ -31,9 +31,7 @@ use App\Http\Controllers\UserController;
 Route::group(['prefix' => 'admin'], function()
 {
 Route::get("login", [LoginController::class, "showLoginForm"])->name("login");
-// Route::get('login', function () {
-//     return view('adminlogin');
-// });
+
 
 Route::get("register", [HomeController::class, "showRegisterForm"])->name("register");
 Route::post("register", [HomeController::class, "register_submit"])->name("register_submit");
