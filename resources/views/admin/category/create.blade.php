@@ -1,7 +1,7 @@
 @extends('layouts.admin.master')
 
 @section('title')
-Medical Category
+Banner
 @endsection
 
 @push('css')
@@ -9,7 +9,7 @@ Medical Category
 
 @section('content')
     @component('components.breadcrumb')
-        <li class="breadcrumb-item"><a href="{{ route('categories.index') }}">Medical Category</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('categories.index') }}">Banner</a></li>
         <li class="breadcrumb-item active">Create</li>
     @endcomponent
 
@@ -22,18 +22,17 @@ Medical Category
                             action="{{ route('categories.store') }}" enctype="multipart/form-data">
                             <div class="card">
                                 <div class="card-header pb-0">
-                                    <h5>Create Medical Category</h5>
+                                    <h5>Create Banner</h5>
                                 </div>
                                 <div class="card-body">
 
                                     @csrf
 
                                     <div class="mb-3 row">
-                                        <label class="col-sm-3 col-form-label" for="title">Title <span
-                                                class="text-danger">*</span></label>
+                                        <label class="col-sm-3 col-form-label" for="title">Title </label>
                                         <div class="col-sm-9">
                                             <input type="text" id="title" class="form-control" name="title"
-                                                placeholder="Title" value="{{ old('title') }}" required />
+                                                placeholder="Title" value="{{ old('title') }}" />
                                             @error('title')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -68,28 +67,6 @@ Medical Category
         <script>
             $(document).ready(function() {
                 $("#categories_Create").validate({
-                    rules: {
-                        title: {
-                            maxlength: 50,
-                            remote: {
-                                type: 'get',
-                                url: '{{ route('check_title_exists') }}',
-                                data: {
-                                    'title': function() {
-                                        return $("#title").val();
-                                    }
-                                },
-                                dataFilter: function(data) {
-                                    var json = JSON.parse(data);
-                                    if (json.status == 0) {
-                                        return "\"" + json.message + "\"";
-                                    } else {
-                                        return 'true';
-                                    }
-                                }
-                            }
-                        },
-                    },
                     errorPlacement: function(error, element) {
                         if (element.attr("type") == "text") {
                             error.appendTo(element.parent("div"));
