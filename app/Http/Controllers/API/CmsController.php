@@ -14,6 +14,10 @@ class CmsController extends Controller
     public function cmslist($slug)
     {
         $cmsdeatil = Cms::where('slugname',$slug)->first();
-        return $cmsdeatil;
+        if($cmsdeatil != '[]'){
+            // return $notification;
+              return successResponse('Detail List', $cmsdeatil);
+        }
+            return errorResponse('No Data Found!');
     }
 }

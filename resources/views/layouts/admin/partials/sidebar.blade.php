@@ -38,6 +38,10 @@
                         href="{{ route('user.index') }}"><i data-feather="archive"></i></i><span>Customer</span></a>
                      </li>
 
+                     <li class="dropdown"><a class="nav-link menu-title link-nav {{ routeActive('branch.index') }}"
+                        href="{{ route('branch.index') }}"><i data-feather="archive"></i></i><span>Branch</span></a>
+                     </li>
+
                     <li class="dropdown"><a class="nav-link menu-title link-nav"
                             href="{{ route('logout') }}"><i data-feather="lock"></i><span>Log Out</span></a></li>
 
