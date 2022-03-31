@@ -72,7 +72,7 @@ class BranchUserController extends Controller
     {
         $request->validate([
             'branch_name' => 'required',
-            'email' => 'required|email|unique:users',
+            'email'=> 'required|email|unique:users,email',
             'name' => 'required',
             'mobile' => 'required',
             'image' => 'required',
@@ -139,7 +139,7 @@ class BranchUserController extends Controller
         $BranchUser = User::find($id);
         $request->validate([
             'branch_name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
+            'email'=> 'required|email|unique:users,email,'.$id,
             'name' => 'required',
             'mobile' => 'required',
         ]);

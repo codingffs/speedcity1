@@ -135,28 +135,34 @@ Branch User
         <script>
             $(document).ready(function() {
                 $("#branchuser_Create").validate({
-                    // rules: {
-                    //     email: {
-                    //         maxlength: 90,
-                    //         remote: {
-                    //             type: 'get',
-                    //             url: '{{ route('check_email_exists_in_users') }}',
-                    //             data: {
-                    //                 'email': function() {
-                    //                     return $("#email").val();
-                    //                 }
-                    //             },
-                    //             dataFilter: function(data) {
-                    //                 var json = JSON.parse(data);
-                    //                 if (json.status == 0) {
-                    //                     return "\"" + json.message + "\"";
-                    //                 } else {
-                    //                     return 'true';
-                    //                 }
-                    //             }
-                    //         }
-                    //     },
-                    // },
+                    rules: {
+                        mobile: {
+                            number: true,
+                            minlength: 10,
+                            maxlength: 10,
+                            required: true
+                        },
+                        email: {
+                            maxlength: 90,
+                            remote: {
+                                type: 'get',
+                                url: '{{ route('check_email_exists_in_users') }}',
+                                data: {
+                                    'email': function() {
+                                        return $("#email").val();
+                                    }
+                                },
+                                dataFilter: function(data) {
+                                    var json = JSON.parse(data);
+                                    if (json.status == 0) {
+                                        return "\"" + json.message + "\"";
+                                    } else {
+                                        return 'true';
+                                    }
+                                }
+                            }
+                        },
+                    },
                     errorPlacement: function(error, element) {
                         if (element.attr("type") == "text") {
                             error.appendTo(element.parent("div"));

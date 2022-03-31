@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
-// use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CourierItemsController;
 // use App\Http\Controllers\MedicalApplianceController;
 // use App\Http\Controllers\SupplierController;
@@ -70,7 +70,7 @@ Route::group(['middleware' => ['auth']], function()
     Route::resource('branch', BranchController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('orders', OrderController::class);
-    
+
 
     Route::get('/orderscancel/{id}', [OrderController::class, "cancel"])->name('orders.cancel');
 

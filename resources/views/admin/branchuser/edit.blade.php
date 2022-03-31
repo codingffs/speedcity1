@@ -43,6 +43,7 @@ Branch User
                                             @enderror
                                         </div>
                                     </div>
+                                    <input type="hidden" id="id" value="{{ $BranchUser->id }}" name="id"/>
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label" for="email">Email <span class="text-danger">*</span></label>
                                         <div class="col-sm-9">
@@ -134,6 +135,37 @@ Branch User
         <script>
             $(document).ready(function() {
                 $("#branchuser_edit").validate({
+                    rules: {
+                        mobile: {
+                            number: true,
+                            minlength: 10,
+                            maxlength: 10,
+                            required: true
+                        },
+                        email: {
+                            maxlength: 90,
+                            remote: {
+                                type: 'get',
+                                url: '{{ route('check_email_exists_in_update') }}',
+                                data: {
+                                    'id': function() {
+                                        return $("#id").val();
+                                    },
+                                    'email': function() {
+                                        return $("#email").val();
+                                    }
+                                },
+                                dataFilter: function(data) {
+                                    var json = JSON.parse(data);
+                                    if (json.status == 0) {
+                                        return "\"" + json.message + "\"";
+                                    } else {
+                                        return 'true';
+                                    }
+                                }
+                            }
+                        },
+                    },
                     errorPlacement: function(error, element) {
                         if (element.attr("type") == "text") {
                             error.appendTo(element.parent("div"));

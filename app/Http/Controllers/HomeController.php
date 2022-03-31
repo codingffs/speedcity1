@@ -38,7 +38,6 @@ class HomeController extends Controller
         return $res;
     }
     public function check_email_exists_in_update(Request $request){
-       
         $rules = [
             'email'=> 'required|email|unique:users,email,'.$request->id,
         ];
