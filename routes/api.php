@@ -12,6 +12,7 @@ use App\Http\Controllers\API\BookOrderController;
 use App\Http\Controllers\API\ParcelWeightController;
 use App\Http\Controllers\API\ParcelTypeController;
 use App\Http\Controllers\API\BannerController;
+use App\Http\Controllers\API\BranchOrderController;
 
 
 /*
@@ -46,9 +47,11 @@ Route::prefix('admin')->group( function (){
             Route::get('orderdetail/month', [OrderHistoryController::class,"monthOrderDetail"]); 
             Route::get('orderdetail/year', [OrderHistoryController::class,"yearOrderDetail"]); 
             Route::get('notification', [NotificationController::class,"list"]); 
-            Route::get('mybooking/{status}', [OrderHistoryController::class,"list"]); 
             Route::get('orderdetail/{id}', [OrderHistoryController::class,"orderdetail"]);
+            Route::get('mybooking/{status}', [OrderHistoryController::class,"list"]); 
             Route::post('bookorder',[BookOrderController::class,'bookorder'])->name('bookorder');
+            Route::get('BranchAllOrder',[BranchOrderController::class,'BranchAllOrder'])->name('BranchAllOrder');
+            Route::get('BranchOrder/{status}', [BranchOrderController::class,"BranchOrder"]); 
         
     });
 });

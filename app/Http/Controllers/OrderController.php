@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BookOrder;
+use App\Models\User;
 use Validator;
 use DB;
 use Auth;
@@ -30,6 +31,7 @@ class OrderController extends Controller
                             // $btn .= '<a href="'. route('localPackage.edit', $row->id) .'" class="edit btn btn-primary btn-sm m-5" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
                             // $btn .= '<a href="javascript:void(0)" data-url="'. route('localPackage.destroy', $row->id) .'" class="delete_btn btn btn-danger btn-sm m-5" data-id="'. $row->id .'" ><i class="fa fa-trash" aria-hidden="true"></i></a>';
                             $btn .= '<a href="'. route('orders.show', $row->id) .'" class="edit btn btn-info btn-sm m-5" ><i class="fa fa-eye" aria-hidden="true"></i></a>';
+                            $btn .= '<a href="'. route('orders.edit', $row->id) .'" class="edit btn btn-primary btn-sm m-5" ><i class="fa fa-building" aria-hidden="true"></i></a>';
                         
                         return $btn;
                     })
@@ -38,6 +40,26 @@ class OrderController extends Controller
         }
         
         return view('admin.order.list');
+    }
+     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //   
     }
 
     /**
@@ -50,5 +72,32 @@ class OrderController extends Controller
     {
         $order = BookOrder::find($id);
         return view('admin.order.show',compact('order'));
+    }
+
+     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $order = BookOrder::find($id);
+        $Branch = User::where('role',2)->get();
+        return view('admin.order.branch',compact('Branch','order'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request,$id)
+    {
+        $order = BookOrder::find($request->id);
+        $order['branch_id'] =  $request->branch_id;
+            $order->update();
+        // BookOrder::update($order);
+        return redirect()->route("orders.index")->with("success", "Branch Assigned successfully.");
     }
 }
