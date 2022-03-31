@@ -19,10 +19,6 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        if(!Auth::user()->can('category-list')){
-            return back()->with(['error' => 'Unauthorized Access.']);
-        }
-
         if ($request->ajax()) {
             $Category = Category::latest()->get();
             
@@ -59,9 +55,6 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        if(!Auth::user()->can('category-create')){
-            return back()->with(['error' => 'Unauthorized Access.']);
-        }
         return view('admin.category.create');
     }
 
@@ -73,11 +66,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        if(!Auth::user()->can('category-create')){
-            return back()->with(['error' => 'Unauthorized Access.']);
-        }
         $request->validate([
-            'title' => 'required|unique:categories',
             'image' => 'required',
         ]);
         
@@ -90,7 +79,7 @@ class CategoryController extends Controller
 
         Category::create($Category);
 
-        return redirect()->route("categories.index")->with("success", "Medical Category created successfully.");
+        return redirect()->route("categories.index")->with("success", "Banner created successfully.");
     }
 
     /**
@@ -112,9 +101,6 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        if(!Auth::user()->can('category-edit')){
-            return back()->with(['error' => 'Unauthorized Access.']);
-        }
         $Category = Category::find($id);
 
         return view('admin.category.edit', compact('Category'));
@@ -130,12 +116,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $category = Category::find($id);
-        if(!Auth::user()->can('category-edit')){
-            return back()->with(['error' => 'Unauthorized Access.']);
-        }
-        $request->validate([
-            'title' => 'required|unique:categories,title,'.$id,
-        ]);
+        
         $Category = array(
             "title" => $request->title,
         );
@@ -153,7 +134,7 @@ class CategoryController extends Controller
 
         Category::whereId($id)->update($Category);
 
-        return redirect()->route("categories.index")->with("success", "Medical Category updated successfully.");
+        return redirect()->route("categories.index")->with("success", "Banner updated successfully.");
     }
 
     /**
@@ -172,47 +153,5 @@ class CategoryController extends Controller
         } else {
             return response()->json(["status" => 0]);
         }
-    }
-    public function check_title_exists(Request $request)
-    {
-        $rules = [
-            'title'=> 'required|unique:categories,title',
-        ];
-        $validator = \Validator::make($request->all(), $rules);
-        if ($validator->fails())
-        {
-            $res = [
-                'message' => "Title Already Exists!",
-                'status' => 0,
-            ];
-        
-            return $res; 
-        }
-        $res = [
-            'message' => 'success',
-            'status' => 1,
-        ];
-        return $res;
-    }
-    public function check_title_exists_update(Request $request)
-    {
-        $rules = [
-            'title'=> 'required|unique:categories,title,'.$request->id,
-        ];
-        $validator = \Validator::make($request->all(), $rules);
-        if ($validator->fails())
-        {
-            $res = [
-                'message' => "Title Already Exists!",
-                'status' => 0,
-            ];
-        
-            return $res; 
-        }
-        $res = [
-            'message' => 'success',
-            'status' => 1,
-        ];
-        return $res;
     }
 }

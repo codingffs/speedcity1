@@ -1,7 +1,7 @@
 @extends('layouts.admin.master')
 
 @section('title')
-Medical Category
+Banner
 @endsection
 
 @push('css')
@@ -10,7 +10,7 @@ Medical Category
 
 @section('content')
     @component('components.breadcrumb')
-        <li class="breadcrumb-item">Medical Category </li>
+        <li class="breadcrumb-item">Banner </li>
     @endcomponent
 
     <div class="container-fluid">
@@ -19,11 +19,9 @@ Medical Category
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Medical Category
-                            @can('category-create')
+                        <h5>Banner
                                 <a href="{{ route('categories.create') }}" class="btn btn-primary float_right">Create
-                                    Medical Category</a>
-                            @endcan
+                                    Banner</a>
                         </h5>
                     </div>
                     <div class="card-body">
@@ -114,7 +112,7 @@ Medical Category
                                     "closeButton" : true,
                                     "progressBar" : true
                                     }
-                                    toastr.success("Medical Category Deleted Successfully!");
+                                    toastr.success("Banner Deleted Successfully!");
                                 } else {
                                     return false;
                                 }

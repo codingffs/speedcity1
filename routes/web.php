@@ -28,6 +28,7 @@ use App\Http\Controllers\DomesticPackageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\OrderController;
 
 
 @include_once('admin_web.php');
@@ -67,6 +68,8 @@ Route::group(['middleware' => ['auth']], function()
     // Route::resource('domesticpackage', DomesticPackageController::class);
     Route::resource('user', UserController::class);
     Route::resource('branch', BranchController::class);
+    Route::resource('categories', CategoryController::class);
+    Route::resource('orders', OrderController::class);
 
     // Route::get('/suppliers', [SupplierController::class, "list"])->name('suppliers');
     // Route::get('suppliers/edit/{id}', [SupplierController::class, "edit"])->name('suppliers.edit');
@@ -93,7 +96,6 @@ Route::group(['middleware' => ['auth']], function()
     // Route::delete('sub_attributes/delete/{id}', [SubAttributeController::class, "delete"])->name('sub_attributes.delete');
     
     // Category
-    // Route::resource('categories', CategoryController::class);
     // Route::get("check_title_exists", [CategoryController::class, "check_title_exists"])->name("check_title_exists");
     // Route::get("check_title_exists_update", [CategoryController::class, "check_title_exists_update"])->name("check_title_exists_update");
     

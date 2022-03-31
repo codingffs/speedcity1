@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BookOrder;
 use App\Models\Orderstatus;
+use Carbon\Carbon;
 use Auth;
 
 
@@ -22,30 +23,30 @@ class OrderHistoryController extends Controller
             return errorResponse('No Data Found!');
     }
 
-    public function dayOrderDetail($date)
+    public function dayOrderDetail()
     {
         $user = Auth::guard('api')->user()->id;
-        $daydata = BookOrder::whereDate('created_at','=',$date)->where('user_id',$user)->get();
+        $daydata = BookOrder::whereDate('created_at',date('Y-m-d'))->where('user_id',$user)->get();
         if($daydata != '[]'){
             return successResponse('Order Details',$daydata);
         }
         return errorResponse('No Data Found!');
     }
 
-    public function monthOrderDetail($startDate,$endDate)
-    {
+    public function monthOrderDetail()
+    {   
         $user = Auth::guard('api')->user()->id;
-        $Monthdata = BookOrder::whereBetween('created_at',[$startDate,$endDate])->where('user_id',$user)->get();
+        $Monthdata = BookOrder::whereMonth('created_at',date('m'))->where('user_id',$user)->get();
         if($Monthdata != '[]'){
             return successResponse('Order Details',$Monthdata);
         }
             return errorResponse('No Data Found!');
     }
     
-    public function yearOrderDetail($startDate,$endDate)
+    public function yearOrderDetail()
     {
         $user = Auth::guard('api')->user()->id;
-        $Yeardata = BookOrder::whereBetween('created_at',[$startDate,$endDate])->where('user_id',$user)->get();
+        $Yeardata = BookOrder::whereYear('created_at', date('Y'))->where('user_id',$user)->get();
         if($Yeardata != '[]'){
             return successResponse('Order Details',$Yeardata);
         }

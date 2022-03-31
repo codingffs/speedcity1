@@ -42,6 +42,14 @@
                         href="{{ route('branch.index') }}"><i data-feather="archive"></i></i><span>Branch</span></a>
                      </li>
 
+                     <li class="dropdown"><a class="nav-link menu-title link-nav {{ routeActive('categories.index') }}"
+                        href="{{ route('categories.index') }}"><i data-feather="archive"></i></i><span>Banner</span></a>
+                     </li>
+
+                     <li class="dropdown"><a class="nav-link menu-title link-nav {{ routeActive('orders.index') }}"
+                        href="{{ route('orders.index') }}"><i data-feather="archive"></i></i><span>Order</span></a>
+                     </li>
+
                     <li class="dropdown"><a class="nav-link menu-title link-nav"
                             href="{{ route('logout') }}"><i data-feather="lock"></i><span>Log Out</span></a></li>
 
