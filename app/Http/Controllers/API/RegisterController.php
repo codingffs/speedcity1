@@ -88,20 +88,19 @@ class RegisterController extends Controller
             return errorResponse($message, $errorMessage);
         }
 
+
         $user  = User::where('mobile',$request->mobile)->first();
         // dd($user);
-        $user->otp = "123456";
-        $user->update();
-        if($user)
+        
+        if($user != NULL)
         {
-            $data['otp'] = "123456";
+            $user->otp = "123456";
+            $user->update();
+            $data['otp'] = $user->otp;
             $data['mobile'] = $request->mobile;
             return successResponse('OTP Send Successfully', $data);
         }  
-        else
-        {
             return errorResponse('Mobile Number Is Not Exists!');
-        }
     }
 
     public function otpverify(Request $request){
@@ -116,7 +115,7 @@ class RegisterController extends Controller
                 return errorResponse($message, $errorMessage);
             }
             $user = User::where("mobile",$request->mobile)->where("otp",$request->otp)->first();
-            if($user){
+            if($user != NULL){
             $request->password = "qwertyuiop@123";
             if(Auth::attempt(['email' => $user->email, 'password' => $request->password])){ 
                 $user = Auth::user(); 

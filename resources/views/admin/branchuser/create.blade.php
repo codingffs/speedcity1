@@ -1,7 +1,7 @@
 @extends('layouts.admin.master')
 
 @section('title')
-Local Package
+Branch User
 @endsection
 
 @push('css')
@@ -9,7 +9,7 @@ Local Package
 
 @section('content')
     @component('components.breadcrumb')
-        <li class="breadcrumb-item"><a href="{{ route('species.index') }}">Local Package</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('branchuser.index') }}">Branch User</a></li>
         <li class="breadcrumb-item active">Create</li>
     @endcomponent
 
@@ -18,31 +18,31 @@ Local Package
             <div class="col-sm-12 col-xl-12">
                 <div class="row">
                     <div class="col-sm-12">
-                        <form class="theme-form" id="species_Create" method="POST"
-                            action="{{ route('species.store') }}" enctype="multipart/form-data">
+                        <form class="theme-form" id="branchuser_Create" method="POST"
+                            action="{{ route('branchuser.store') }}" enctype="multipart/form-data">
                             <div class="card">
                                 <div class="card-header pb-0">
-                                    <h5>Create Species</h5>
+                                    <h5>Create Branch User</h5>
                                 </div>
                                 <div class="card-body">
 
                                 @csrf
                                 <div class="mb-3 row">
-                                    <label class="col-sm-3 col-form-label" for="title">Species Name <span
+                                    <label class="col-sm-3 col-form-label" for="title">Branch Name <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-9">
-                                        <input type="text" id="species_name" class="form-control" name="species_name"
-                                            placeholder="species_name" value="{{ old('title') }}" required />
-                                        @error('species_name')
+                                        <input type="text" id="branch_name" class="form-control" name="branch_name"
+                                            placeholder="Branch Name" value="{{ old('branch_name') }}" required />
+                                        @error('branch_name')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label class="col-sm-3 col-form-label" for="scientific_name">Scientific Name <span class="text-danger">*</span></label>
+                                    <label class="col-sm-3 col-form-label" for="name">User Name <span class="text-danger">*</span></label>
                                     <div class="col-sm-9">
-                                        <input type="text" id="scientific_name" class="form-control" name="scientific_name" placeholder="species_name" value="{{ old('scientific_name') }}" required />
-                                        @error('scientific_name')
+                                        <input type="text" id="name" class="form-control" name="name" placeholder="User Name" value="{{ old('name') }}" required />
+                                        @error('name')
                                             <div class="text-danger">{{ $message }}
                                             </div>
                                         @enderror
@@ -50,16 +50,16 @@ Local Package
                                 </div>
                                
                                 <div class="mb-3 row">
-                                    <label class="col-sm-3 col-form-label" for="family">Family</label>
+                                    <label class="col-sm-3 col-form-label" for="mobile">Mobile No</label>
                                     <div class="col-sm-9">
-                                        <input type="text" id="family" class="form-control" name="family"
-                                            placeholder="family" required {{ old('family') }} />
-                                        @error('family')
+                                        <input type="number" id="mobile" class="form-control" name="mobile"
+                                            placeholder="Mobile" required {{ old('mobile') }} />
+                                        @error('mobile')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="mb-3 row">
+                                {{-- <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label" for="silvicultural_requirements">Silvicultural Requirements</label>
                                     <div class="col-sm-9">
                                         <input type="text" id="silvicultural_requirements" class="form-control" name="silvicultural_requirements"
@@ -68,8 +68,8 @@ Local Package
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                </div>
-                                <div class="mb-3 row">
+                                </div> --}}
+                                {{-- <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label" for="species_description">Species Description</label>
                                     <div class="col-sm-9">
                                         <input type="text" id="species_description" class="form-control" name="species_description"
@@ -78,8 +78,8 @@ Local Package
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                </div>
-                                <div class="mb-3 row">
+                                </div> --}}
+                                {{-- <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label" for="utility">Utility</label>
                                     <div class="col-sm-9">
                                         <input type="text" id="utility" class="form-control" name="utility"
@@ -88,12 +88,13 @@ Local Package
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="mb-3 row">
-                                    <label class="col-sm-3 col-form-label" for="species_description">Image</label>
+                                    <label class="col-sm-3 col-form-label" for="image">Image</label>
                                     <div class="col-sm-9">
                                         <input type="file" id="image" class="form-control" name="image"
-                                        placeholder="image" value="{{ old('image') }}" required />                                        @error('species_description')
+                                        placeholder="image" value="{{ old('image') }}" required />                                       
+                                         @error('image')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -102,7 +103,7 @@ Local Package
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Submit</button>
-                                    <a href="{{ route('species.index') }}" class="btn btn-secondary">Cancel</a>
+                                    <a href="{{ route('branchuser.index') }}" class="btn btn-secondary">Cancel</a>
                                 </div>
                         </form>
                     </div>
@@ -115,7 +116,7 @@ Local Package
     @push('scripts')
         <script>
             $(document).ready(function() {
-                $("#species_Create").validate({
+                $("#branchuser_Create").validate({
                     errorPlacement: function(error, element) {
                         if (element.attr("type") == "text") {
                             error.appendTo(element.parent("div"));
