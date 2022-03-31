@@ -22,6 +22,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\OfficesController;
+use App\Http\Controllers\BranchUserController;
 use App\Http\Controllers\LocalPackageController;
 use App\Http\Controllers\DomesticPackageController;
 use App\Http\Controllers\UserController;
@@ -168,6 +169,11 @@ Route::group(['middleware' => ['auth']], function()
     // Route::resource('staff', StaffController::class);
 
 
+    Route::resource('offices', OfficesController::class);
+    Route::resource('localPackage', LocalPackageController::class);
+    Route::resource('branchuser', BranchUserController::class);
+    // Route::resource('domesticpackage', DomesticPackageController::class);
+    Route::resource('user', UserController::class);
 
     // Consignment
     // Route::get("consignment",[ConsignmentController::class, "list"])->name("consignment");

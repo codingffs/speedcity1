@@ -30,6 +30,9 @@
                      <li class="dropdown"><a class="nav-link menu-title link-nav {{ routeActive('domesticpackage.index') }}"
                         href="{{ route('domesticpackage.index') }}"><i data-feather="archive"></i></i><span>Domestic Package</span></a>
                      </li>
+                     <li class="dropdown"><a class="nav-link menu-title link-nav {{ routeActive('branchuser.index') }}"
+                        href="{{ route('branchuser.index') }}"><i data-feather="archive"></i></i><span>Branch User</span></a>
+                     </li>
 
                      <li class="dropdown"><a class="nav-link menu-title link-nav {{ routeActive('user.index') }}"
                         href="{{ route('user.index') }}"><i data-feather="archive"></i></i><span>Customer</span></a>

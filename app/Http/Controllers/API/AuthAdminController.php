@@ -52,14 +52,5 @@ class AuthAdminController extends BaseController
             return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
         } 
     }
-    public function logout()
-    { 
-        Auth::guard('api')->user()->token()->revoke();
-        return response()->json([
-            'message' => 'Successfully logged out'
-        ]);
-        $success['status'] = 500;
-        return $this->sendResponse($success, 'User logout successfully.');
-    }
 }
 
