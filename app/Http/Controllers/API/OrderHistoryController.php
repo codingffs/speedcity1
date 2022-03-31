@@ -29,6 +29,7 @@ class OrderHistoryController extends Controller
         if($daydata != '[]'){
             return successResponse('Order Details',$daydata);
         }
+        return errorResponse('No Data Found!');
     }
 
     public function monthOrderDetail($startDate,$endDate)
@@ -50,9 +51,7 @@ class OrderHistoryController extends Controller
         }
             return errorResponse('No Data Found!');
     }
-    public function allOrder(){
-        
-    }
+    
     public function orderstatus(Request $request)
     {
         $orderstatus = Orderstatus::get();
@@ -61,7 +60,7 @@ class OrderHistoryController extends Controller
         }
             return errorResponse('No Data Found!');
     }
-    
+
     public function orderdetail(Request $request,$id)
     {
         $orderdetail = BookOrder::where('user_id',$id)->get();

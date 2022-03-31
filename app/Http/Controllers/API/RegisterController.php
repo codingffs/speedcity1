@@ -87,14 +87,13 @@ class RegisterController extends Controller
             $message = $validator->errors()->first();
             return errorResponse($message, $errorMessage);
         }
-
         $user  = User::where('mobile',$request->mobile)->first();
-        // dd($user);
-        $user->otp = "123456";
-        $user->update();
-        if($user)
+        if($user != NULL)
         {
-            $data['otp'] = "123456";
+        $otp = "123456";
+        $user->otp = $otp;
+        $user->update();
+            $data['otp'] = $user->otp;
             $data['mobile'] = $request->mobile;
             return successResponse('OTP Send Successfully', $data);
         }  

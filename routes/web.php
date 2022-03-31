@@ -25,6 +25,7 @@ use App\Http\Controllers\OfficesController;
 use App\Http\Controllers\LocalPackageController;
 use App\Http\Controllers\DomesticPackageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BranchController;
 
 
 @include_once('admin_web.php');
@@ -59,6 +60,11 @@ Route::group(['middleware' => ['auth']], function()
     Route::get("change_password", [ProfileController::class, "change_password"])->name("change_password");
     Route::post("change_password", [ProfileController::class, "change_password_post"])->name("change_password_post");
 
+    Route::resource('offices', OfficesController::class);
+    Route::resource('localPackage', LocalPackageController::class);
+    // Route::resource('domesticpackage', DomesticPackageController::class);
+    Route::resource('user', UserController::class);
+    Route::resource('branch', BranchController::class);
 
     // Route::get('/suppliers', [SupplierController::class, "list"])->name('suppliers');
     // Route::get('suppliers/edit/{id}', [SupplierController::class, "edit"])->name('suppliers.edit');
@@ -162,10 +168,6 @@ Route::group(['middleware' => ['auth']], function()
     // Route::resource('staff', StaffController::class);
 
 
-    Route::resource('offices', OfficesController::class);
-    Route::resource('localPackage', LocalPackageController::class);
-    // Route::resource('domesticpackage', DomesticPackageController::class);
-    Route::resource('user', UserController::class);
 
     // Consignment
     // Route::get("consignment",[ConsignmentController::class, "list"])->name("consignment");
