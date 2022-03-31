@@ -97,48 +97,47 @@ Orders
                 ]
             });
 
-            // $(document).on('click', ".delete_btn", function(event) {
-            //     swal.fire({
-            //         title: 'Are you sure?',
-            //         text: "You won't be able to revert this!",
-            //         icon: 'warning',
-            //         showCancelButton: true,
-            //         confirmButtonClass: "btn btn-danger",
-            //         cancelButtonClass: "btn btn-primary",
-            //         confirmButtonText: 'Yes, delete it!',
-            //         inputValidator: (value) => {
-            //             if (!value) {
-            //                 return 'You need to write something!'
-            //             }
-            //         }
-            //     }).then((result) => {
-            //         if (result.isConfirmed) {
-            //             var url = $(this).attr('data-url');
-            //             var token = '<?php echo csrf_token(); ?>';
-            //             $.ajax({
-            //                 type: 'POST',
-            //                 url: url,
-            //                 data: {
-            //                     _token: token,
-            //                     _method: 'DELETE',
-            //                 },
-            //                 success: function(data) {
-            //                     if (data.status == 1) {
-            //                         table.draw();
-            //                         toastr.options =
-            //                         {
-            //                         "closeButton" : true,
-            //                         "progressBar" : true
-            //                         }
-            //                         toastr.success("Order Deleted Successfully!");
-            //                     } else {
-            //                         return false;
-            //                     }
-            //                 }
-            //             });
-            //         }
-            //     });
-            // });
+            $(document).on('click', ".delete_btn", function(event) {
+                swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonClass: "btn btn-danger",
+                    cancelButtonClass: "btn btn-primary",
+                    confirmButtonText: 'Yes, Cancel it!',
+                    inputValidator: (value) => {
+                        if (!value) {
+                            return 'You need to write something!'
+                        }
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var url = $(this).attr('data-url');
+                        var token = '<?php echo csrf_token(); ?>';
+                        $.ajax({
+                            type: 'get',
+                            url: url,
+                            data: {
+                                _token: token,
+                            },
+                            success: function(data) {
+                                if (data.status == 1) {
+                                    table.draw();
+                                    toastr.options =
+                                    {
+                                    "closeButton" : true,
+                                    "progressBar" : true
+                                    }
+                                    toastr.success("Order Cancel Successfully!");
+                                } else {
+                                    return false;
+                                }
+                            }
+                        });
+                    }
+                });
+            });
 
         });
     </script>

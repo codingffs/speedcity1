@@ -44,14 +44,13 @@ class RegisterController extends Controller
     }
 
     public function userLogin1(Request $request){
-        
         $rules = [
             'email' => 'required',
             'password' => 'required',
         ];
-
+        
         $validator = Validator::make($request->all(), $rules);
-
+        
         if ($validator->fails()) {
             $errorMessage = $validator->messages();
             $message = $validator->errors()->first();
@@ -61,7 +60,6 @@ class RegisterController extends Controller
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
             $user = Auth::user(); 
             $user->token =  $user->createToken('cityspeed')-> accessToken; 
-   
             return successResponse('User login successfully', $user);
         } else{ 
             return errorResponse('Unauthorised');
@@ -123,7 +121,7 @@ class RegisterController extends Controller
                 $user->token =  $user->createToken('Cancer')-> accessToken; 
                 return successResponse('User login successfully', $user);
             } else{ 
-                return errorResponse('Unauthorised');
+                return errorResponse('User Not Found!');
             } 
         }
         else{

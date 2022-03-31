@@ -28,7 +28,9 @@ class OrderController extends Controller
                     ->addColumn('action', function($row){
                         $btn = "";
                             // $btn .= '<a href="'. route('localPackage.edit', $row->id) .'" class="edit btn btn-primary btn-sm m-5" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
-                            // $btn .= '<a href="javascript:void(0)" data-url="'. route('localPackage.destroy', $row->id) .'" class="delete_btn btn btn-danger btn-sm m-5" data-id="'. $row->id .'" ><i class="fa fa-trash" aria-hidden="true"></i></a>';
+                            if($row->status != 3){
+                            $btn .= '<a href="javascript:void(0)" data-url="'. route('orders.cancel', $row->id) .'" class="delete_btn btn btn-danger btn-sm m-5" data-id="'. $row->id .'" ><i class="fa fa fa-window-close" aria-hidden="true"></i></a>';
+                            }
                             $btn .= '<a href="'. route('orders.show', $row->id) .'" class="edit btn btn-info btn-sm m-5" ><i class="fa fa-eye" aria-hidden="true"></i></a>';
                         
                         return $btn;
@@ -50,5 +52,19 @@ class OrderController extends Controller
     {
         $order = BookOrder::find($id);
         return view('admin.order.show',compact('order'));
+    }
+
+    public function cancel($id)
+    {
+        $BranchUser = BookOrder::find($id);  
+        $BranchUser->status = 3;
+        $BranchUser->update();
+        // $medicalappliance = MedicalAppliance::where('cat_id',$id)->delete();       
+        // File::delete(public_path('/branchuser'. '/'.$BranchUser->image));
+        if($BranchUser){
+            return response()->json(["status" => 1]);
+        } else {
+            return response()->json(["status" => 0]);
+        }
     }
 }

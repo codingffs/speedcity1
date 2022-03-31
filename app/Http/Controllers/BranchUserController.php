@@ -33,6 +33,7 @@ class BranchUserController extends Controller
                     })
                     ->editcolumn('branch_id', function($row){
                         return getbranchname($row->branch_id);
+                        // return $row->name;
                     })
                     ->editcolumn('image', function($row){
                         $url = url("/branchuser"."/".$row->image);        

@@ -70,6 +70,9 @@ Route::group(['middleware' => ['auth']], function()
     Route::resource('branch', BranchController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('orders', OrderController::class);
+    
+
+    Route::get('/orderscancel/{id}', [OrderController::class, "cancel"])->name('orders.cancel');
 
     // Route::get('/suppliers', [SupplierController::class, "list"])->name('suppliers');
     // Route::get('suppliers/edit/{id}', [SupplierController::class, "edit"])->name('suppliers.edit');
