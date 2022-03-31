@@ -107,7 +107,6 @@ class StaffController extends Controller
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', $th->getMessage());
         }
-        
     }
     /**
      * Display the specified resource.

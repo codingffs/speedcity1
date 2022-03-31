@@ -27,6 +27,7 @@ use App\Http\Controllers\LocalPackageController;
 use App\Http\Controllers\DomesticPackageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\OrderController;
 
 
 @include_once('admin_web.php');
@@ -67,6 +68,7 @@ Route::group(['middleware' => ['auth']], function()
     Route::resource('user', UserController::class);
     Route::resource('branch', BranchController::class);
     Route::resource('categories', CategoryController::class);
+    Route::resource('orders', OrderController::class);
 
     // Route::get('/suppliers', [SupplierController::class, "list"])->name('suppliers');
     // Route::get('suppliers/edit/{id}', [SupplierController::class, "edit"])->name('suppliers.edit');
