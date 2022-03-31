@@ -20,8 +20,6 @@ Orders
                 <div class="card">
                     <div class="card-header">
                         <h5>Orders
-                                {{-- <a href="{{ route('localPackage.create') }}" class="btn btn-primary float_right">Create
-                                    Order</a> --}}
                         </h5>
                     </div>
                     <div class="card-body">

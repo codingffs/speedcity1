@@ -7,10 +7,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BookOrder;
 use App\Models\Orderstatus;
+<<<<<<< HEAD
 use App\Models\Orderhistory;
 use Carbon\Carbon;
 use Validator; 
+=======
+>>>>>>> 53c36807c967398fe9ef08a2d2ce883a64fa7d0c
 use Auth;
+use Carbon\Carbon;
 
 
 class OrderHistoryController extends Controller

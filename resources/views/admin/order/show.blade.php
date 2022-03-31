@@ -30,55 +30,78 @@
                         <div class="card">
                                 <div class="card-header pb-0">
                                     <h5>Order Details</h5>
-                                    <a href="{{ route('localPackage.index') }}" class="btn btn-primary float_right">Back</a>
+                                    <a href="{{ route('orders.index') }}" class="btn btn-primary float_right">Back</a>
                                 </div>
                                 <div class="card-body">
                                 <div class="mb-3 row">
-                                    <label class="col-sm-2 col-form-label" for="user_id">Order </label>
+                                    <label class="col-sm-2 col-form-label" for="parcel_id">Parcel Id </label>
                                     <div class="col-sm-4 margin-div">
-                                        : {{ getItemName($localPackage->user_id) }}
+                                        : {{ $order->parcel_id }}
                                     </div>
-                                    <label class="col-sm-2 col-form-label" for="source_address">Source Address </label>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label" for="user_id">User Id </label>
                                     <div class="col-sm-4 margin-div">
-                                        : {{ $localPackage->source_address }}
+                                        : {{ $order->user_id }}
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" for="local_services">Local Services </label>
+                                    <div class="col-sm-4 margin-div">
+                                        : {{ $order->local_services }}
                                     </div>
                                 </div>
                                 
                                 <div class="mb-3 row">
-                                    <label class="col-sm-2 col-form-label" for="destination_address">Destination Address </label>
+                                    <label class="col-sm-2 col-form-label" for="pickup_address">Pickup Address </label>
                                     <div class="col-sm-4 margin-div">
-                                        : {{ $localPackage->destination_address }}
+                                        : {{ $order->pickup_address }}
                                     </div>
-                                    <label class="col-sm-2 col-form-label" for="city">City </label>
+                                    <label class="col-sm-2 col-form-label" for="delivery_address">Delivery Address </label>
                                     <div class="col-sm-4 margin-div">
-                                        : {{ $localPackage->city }}
-                                    </div>
-                                </div>
-                                
-                                <div class="mb-3 row">
-                                    <label class="col-sm-2 col-form-label" for="state">State</label>
-                                    <div class="col-sm-4 margin-div">
-                                        : {{ $localPackage->state }}
-                                    </div>
-                                    <label class="col-sm-2 col-form-label" for="zip_code">Zip Code</label>
-                                    <div class="col-sm-4 margin-div">
-                                        : {{ $localPackage->zip_code }}
+                                        : {{ $order->delivery_address }}
                                     </div>
                                 </div>
+
                                 <div class="mb-3 row">
-                                    <label class="col-sm-2 col-form-label" for="distance">Distance </label>
+                                    <label class="col-sm-2 col-form-label" for="sender_name">Sender Name </label>
                                     <div class="col-sm-4 margin-div">
-                                        : {{ $localPackage->distance }}
+                                        : {{ $order->sender_name }}
                                     </div>
-                                    <label class="col-sm-2 col-form-label" for="price_per_km">price(km) </label>
+                                    <label class="col-sm-2 col-form-label" for="receiver_name">Receiver Name </label>
                                     <div class="col-sm-4 margin-div">
-                                        : {{ $localPackage->price_per_km }}
+                                        : {{ $order->receiver_name }}
                                     </div>
                                 </div>
+
                                 <div class="mb-3 row">
-                                    <label class="col-sm-2 col-form-label" for="notes">Notes </label>
+                                    <label class="col-sm-2 col-form-label" for="pickup_others">Pickup Others </label>
                                     <div class="col-sm-4 margin-div">
-                                        : {!! $localPackage->notes !!}
+                                        : {{ $order->pickup_others }}
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" for="delivery_others">Delivery Others </label>
+                                    <div class="col-sm-4 margin-div">
+                                        : {{ $order->delivery_others }}
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label" for="parcel_type">Parcel Type </label>
+                                    <div class="col-sm-4 margin-div">
+                                        : {{ $order->parcel_type }}
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" for="parcel_weight">Parcel Weight </label>
+                                    <div class="col-sm-4 margin-div">
+                                        : {{ $order->parcel_weight }}
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 row">
+                                    <label class="col-sm-2 col-form-label" for="total_amount">Total Amount </label>
+                                    <div class="col-sm-4 margin-div">
+                                        : {{ $order->total_amount }}
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" for="status">Status </label>
+                                    <div class="col-sm-4 margin-div">
+                                        : {{ ($order->status == "0")?'Pending': (($order->status == "1")?'Inprogress': (($order->status == "2")?'Completed': (($order->status == "3")?'Cancel':''))) }}
                                     </div>
                                 </div>
                             </div>
