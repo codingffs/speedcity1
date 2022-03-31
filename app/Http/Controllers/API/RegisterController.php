@@ -23,6 +23,7 @@ class RegisterController extends Controller
         $validator = Validator::make($request->all(), $rules);
         $input = $request->all();
         $input['password'] =  Hash::make("qwertyuiop@123");
+        $input['role'] =  "3";
         
         if ($validator->fails()) {
             $errorMessage = $validator->messages();
@@ -87,7 +88,6 @@ class RegisterController extends Controller
             $message = $validator->errors()->first();
             return errorResponse($message, $errorMessage);
         }
-<<<<<<< HEAD
 
 
         $user  = User::where('mobile',$request->mobile)->first();
@@ -97,19 +97,11 @@ class RegisterController extends Controller
         {
             $user->otp = "123456";
             $user->update();
-=======
-        $user  = User::where('mobile',$request->mobile)->first();
-        if($user != NULL)
-        {
-        $otp = "123456";
-        $user->otp = $otp;
-        $user->update();
->>>>>>> 1ea5546ed5dacc0b906a6707718cb83d9d26bf22
             $data['otp'] = $user->otp;
             $data['mobile'] = $request->mobile;
             return successResponse('OTP Send Successfully', $data);
         }  
-            return errorResponse('Mobile Number Is Not Exists!');
+            return errorResponse('Mobile Number Is Not Exists!',null);
     }
 
     public function otpverify(Request $request){
@@ -124,7 +116,7 @@ class RegisterController extends Controller
                 return errorResponse($message, $errorMessage);
             }
             $user = User::where("mobile",$request->mobile)->where("otp",$request->otp)->first();
-            if($user != NULL){
+            if($user){
             $request->password = "qwertyuiop@123";
             if(Auth::attempt(['email' => $user->email, 'password' => $request->password])){ 
                 $user = Auth::user(); 

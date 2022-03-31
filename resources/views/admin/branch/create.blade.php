@@ -84,7 +84,7 @@
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label" for="password">Password <span class="text-danger">*</span></label>
                                         <div class="col-sm-9">
-                                            <input type="number" id="password" class="form-control" name="password"
+                                            <input type="password" id="password" class="form-control" name="password"
                                                 placeholder="password" value="{{ old('password') }}" required />
                                             @error('password')
                                                 <p class="text-danger">{{ $message }}</p>
@@ -95,7 +95,7 @@
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label" for="confirm_password">Confirm Password <span class="text-danger">*</span></label>
                                         <div class="col-sm-9">
-                                            <input name="confirm_password" id="confirm_password" class="form-control" placeholder="confirm password" required/>
+                                            <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="confirm password" required/>
                                             @error('confirm_password')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
@@ -133,26 +133,26 @@
                             minlength: 10,
                             maxlength: 10
                         },
-                        // email: {
-                        //     maxlength: 90,
-                        //     remote: {
-                        //         type: 'get',
-                        //         url: '{{ route('check_email_exists_in_users') }}',
-                        //         data: {
-                        //             'email': function() {
-                        //                 return $("#email").val();
-                        //             }
-                        //         },
-                        //         dataFilter: function(data) {
-                        //             var json = JSON.parse(data);
-                        //             if (json.status == 0) {
-                        //                 return "\"" + json.message + "\"";
-                        //             } else {
-                        //                 return 'true';
-                        //             }
-                        //         }
-                        //     }
-                        // },
+                        email: {
+                            maxlength: 90,
+                            remote: {
+                                type: 'get',
+                                url: '{{ route('check_email_exists_in_users') }}',
+                                data: {
+                                    'email': function() {
+                                        return $("#email").val();
+                                    }
+                                },
+                                dataFilter: function(data) {
+                                    var json = JSON.parse(data);
+                                    if (json.status == 0) {
+                                        return "\"" + json.message + "\"";
+                                    } else {
+                                        return 'true';
+                                    }
+                                }
+                            }
+                        },
                     },
                     errorPlacement: function(error, element) {
                         if (element.attr("name") == "discount_type") {

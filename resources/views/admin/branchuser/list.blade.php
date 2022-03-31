@@ -31,6 +31,7 @@ Branch User
                                     <tr>
                                         <th>ID</th>
                                         <th>Branch Name</th>
+                                        <th>Email</th>
                                         <th>Name</th>
                                         <th>Mobile No</th>
                                         <th>Image</th>
@@ -63,8 +64,12 @@ Branch User
                         name: 'id'
                     },
                     {
-                        data: 'branch_name',
-                        name: 'branch_name'
+                        data: 'branch_id',
+                        name: 'branch_id'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
                     },
                     {
                         data: 'name',

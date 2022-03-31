@@ -33,7 +33,7 @@ Staff
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Email</th>
-                                        <th>User Role</th>
+                                        {{-- <th>User Role</th> --}}
                                         <th>Created Date</th>
                                         <th>Action</th>
                                     </tr>
@@ -71,10 +71,10 @@ Staff
                         data: 'email',
                         name: 'email'
                     },
-                    {
-                        data: 'user_role',
-                        name: 'user_role'
-                    },
+                    // {
+                    //     data: 'user_role',
+                    //     name: 'user_role'
+                    // },
                     {
                         data: 'created_date',
                         name: 'created_date'

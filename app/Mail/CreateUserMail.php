@@ -29,7 +29,7 @@ class CreateUserMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Register On Cancer Home Health.')
+        return $this->subject('Register On CitySpeed.')
                     ->view('emails.create_user');
     }
 }

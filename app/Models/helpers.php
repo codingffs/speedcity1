@@ -8,6 +8,7 @@ use App\Models\Degree;
 use App\Models\Categoryfaq;
 use App\Models\Category;
 use App\Models\Cms;
+use App\Models\User;
 use App\Models\CourierItems;
 
 function logoimage($val){
@@ -17,7 +18,7 @@ function logoimage($val){
     return $logo;
 }
 
-function errorResponse($status, $errorMessage = null, $data = []) {
+function errorResponse($status, $errorMessage = null, $data = null) {
     return response()->json([
             "success" => 0,
             "data" => $data,
@@ -26,6 +27,11 @@ function errorResponse($status, $errorMessage = null, $data = []) {
     ]);
 }
 
+function getbranchname($id)
+{
+    $branchname = User::find($id);
+    return $branchname->name;
+}
 function successResponse($message, $data = null) {
     if (!empty($data)) {
 

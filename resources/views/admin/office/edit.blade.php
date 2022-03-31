@@ -126,31 +126,6 @@ Office
             $(document).ready(function() {
                 CKEDITOR.replace('contact');
                 $("#office_edit").validate({
-                    rules: {
-                        // title: {
-                        //     maxlength: 50,
-                        //     remote: {
-                        //         type: 'get',
-                        //         url: '{{ route('check_title_exists_update') }}',
-                        //         data: {
-                        //             'id': function() {
-                        //                 return $('#id').val();
-                        //             },
-                        //             'title': function() {
-                        //                 return $("#title").val();
-                        //             }
-                        //         },
-                        //         dataFilter: function(data) {
-                        //             var json = JSON.parse(data);
-                        //             if (json.status == 0) {
-                        //                 return "\"" + json.message + "\"";
-                        //             } else {
-                        //                 return 'true';
-                        //             }
-                        //         }
-                        //     }
-                        // },
-                    },
                     errorPlacement: function(error, element) {
                         if (element.attr("type") == "text") {
                             error.appendTo(element.parent("div"));

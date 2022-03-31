@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -20,20 +22,16 @@ class StaffController extends Controller
      */
     public function index(Request $request)
     {
-        if(!Auth::user()->can('staff-list')){
-            return back()->with(['error' => 'Unauthorized Access.']);
-        }
-
         if ($request->ajax()) {
-            $User = User::select('*')->where("user_type", "=", 2)->latest();
+            $User = User::select('*')->where("role", "=", 3)->latest();
             return Datatables::of($User)
                     ->addIndexColumn()
                     ->addColumn('created_date', function($row){
                         return date('d-m-Y', strtotime($row->created_at));
                     })
-                    ->addColumn('user_role', function($row){
-                        return $row->role ? $row->role->name : "";
-                    })
+                    // ->addColumn('user_role', function($row){
+                    //     return $row->role ? $row->role->name : "";
+                    // })
                     ->addColumn('action', function($row){
                         $btn = "";
                         if(Auth::user()->can('staff-edit')){
@@ -45,7 +43,7 @@ class StaffController extends Controller
 
                         return $btn;
                     })
-                    ->rawColumns(['created_date', 'user_role', 'action'])
+                    ->rawColumns(['created_date', 'action'])
                     ->make(true);
         }
 

@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Branchuser;
+use Illuminate\Support\Str;
+
+// use App\Models\Branchuser;
+use App\Models\User;
 use DB;
 use Auth;
 use DataTables;
 use File;
+use Mail;
 
 class BranchUserController extends Controller
 {
@@ -18,14 +22,17 @@ class BranchUserController extends Controller
      */
     public function index(Request $request)
     { 
-          $Branchuser = Branchuser::get();
-        if ($request->ajax()) {
-            $BranchUser = Branchuser::get();
+          $Branchuser = User::where('role',4)->get();
+          if ($request->ajax()) {
+            $Branchuser = User::where('role',4)->get();
             
-            return Datatables::of($BranchUser)
+            return Datatables::of($Branchuser)
                     ->addIndexColumn()
                     ->editColumn('id', function($row){
                         return str_pad($row->id, 6, '0', STR_PAD_LEFT);
+                    })
+                    ->editcolumn('branch_id', function($row){
+                        return getbranchname($row->branch_id);
                     })
                     ->editcolumn('image', function($row){
                         $url = url("/branchuser"."/".$row->image);        
@@ -40,7 +47,6 @@ class BranchUserController extends Controller
                     ->rawColumns(['action','image'])
                     ->make(true);
         }
-        
         return view('admin.branchuser.list');
     }
 
@@ -51,7 +57,8 @@ class BranchUserController extends Controller
      */
     public function create()
     {
-        return view('admin.branchuser.create');
+        $branch = User::where('role',2)->get();
+        return view('admin.branchuser.create',compact('branch'));
     }
 
     /**
@@ -64,22 +71,34 @@ class BranchUserController extends Controller
     {
         $request->validate([
             'branch_name' => 'required',
+            'email' => 'required|email|unique:users',
             'name' => 'required',
             'mobile' => 'required',
             'image' => 'required',
         ]);
+
+        $password = Str::random(10);
+        $hash_password = bcrypt($password);
         
         $imagename = rand(0000,9999).$request->image->getclientoriginalname();
         $request->image->move(public_path('/branchuser'),$imagename);
         $BranchUser = array(
-            "branch_name" => $request->branch_name,
+            "branch_id" => $request->branch_name,
             "name" => $request->name,
+            "password" => $hash_password,
+            "email" => $request->email,
             "mobile" => $request->mobile,
             "image" => $imagename,
+            "role" => 4,
         );
 
-        Branchuser::create($BranchUser);
-
+        User::create($BranchUser);
+        $User = [
+            "password" => $password,
+            "name" => $request->name,
+            "email" => $request->email
+        ];
+        \Mail::to($request->email)->send(new \App\Mail\CreateUserMail($User));
         return redirect()->route("branchuser.index")->with("success", "Branch User created successfully.");
     }
 
@@ -102,8 +121,9 @@ class BranchUserController extends Controller
      */
     public function edit($id)
     {
-             $BranchUser = Branchuser::find($id);
-             return view('admin.branchuser.edit', compact('BranchUser'));
+            $branch = User::where('role',2)->get();
+             $BranchUser = User::find($id);
+             return view('admin.branchuser.edit', compact('BranchUser','branch'));
     }
 
     /**
@@ -115,9 +135,10 @@ class BranchUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $BranchUser = Branchuser::find($id);
+        $BranchUser = User::find($id);
         $request->validate([
             'branch_name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$id,
             'name' => 'required',
             'mobile' => 'required',
         ]);
@@ -134,14 +155,15 @@ class BranchUserController extends Controller
             $BranchUser['image'] = $imagename;
            }
         $BranchUser = array(
-            "branch_name" => $request->branch_name,
+            "branch_id" => $request->branch_name,
+            "email" => $request->email,
             "name" => $request->name,
             "mobile" => $request->mobile,
             "image" => $imagename
         );
        
 
-        Branchuser::whereId($id)->update($BranchUser);
+        User::whereId($id)->update($BranchUser);
 
         return redirect()->route("branchuser.index")->with("success", "Branch User updated successfully.");
     }
@@ -154,10 +176,10 @@ class BranchUserController extends Controller
      */
     public function destroy($id)
     {
-        $BranchUser = Branchuser::find($id);  
+        $BranchUser = User::find($id);  
         // $medicalappliance = MedicalAppliance::where('cat_id',$id)->delete();       
         File::delete(public_path('/branchuser'. '/'.$BranchUser->image));
-        if(Branchuser::whereId($id)->delete()){
+        if(User::whereId($id)->delete()){
             return response()->json(["status" => 1]);
         } else {
             return response()->json(["status" => 0]);

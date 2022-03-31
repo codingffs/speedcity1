@@ -26,6 +26,7 @@ use App\Http\Controllers\BranchUserController;
 use App\Http\Controllers\LocalPackageController;
 use App\Http\Controllers\DomesticPackageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StaffController;
 use App\Http\Controllers\BranchController;
 
 
@@ -166,7 +167,7 @@ Route::group(['middleware' => ['auth']], function()
     // Route::get('activity_log', [ActivityLogController::class, "list"])->name("activity_log");
     // Route::resource('user', UserController::class);
     
-    // Route::resource('staff', StaffController::class);
+    Route::resource('staff', StaffController::class);
 
 
     Route::resource('offices', OfficesController::class);

@@ -46,7 +46,7 @@
                                         <label class="col-sm-3 col-form-label" for="item_name">Item Name <span class="text-danger">*</span></label>
                                         <div class="col-sm-9">
                                             <input type="text" id="item_name" class="form-control" name="item_name"
-                                                placeholder="item name" value="{{ old('item_name',$Domesticpackages->itemsID) }}" required />
+                                                placeholder="item name" value="{{ old('item_name',$Domesticpackages->itemsIDrea) }}" required />
                                             @error('item_name')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror

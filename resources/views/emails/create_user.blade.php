@@ -65,7 +65,7 @@
                                                         <p><b>Password :- </b> {{ $details["password"] }}</p>
                                                         <a href="{{ route('login') }}" target="_blank" style="padding: 10px; background-color: #24695c; color: #ffffff; display: inline-block; border-radius: 4px; margin-bottom: 18px;">Login</a>
                                                         <p>Best Regarding,</p>
-                                                        <p>Cancer Home Health.</p>
+                                                        <p>CitySpeed</p>
                                                     </td>
                                                 </tr>
                                             </tbody>

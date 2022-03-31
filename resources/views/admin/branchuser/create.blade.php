@@ -25,16 +25,33 @@ Branch User
                                     <h5>Create Branch User</h5>
                                 </div>
                                 <div class="card-body">
-
                                 @csrf
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label" for="title">Branch Name <span
                                             class="text-danger">*</span></label>
                                     <div class="col-sm-9">
-                                        <input type="text" id="branch_name" class="form-control" name="branch_name"
-                                            placeholder="Branch Name" value="{{ old('branch_name') }}" required />
+                                        <select name="branch_name" class="form-control select2"  id="branch_name">
+                                                <option value="">Select Branch Name</option>
+                                                @foreach ($branch as $value)
+                                                    <option value="{{ $value->id }}"
+                                                        {{ request()->get('branch_name') == $value->id ? 'selected' : '' }}>
+                                                        {{ $value->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        {{-- <input type="text" id="branch_name" class="form-control" name="branch_name"
+                                            placeholder="Branch Name" value="{{ old('branch_name') }}" required /> --}}
                                         @error('branch_name')
                                             <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label class="col-sm-3 col-form-label" for="email">Email <span class="text-danger">*</span></label>
+                                    <div class="col-sm-9">
+                                        <input type="email" id="email" class="form-control" name="email"
+                                            placeholder="Email" value="{{ old('email') }}" required />
+                                        @error('email')
+                                            <p class="text-danger">{{ $message }}</p>
                                         @enderror
                                     </div>
                                 </div>
@@ -48,6 +65,7 @@ Branch User
                                         @enderror
                                     </div>
                                 </div>
+                                
                                
                                 <div class="mb-3 row">
                                     <label class="col-sm-3 col-form-label" for="mobile">Mobile No</label>
@@ -117,6 +135,28 @@ Branch User
         <script>
             $(document).ready(function() {
                 $("#branchuser_Create").validate({
+                    // rules: {
+                    //     email: {
+                    //         maxlength: 90,
+                    //         remote: {
+                    //             type: 'get',
+                    //             url: '{{ route('check_email_exists_in_users') }}',
+                    //             data: {
+                    //                 'email': function() {
+                    //                     return $("#email").val();
+                    //                 }
+                    //             },
+                    //             dataFilter: function(data) {
+                    //                 var json = JSON.parse(data);
+                    //                 if (json.status == 0) {
+                    //                     return "\"" + json.message + "\"";
+                    //                 } else {
+                    //                     return 'true';
+                    //                 }
+                    //             }
+                    //         }
+                    //     },
+                    // },
                     errorPlacement: function(error, element) {
                         if (element.attr("type") == "text") {
                             error.appendTo(element.parent("div"));

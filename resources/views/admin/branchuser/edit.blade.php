@@ -31,10 +31,25 @@ Branch User
                                         <label class="col-sm-3 col-form-label" for="title">Branch Name <span
                                                 class="text-danger">*</span></label>
                                         <div class="col-sm-9">
-                                            <input type="text" id="branch_name" class="form-control" name="branch_name"
-                                                placeholder="Branch Name" value="{{ old('branch_name', $BranchUser->branch_name) }}" required />
+                                            {{-- <input type="text" id="branch_name" class="form-control" name="branch_name"
+                                                placeholder="Branch Name" value="{{ old('branch_name', $BranchUser->branch_name) }}" required /> --}}
+                                                <select name="branch_name" id="branch_name" class="form-control" required >
+                                                    @foreach($branch as $value)
+                                                    <option value="{{ $value->id }}" {{ isset($BranchUser->id) && $BranchUser->id == $value->id ? 'selected' : ''}}>{{ $value->name }}</option>
+                                                    @endforeach
+                                                </select>
                                             @error('branch_name')
                                                 <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label" for="email">Email <span class="text-danger">*</span></label>
+                                        <div class="col-sm-9">
+                                            <input type="email" id="email" class="form-control" name="email"
+                                                placeholder="Email" value="{{ old('email',$BranchUser->email) }}" required />
+                                            @error('email')
+                                                <p class="text-danger">{{ $message }}</p>
                                             @enderror
                                         </div>
                                     </div>

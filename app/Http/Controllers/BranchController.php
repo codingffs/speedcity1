@@ -7,6 +7,7 @@ use App\Models\User;
 use DB;
 use Auth;
 use DataTables;
+use Mail;
 
 class BranchController extends Controller
 {
@@ -21,6 +22,9 @@ class BranchController extends Controller
             $User = User::where('role',2)->get();
             return Datatables::of($User)
                     ->addIndexColumn()
+                    ->editColumn('id', function($row){
+                        return str_pad($row->id, 6, '0', STR_PAD_LEFT);
+                    })
                     ->addColumn('action', function($row){
                         $btn = "";
                             $btn .= '<a href="'. route('branch.edit', $row->id) .'" class="edit btn btn-primary btn-sm m-1"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
@@ -67,6 +71,12 @@ class BranchController extends Controller
             );
             
             $data_user = User::create($User);
+            $User = [
+                "password" => $request->password,
+                "name" => $request->name,
+                "email" => $request->email
+            ];
+            \Mail::to($request->email)->send(new \App\Mail\CreateUserMail($User));
             
             return redirect()->route('branch.index')->with('success','Branch created successfully.');
         } catch (\Throwable $th) {
