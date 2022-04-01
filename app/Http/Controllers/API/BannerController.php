@@ -11,6 +11,8 @@ class BannerController extends Controller
 {
     public function banner(){
     $banner = Category::get();
-    return successResponse('Banner Details',$banner);
+    $imagepath = asset('images/category');
+    // $path = url('images/category',$banner->image);
+    return successResponse('Banner Details',$banner,$imagepath);
     }
 }

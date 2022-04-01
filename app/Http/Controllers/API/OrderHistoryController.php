@@ -72,7 +72,6 @@ class OrderHistoryController extends Controller
             return errorResponse('No Data Found!');
     }
 
-
     public function orderhistory($status)
     {
           if($status == "0")
