@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BookOrder;
+use App\Models\AssignUser;
 use App\Models\User;
 use Auth;
 
@@ -50,9 +51,28 @@ class BranchOrderController extends Controller
 
     }
 
-    public function AssignUser($id)
+    public function AssignUser($user_id,$order_id)
     {
-          
+        $user = array(
+            "user_id" => $user_id,
+            "order_id" => $order_id,
+            "status" => 1,
+        );
+        AssignUser::create($user);
+        if($user != '[]'){
+            return successResponse('User Assigned',$user);
+        }
+            return errorResponse('No Data Found!');
     }
-    
+
+    public function CancelUser($user_id,$order_id)
+    {
+        $user = AssignUser::where('user_id',$user_id)->where('order_id',$order_id)->first();
+        $user['status'] = 2;
+        $user->update();          
+        if($user != '[]'){
+            return successResponse('User Unassgined',$user);
+        }
+            return errorResponse('No Data Found!');
+    }
 }

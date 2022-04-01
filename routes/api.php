@@ -55,7 +55,8 @@ Route::prefix('admin')->group( function (){
         Route::get('BranchOrder/{status}', [BranchOrderController::class,"BranchOrder"]); 
         Route::get('BranchUser', [BranchOrderController::class,"BranchUser"]); 
         Route::post('BranchorderInfo/{id}', [BranchOrderController::class,"BranchorderInfo"]); 
-        Route::get('AssignUser{id}', [BranchOrderController::class,"AssignUser"]); 
+        Route::get('AssignUser/{user_id}/{order_id}', [BranchOrderController::class,"AssignUser"]); 
+        Route::get('CancelUser/{user_id}/{order_id}', [BranchOrderController::class,"CancelUser"]); 
         
     });
 });
