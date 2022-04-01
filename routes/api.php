@@ -11,11 +11,8 @@ use App\Http\Controllers\API\AuthAdminController;
 use App\Http\Controllers\API\BookOrderController;
 use App\Http\Controllers\API\ParcelWeightController;
 use App\Http\Controllers\API\ParcelTypeController;
-<<<<<<< HEAD
-=======
 use App\Http\Controllers\API\BannerController;
 use App\Http\Controllers\API\BranchOrderController;
->>>>>>> 53c36807c967398fe9ef08a2d2ce883a64fa7d0c
 
 
 /*
@@ -42,6 +39,7 @@ Route::prefix('admin')->group( function (){
     Route::post('otp-verify',[RegisterController::class,'otpverify'])->name('otp-verify');
     Route::get('orderstatus', [OrderHistoryController::class,"orderstatus"]);
     Route::get('parceltype',[ParcelTypeController::class,'parceltype'])->name('parceltype');
+    Route::get('banner',[BannerController::class,'banner'])->name('banner');
 
         Route::group(['middleware' => ['passportapi']], function(){
             
@@ -50,11 +48,8 @@ Route::prefix('admin')->group( function (){
             // Route::get('orderdetail/year/{startDate}/{endDate}', [OrderHistoryController::class,"yearOrderDetail"]); 
             Route::get('notification', [NotificationController::class,"list"]); 
             Route::get('orderdetail/{id}', [OrderHistoryController::class,"orderdetail"]);
-<<<<<<< HEAD
             Route::post('orderhistorystatus', [OrderHistoryController::class,"orderhistorystatus"])->name('orderhistorystatus');
-=======
             Route::get('mybooking/{status}', [OrderHistoryController::class,"list"]); 
->>>>>>> 53c36807c967398fe9ef08a2d2ce883a64fa7d0c
             Route::post('bookorder',[BookOrderController::class,'bookorder'])->name('bookorder');
             Route::get('BranchAllOrder',[BranchOrderController::class,'BranchAllOrder'])->name('BranchAllOrder');
             Route::get('BranchOrder/{status}', [BranchOrderController::class,"BranchOrder"]); 
