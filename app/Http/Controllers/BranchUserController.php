@@ -78,7 +78,8 @@ class BranchUserController extends Controller
             'image' => 'required',
         ]);
 
-        $password = Str::random(10);
+        $password = "qwertyuiop@123";
+
         $hash_password = bcrypt($password);
         
         $imagename = rand(0000,9999).$request->image->getclientoriginalname();

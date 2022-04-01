@@ -9,6 +9,8 @@ use App\Models\Categoryfaq;
 use App\Models\Category;
 use App\Models\Cms;
 use App\Models\User;
+use App\Models\BookOrder;
+use App\Models\Orderstatus;
 use App\Models\CourierItems;
 
 function logoimage($val){
@@ -92,5 +94,17 @@ function getcatgoryname($id){
 function getItemName($id){
     $name = CourierItems::find($id);
     return $name->item_name;
+}
+
+function get_parcel_id($id)
+{
+    $result = BookOrder::select('parcel_id')->where('user_id',$id)->first();
+    return $result->parcel_id;
+}
+
+function get_parcel_status($order_status)
+{
+    $result = Orderstatus::find($order_status);
+    return $result->title;
 }
 ?>

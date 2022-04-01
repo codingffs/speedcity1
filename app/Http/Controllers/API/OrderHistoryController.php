@@ -7,14 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BookOrder;
 use App\Models\Orderstatus;
-<<<<<<< HEAD
 use App\Models\Orderhistory;
-use Carbon\Carbon;
 use Validator; 
-=======
->>>>>>> 53c36807c967398fe9ef08a2d2ce883a64fa7d0c
 use Auth;
-use Carbon\Carbon;
 
 
 class OrderHistoryController extends Controller
@@ -114,26 +109,5 @@ class OrderHistoryController extends Controller
     }
 
 
-    public function orderhistorystatus(Request $request)
-    {
-        // dd($request->All());
-        $validator = Validator::make($request->all(), [
-            'order_id' => 'required',
-            'order_status' => 'required',
-            'location' => 'required',
-        ]);  
-        if($validator->fails()){
-            return errorResponse('Validation Error.', $validator->errors());     
-        }
-        $input = $request->all();
-        $Orderhistory = Orderhistory::create($input);
-        $success['data'] = $Orderhistory;
-
-        $order = BookOrder::find($request->order_id);
-        $order['order_status'] =  $request->order_status;
-        $order->update();
-        return successResponse('Orderstatus update Successfully.',$success);
-
-
-    }
+    
 }

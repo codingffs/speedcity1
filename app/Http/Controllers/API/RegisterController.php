@@ -39,7 +39,7 @@ class RegisterController extends Controller
             $user->token =  $user->createToken('Cancer')->accessToken; 
             return successResponse('User Register and login successfully', $user);
         } else{ 
-            return errorResponse('Unauthorised');
+            return errorResponse('User Not Found!');
         }
     }
 
@@ -62,7 +62,7 @@ class RegisterController extends Controller
             $user->token =  $user->createToken('cityspeed')-> accessToken; 
             return successResponse('User login successfully', $user);
         } else{ 
-            return errorResponse('Unauthorised');
+            return errorResponse('User Not Found!');
         } 
         
     }

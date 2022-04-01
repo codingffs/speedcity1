@@ -48,7 +48,8 @@ Route::prefix('admin')->group( function (){
             // Route::get('orderdetail/year/{startDate}/{endDate}', [OrderHistoryController::class,"yearOrderDetail"]); 
             Route::get('notification', [NotificationController::class,"list"]); 
             Route::get('orderdetail/{id}', [OrderHistoryController::class,"orderdetail"]);
-            Route::post('orderhistorystatus', [OrderHistoryController::class,"orderhistorystatus"])->name('orderhistorystatus');
+            Route::get('orderhistorydetail/{id}', [BranchOrderController::class,"orderhistorydetail"]);
+            Route::post('orderhistorystatus', [BranchOrderController::class,"orderhistorystatus"])->name('orderhistorystatus');
             Route::get('mybooking/{status}', [OrderHistoryController::class,"list"]); 
             Route::post('bookorder',[BookOrderController::class,'bookorder'])->name('bookorder');
             Route::get('BranchAllOrder',[BranchOrderController::class,'BranchAllOrder'])->name('BranchAllOrder');
