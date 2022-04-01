@@ -33,7 +33,7 @@ Local Package
                                         <label class="col-sm-3 col-form-label" for="itemsID">Item Name <span
                                                 class="text-danger">*</span></label>
                                         <div class="col-sm-9">
-                                            <select name="country_id" id="country_id" class="form-control" required >
+                                            <select name="itemsID" id="itemsID" class="form-control" required >
                                                 @foreach($CourierItems as $Courier)
                                                 <option value="{{ $Courier->id }}" {{ isset($localPackage->itemsID) && $localPackage->itemsID == $Courier->id ? 'selected' : ''}}>{{ $Courier->item_name }}</option>
                                                 @endforeach
@@ -151,31 +151,6 @@ Local Package
             $(document).ready(function() {
                 CKEDITOR.replace('notes');
                 $("#localPackage_edit").validate({
-                    rules: {
-                        // title: {
-                        //     maxlength: 50,
-                        //     remote: {
-                        //         type: 'get',
-                        //         url: '{{ route('check_title_exists_update') }}',
-                        //         data: {
-                        //             'id': function() {
-                        //                 return $('#id').val();
-                        //             },
-                        //             'title': function() {
-                        //                 return $("#title").val();
-                        //             }
-                        //         },
-                        //         dataFilter: function(data) {
-                        //             var json = JSON.parse(data);
-                        //             if (json.status == 0) {
-                        //                 return "\"" + json.message + "\"";
-                        //             } else {
-                        //                 return 'true';
-                        //             }
-                        //         }
-                        //     }
-                        // },
-                    },
                     errorPlacement: function(error, element) {
                         if (element.attr("type") == "text") {
                             error.appendTo(element.parent("div"));

@@ -33,12 +33,12 @@ class CategoryController extends Controller
                     })
                     ->addColumn('action', function($row){
                         $btn = "";
-                        if(Auth::user()->can('category-edit')){
+                        // if(Auth::user()->can('category-edit')){
                             $btn .= '<a href="'. route('categories.edit', $row->id) .'" class="edit btn btn-primary btn-sm m-5" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
-                        }
-                        if(Auth::user()->can('category-delete')){
+                        // }
+                        // if(Auth::user()->can('category-delete')){
                             $btn .= '<a href="javascript:void(0)" data-url="'. route('categories.destroy', $row->id) .'" class="delete_btn btn btn-danger btn-sm m-5" data-id="'. $row->id .'" ><i class="fa fa-trash" aria-hidden="true"></i></a>';
-                        }
+                        // }
                         return $btn;
                     })
                     ->rawColumns(['action','image'])

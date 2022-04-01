@@ -52,7 +52,7 @@
                                     <div class="mb-3 row">
                                         <label class="col-sm-3 col-form-label" for="password">Password <span class="text-danger">*</span></label>
                                         <div class="col-sm-9">
-                                            <input type="number" id="password" class="form-control" name="password"
+                                            <input type="password" id="password" class="form-control" name="password"
                                                 placeholder="password" value="{{ old('password') }}" required />
                                             @error('password')
                                                 <p class="text-danger">{{ $message }}</p>

@@ -18,32 +18,32 @@
                         href="{{ route('Courierlist.index') }}"><i data-feather="archive"></i></i><span>Courier Items</span></a>
                      </li>
                      <li class="dropdown"><a class="nav-link menu-title link-nav"
-                        href="{{ route('offices.index') }}"><i data-feather="package"></i><span>Offices</span></a></li>
+                        href="{{ route('offices.index') }}"><i data-feather="target"></i><span>Offices</span></a></li>
                              
                     <li class="dropdown"><a class="nav-link menu-title link-nav"
                         href="{{ route('localPackage.index') }}"><i data-feather="package"></i><span>Local Package</span></a></li>
                     
                      <li class="dropdown"><a class="nav-link menu-title link-nav {{ routeActive('species.index') }}"
-                        href="{{ route('species.index') }}"><i data-feather="archive"></i></i><span>Parcel Management</span></a>
+                        href="{{ route('species.index') }}"><i data-feather="layers"></i></i><span>Parcel Management</span></a>
                      </li>
 
                      <li class="dropdown"><a class="nav-link menu-title link-nav {{ routeActive('domesticpackage.index') }}"
-                        href="{{ route('domesticpackage.index') }}"><i data-feather="archive"></i></i><span>Domestic Package</span></a>
+                        href="{{ route('domesticpackage.index') }}"><i data-feather="layers"></i></i><span>Domestic Package</span></a>
                      </li>
                      <li class="dropdown"><a class="nav-link menu-title link-nav {{ routeActive('branchuser.index') }}"
-                        href="{{ route('branchuser.index') }}"><i data-feather="archive"></i></i><span>Branch User</span></a>
+                        href="{{ route('branchuser.index') }}"><i data-feather="user"></i></i><span>Branch User</span></a>
                      </li>
 
                      <li class="dropdown"><a class="nav-link menu-title link-nav {{ routeActive('user.index') }}"
-                        href="{{ route('user.index') }}"><i data-feather="archive"></i></i><span>Customer</span></a>
+                        href="{{ route('user.index') }}"><i data-feather="users"></i></i><span>Customer</span></a>
                      </li>
 
                      <li class="dropdown"><a class="nav-link menu-title link-nav {{ routeActive('branch.index') }}"
-                        href="{{ route('branch.index') }}"><i data-feather="archive"></i></i><span>Branch</span></a>
+                        href="{{ route('branch.index') }}"><i data-feather="git-branch"></i></i><span>Branch</span></a>
                      </li>
 
                      <li class="dropdown"><a class="nav-link menu-title link-nav {{ routeActive('categories.index') }}"
-                        href="{{ route('categories.index') }}"><i data-feather="archive"></i></i><span>Banner</span></a>
+                        href="{{ route('categories.index') }}"><i data-feather="credit-card"></i></i><span>Banner</span></a>
                      </li>
 
                      <li class="dropdown"><a class="nav-link menu-title link-nav {{ routeActive('orders.index') }}"
