@@ -34,11 +34,10 @@ function getbranchname($id)
     $branchname = User::find($id);
     return $branchname->name;
 }
-function successResponse($message, $data = null,$imagepath = null) {
+function successResponse($message, $data = null) {
     if (!empty($data)) {
 
         return response()->json([
-                    "imagepath" => $imagepath,
                     "success" => 1,
                     "data" => $data,
                     "message" => $message,
@@ -47,7 +46,6 @@ function successResponse($message, $data = null,$imagepath = null) {
         ]);
     } else {
         return response()->json([
-            "imagepath" => $imagepath,
             "success" => 1,
             "data" => $data,
             "message" => $message,
@@ -65,7 +63,6 @@ function systemResponse($message) {
 
     ]);
 }
-
 function getcountryname($country_id){
     $country = Country::find($country_id);
     return $country->country_name;
@@ -101,13 +98,13 @@ function getItemName($id){
 
 function get_parcel_id($id)
 {
-    $result = BookOrder::select('parcel_id')->where('user_id',$id)->first();
-    return $result->parcel_id;
+    $parcel = BookOrder::select('parcel_id')->where('user_id',$id)->first();
+    return $parcel->parcel_id;
 }
 
 function get_parcel_status($order_status)
 {
-    $result = Orderstatus::find($order_status);
-    return $result->title;
+    $order_status = Orderstatus::find($order_status);
+    return $order_status->title;
 }
 ?>

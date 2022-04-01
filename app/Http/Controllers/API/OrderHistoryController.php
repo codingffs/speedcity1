@@ -76,6 +76,7 @@ class OrderHistoryController extends Controller
     {
           if($status == "0")
           {
+            // current day wise order 
             $user = Auth::guard('api')->user()->id;
             $daydata = BookOrder::whereDate('created_at',date('Y-m-d'))->where('user_id',$user)->get();
             if($daydata != '[]'){
@@ -85,6 +86,7 @@ class OrderHistoryController extends Controller
           }
           elseif($status == "1")
           {
+                // current Month wise order 
             $user = Auth::guard('api')->user()->id;
             $Monthdata = BookOrder::whereMonth('created_at',date('m'))->where('user_id',$user)->get();
             if($Monthdata != '[]'){
@@ -92,8 +94,9 @@ class OrderHistoryController extends Controller
             }
                 return errorResponse('No Data Found!');
           }
-          elseif($status == "3")
+          elseif($status == "2")
           {
+                // current year wise order 
             $user = Auth::guard('api')->user()->id;
             $Yeardata = BookOrder::whereYear('created_at', date('Y'))->where('user_id',$user)->get();
             if($Yeardata != '[]'){
