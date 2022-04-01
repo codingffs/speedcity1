@@ -39,6 +39,7 @@ Route::prefix('admin')->group( function (){
     Route::post('otp-verify',[RegisterController::class,'otpverify'])->name('otp-verify');
     Route::get('orderstatus', [OrderHistoryController::class,"orderstatus"]);
     Route::get('parceltype',[ParcelTypeController::class,'parceltype'])->name('parceltype');
+    Route::get('banner',[BannerController::class,'banner'])->name('banner');
 
         Route::group(['middleware' => ['passportapi']], function(){
             
