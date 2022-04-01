@@ -40,19 +40,22 @@ Route::prefix('admin')->group( function (){
     Route::get('orderstatus', [OrderHistoryController::class,"orderstatus"]);
     Route::get('parceltype',[ParcelTypeController::class,'parceltype'])->name('parceltype');
     Route::get('banner',[BannerController::class,'banner'])->name('banner');
-
-        Route::group(['middleware' => ['passportapi']], function(){
-            
-            Route::get('orderhistory/{status}', [OrderHistoryController::class,"orderhistory"]); 
-            // Route::get('orderdetail/month/{startDate}/{endDate}', [OrderHistoryController::class,"monthOrderDetail"]); 
-            // Route::get('orderdetail/year/{startDate}/{endDate}', [OrderHistoryController::class,"yearOrderDetail"]); 
-            Route::get('notification', [NotificationController::class,"list"]); 
-            Route::get('orderdetail/{id}', [OrderHistoryController::class,"orderdetail"]);
-            Route::post('orderhistorystatus', [OrderHistoryController::class,"orderhistorystatus"])->name('orderhistorystatus');
-            Route::get('mybooking/{status}', [OrderHistoryController::class,"list"]); 
-            Route::post('bookorder',[BookOrderController::class,'bookorder'])->name('bookorder');
-            Route::get('BranchAllOrder',[BranchOrderController::class,'BranchAllOrder'])->name('BranchAllOrder');
-            Route::get('BranchOrder/{status}', [BranchOrderController::class,"BranchOrder"]); 
+    
+    Route::group(['middleware' => ['passportapi']], function(){
+        
+        Route::get('orderhistory/{status}', [OrderHistoryController::class,"orderhistory"]); 
+        // Route::get('orderdetail/month/{startDate}/{endDate}', [OrderHistoryController::class,"monthOrderDetail"]); 
+        // Route::get('orderdetail/year/{startDate}/{endDate}', [OrderHistoryController::class,"yearOrderDetail"]); 
+        Route::get('notification', [NotificationController::class,"list"]); 
+        Route::get('orderdetail/{id}', [OrderHistoryController::class,"orderdetail"]);
+        Route::post('orderhistorystatus', [OrderHistoryController::class,"orderhistorystatus"])->name('orderhistorystatus');
+        Route::get('mybooking/{status}', [OrderHistoryController::class,"list"]); 
+        Route::post('bookorder',[BookOrderController::class,'bookorder'])->name('bookorder');
+        Route::get('BranchAllOrder',[BranchOrderController::class,'BranchAllOrder'])->name('BranchAllOrder');
+        Route::get('BranchOrder/{status}', [BranchOrderController::class,"BranchOrder"]); 
+        Route::get('BranchUser', [BranchOrderController::class,"BranchUser"]); 
+        Route::post('BranchorderInfo/{id}', [BranchOrderController::class,"BranchorderInfo"]); 
+        Route::get('AssignUser{id}', [BranchOrderController::class,"AssignUser"]); 
         
     });
 });

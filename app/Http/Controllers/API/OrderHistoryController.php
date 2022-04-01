@@ -7,14 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BookOrder;
 use App\Models\Orderstatus;
-<<<<<<< HEAD
 use App\Models\Orderhistory;
-use Carbon\Carbon;
 use Validator; 
-=======
->>>>>>> 53c36807c967398fe9ef08a2d2ce883a64fa7d0c
 use Auth;
-use Carbon\Carbon;
 
 
 class OrderHistoryController extends Controller
@@ -77,7 +72,6 @@ class OrderHistoryController extends Controller
             return errorResponse('No Data Found!');
     }
 
-
     public function orderhistory($status)
     {
           if($status == "0")
@@ -113,7 +107,6 @@ class OrderHistoryController extends Controller
           }
     }
 
-
     public function orderhistorystatus(Request $request)
     {
         // dd($request->All());
@@ -133,7 +126,5 @@ class OrderHistoryController extends Controller
         $order['order_status'] =  $request->order_status;
         $order->update();
         return successResponse('Orderstatus update Successfully.',$success);
-
-
     }
 }

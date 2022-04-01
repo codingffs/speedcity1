@@ -69,9 +69,9 @@ class CategoryController extends Controller
         $request->validate([
             'image' => 'required',
         ]);
-        
         $imagename = rand(0000,9999).$request->image->getclientoriginalname();
         $request->image->move(public_path('images/category'),$imagename);
+        $path = url('images/category',$imagename);
         $Category = array(
             "title" => $request->title,
             "image" => $imagename,

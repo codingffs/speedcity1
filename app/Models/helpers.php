@@ -32,10 +32,11 @@ function getbranchname($id)
     $branchname = User::find($id);
     return $branchname->name;
 }
-function successResponse($message, $data = null) {
+function successResponse($message, $data = null,$imagepath = null) {
     if (!empty($data)) {
 
         return response()->json([
+                    "imagepath" => $imagepath,
                     "success" => 1,
                     "data" => $data,
                     "message" => $message,
@@ -44,6 +45,7 @@ function successResponse($message, $data = null) {
         ]);
     } else {
         return response()->json([
+            "imagepath" => $imagepath,
             "success" => 1,
             "data" => $data,
             "message" => $message,
@@ -61,6 +63,7 @@ function systemResponse($message) {
 
     ]);
 }
+
 function getcountryname($country_id){
     $country = Country::find($country_id);
     return $country->country_name;
