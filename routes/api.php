@@ -56,10 +56,10 @@ Route::prefix('admin')->group( function (){
         Route::post('BranchOrder', [BranchOrderController::class,"BranchOrder"]); 
         Route::get('BranchUser', [BranchOrderController::class,"BranchUser"]); 
         Route::post('BranchorderInfo/{id}', [BranchOrderController::class,"BranchorderInfo"]); 
-        Route::get('AssignUser/{user_id}/{order_id}', [BranchOrderController::class,"AssignUser"]); 
-        Route::get('CancelUser/{user_id}/{order_id}', [BranchOrderController::class,"CancelUser"]); 
         Route::post('ordercancel', [BookOrderController::class,"ordercancel"])->name('ordercancel');
 
+        Route::post('AssignUser', [BranchOrderController::class,"AssignUser"]); 
+        Route::post('CancelUser', [BranchOrderController::class,"CancelUser"]); 
         
     });
 });

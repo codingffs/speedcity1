@@ -38,6 +38,7 @@ function successResponse($message, $data = null,$imagepath = null) {
     if (!empty($data)) {
 
         return response()->json([
+                    "imagepath" => $imagepath,
                     "success" => 1,
                     "imagepath" => $imagepath,
                     "data" => $data,
@@ -47,6 +48,7 @@ function successResponse($message, $data = null,$imagepath = null) {
         ]);
     } else {
         return response()->json([
+            "imagepath" => $imagepath,
             "success" => 1,
             "data" => $data,
             "message" => $message,
