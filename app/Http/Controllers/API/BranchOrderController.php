@@ -49,6 +49,8 @@ class BranchOrderController extends Controller
         $success['data'] = $Orderhistory;
 
         $order = BookOrder::find($request->order_id);
+        if($order != null)
+        {
         $order['order_status'] =  $request->order_status;
         if($request->order_status >=1 && $request->order_status <= 4)
         {
@@ -66,12 +68,14 @@ class BranchOrderController extends Controller
         $user_id = Auth::guard('api')->user()->id;
         $data = [
             'user_id' => $user_id,
-            'title' => "Parcel ".get_parcel_id($user_id),
+            'title' => "Parcel ".$order['parcel_id'],
             'description' => get_parcel_status($request->order_status)
         ];
         $notification = Notification::create($data);
         return successResponse('Orderstatus update Successfully.',$success);
-
+    }
+    
+    return errorResponse('No Data Found!');
 
     }
 
