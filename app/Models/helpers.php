@@ -34,11 +34,12 @@ function getbranchname($id)
     $branchname = User::find($id);
     return $branchname->name;
 }
-function successResponse($message, $data = null) {
+function successResponse($message, $data = null,$imagepath = null) {
     if (!empty($data)) {
 
         return response()->json([
                     "success" => 1,
+                    "imagepath" => $imagepath,
                     "data" => $data,
                     "message" => $message,
                     "status" => 200,
@@ -105,6 +106,6 @@ function get_parcel_id($id)
 function get_parcel_status($order_status)
 {
     $order_status = Orderstatus::find($order_status);
-    return $order_status->title;
+    return $order_status;
 }
 ?>

@@ -27,6 +27,7 @@ class BookOrder extends Model
         'total_amount',
         'status',
         'remark',
+        'type'
     ];
     
 }

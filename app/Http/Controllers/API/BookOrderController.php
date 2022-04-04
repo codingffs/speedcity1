@@ -24,6 +24,7 @@ class BookOrderController extends Controller
             'parcel_type' => 'required',
             'parcel_weight' => 'required',
             'total_amount' => 'required',
+            'type' => 'required',
         ]);  
         if($validator->fails()){
             return errorResponse('Validation Error.', $validator->errors());     
@@ -45,6 +46,27 @@ class BookOrderController extends Controller
         $notification = Notification::create($data);
 
         return successResponse('Order Booked Successfully.',$success);
+    }
+
+    public function ordercancel(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'order_id' => 'required'
+        ]);  
+
+        if($validator->fails()){
+            return errorResponse('Validation Error.', $validator->errors());     
+        } 
+
+        $order = BookOrder::find($request->order_id);
+        if($order != null){
+        $order['status'] = 3;
+        $order->update();
+        return successResponse('Cancel Order Successfully.',$order);
+                
+        }
+        return errorResponse('No Data Found!');
+
     }
 
 }

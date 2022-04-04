@@ -23,10 +23,10 @@ class BranchOrderController extends Controller
         }
             return errorResponse('No Data Found!');
     }
-    public function BranchOrder($status)
+    public function BranchOrder(Request $request)
     {
         $user = Auth::guard('api')->user()->id;
-        $Orderlist = BookOrder::where('status',$status)->where('branch_id',$user)->get();
+        $Orderlist = BookOrder::where('status',$request->status)->where('branch_id',$user)->get();
         if($Orderlist != '[]'){
             return successResponse('Order Details',$Orderlist);
         }
@@ -50,8 +50,19 @@ class BranchOrderController extends Controller
 
         $order = BookOrder::find($request->order_id);
         $order['order_status'] =  $request->order_status;
+        if($request->order_status >=1 && $request->order_status <= 4)
+        {
+            $order['status'] = 1;
+            //inprogress
+        }
+        elseif($request->order_status == 0)
+        {
+            $order['status'] = 0;
+            //pending
+        }
+        $order['status'] = 2;
+        // completed
         $order->update();
-
         $user_id = Auth::guard('api')->user()->id;
         $data = [
             'user_id' => $user_id,
@@ -64,9 +75,9 @@ class BranchOrderController extends Controller
 
     }
 
-    public function orderhistorydetail(Request $request,$id)
+    public function orderhistorydetail(Request $request)
     {
-        $orderdetail = BookOrder::find($id);
+        $orderdetail = BookOrder::find($request->id);
         if($orderdetail != null){
             return successResponse('Order deatail list',$orderdetail);
         }

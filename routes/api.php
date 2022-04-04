@@ -43,21 +43,23 @@ Route::prefix('admin')->group( function (){
 
     Route::group(['middleware' => ['passportapi']], function(){
         
-        Route::get('orderhistory/{status}', [OrderHistoryController::class,"orderhistory"]); 
+        Route::post('orderhistory', [OrderHistoryController::class,"orderhistory"]); 
         // Route::get('orderdetail/month/{startDate}/{endDate}', [OrderHistoryController::class,"monthOrderDetail"]); 
         // Route::get('orderdetail/year/{startDate}/{endDate}', [OrderHistoryController::class,"yearOrderDetail"]); 
         Route::get('notification', [NotificationController::class,"list"]); 
-        Route::get('orderdetail/{id}', [OrderHistoryController::class,"orderdetail"]);
-        Route::get('orderhistorydetail/{id}', [BranchOrderController::class,"orderhistorydetail"]);
+        Route::post('orderdetail', [OrderHistoryController::class,"orderdetail"]);
+        Route::post('orderhistorydetail', [BranchOrderController::class,"orderhistorydetail"]);
         Route::post('orderhistorystatus', [BranchOrderController::class,"orderhistorystatus"])->name('orderhistorystatus');
-        Route::get('mybooking/{status}', [OrderHistoryController::class,"list"]); 
+        Route::post('mybooking', [OrderHistoryController::class,"list"]); 
         Route::post('bookorder',[BookOrderController::class,'bookorder'])->name('bookorder');
         Route::get('BranchAllOrder',[BranchOrderController::class,'BranchAllOrder'])->name('BranchAllOrder');
-        Route::get('BranchOrder/{status}', [BranchOrderController::class,"BranchOrder"]); 
+        Route::post('BranchOrder', [BranchOrderController::class,"BranchOrder"]); 
         Route::get('BranchUser', [BranchOrderController::class,"BranchUser"]); 
         Route::post('BranchorderInfo/{id}', [BranchOrderController::class,"BranchorderInfo"]); 
         Route::get('AssignUser/{user_id}/{order_id}', [BranchOrderController::class,"AssignUser"]); 
         Route::get('CancelUser/{user_id}/{order_id}', [BranchOrderController::class,"CancelUser"]); 
+        Route::post('ordercancel', [BookOrderController::class,"ordercancel"])->name('ordercancel');
+
         
     });
 });

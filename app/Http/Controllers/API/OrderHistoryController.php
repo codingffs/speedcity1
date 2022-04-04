@@ -14,10 +14,10 @@ use Auth;
 
 class OrderHistoryController extends Controller
 {
-    public function list($status)
+    public function list(Request $request )
     {
         $user = Auth::guard('api')->user()->id;
-        $Orderlist = BookOrder::where('status',$status)->where('user_id',$user)->get();
+        $Orderlist = BookOrder::where('status',$request->status)->where('user_id',$user)->get();
         if($Orderlist != '[]'){
             return successResponse('Order Details',$Orderlist);
         }
@@ -63,18 +63,17 @@ class OrderHistoryController extends Controller
             return errorResponse('No Data Found!');
     }
 
-    public function orderdetail(Request $request,$id)
-    {
-        $orderdetail = BookOrder::where('user_id',$id)->get();
-        if($orderdetail != '[]'){
+    public function orderdetail(Request $request){
+        $orderdetail = BookOrder::find($request->id);
+        if($orderdetail != null){
             return successResponse('',$orderdetail);
         }
             return errorResponse('No Data Found!');
     }
 
-    public function orderhistory($status)
+    public function orderhistory(Request $request)
     {
-          if($status == "0")
+          if($request->status == "0")
           {
             // current day wise order 
             $user = Auth::guard('api')->user()->id;
@@ -84,7 +83,7 @@ class OrderHistoryController extends Controller
             }
             return errorResponse('No Data Found!');
           }
-          elseif($status == "1")
+          elseif($request->status == "1")
           {
                 // current Month wise order 
             $user = Auth::guard('api')->user()->id;
@@ -94,7 +93,7 @@ class OrderHistoryController extends Controller
             }
                 return errorResponse('No Data Found!');
           }
-          elseif($status == "2")
+          elseif($request->status == "2")
           {
                 // current year wise order 
             $user = Auth::guard('api')->user()->id;
@@ -109,7 +108,4 @@ class OrderHistoryController extends Controller
             return errorResponse('No Data Found!');
           }
     }
-
-
-    
 }
