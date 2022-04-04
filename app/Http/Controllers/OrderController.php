@@ -33,8 +33,9 @@ class OrderController extends Controller
                             $btn .= '<a href="javascript:void(0)" data-url="'. route('orders.cancel', $row->id) .'" class="delete_btn btn btn-danger btn-sm m-5" data-id="'. $row->id .'" ><i class="fa fa fa-window-close" aria-hidden="true"></i></a>';
                             }
                             $btn .= '<a href="'. route('orders.show', $row->id) .'" class="edit btn btn-info btn-sm m-5" ><i class="fa fa-eye" aria-hidden="true"></i></a>';
+                            if($row->branch_id == null ){
                             $btn .= '<a href="'. route('orders.edit', $row->id) .'" class="edit btn btn-primary btn-sm m-5" ><i class="fa fa-building" aria-hidden="true"></i></a>';
-                        
+                            }
                         return $btn;
                     })
                     ->rawColumns(['action'])
