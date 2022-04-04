@@ -94,11 +94,11 @@ class BranchOrderController extends Controller
 
     }
 
-    public function AssignUser($user_id,$order_id)
+    public function AssignUser(Request $request)
     {
         $user = array(
-            "user_id" => $user_id,
-            "order_id" => $order_id,
+            "user_id" => $request->user_id,
+            "order_id" => $request->order_id,
             "status" => 1,
         );
         AssignUser::create($user);
@@ -108,9 +108,9 @@ class BranchOrderController extends Controller
             return errorResponse('No Data Found!');
     }
 
-    public function CancelUser($user_id,$order_id)
+    public function CancelUser(Request $request)
     {
-        $user = AssignUser::where('user_id',$user_id)->where('order_id',$order_id)->first();
+        $user = AssignUser::where('user_id',$request->user_id)->where('order_id',$request->order_id)->first();
         $user['status'] = 2;
         $user->update();          
         if($user != '[]'){
