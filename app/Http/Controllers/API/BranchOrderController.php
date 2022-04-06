@@ -49,7 +49,7 @@ class BranchOrderController extends Controller
         $success['data'] = $Orderhistory;
 
         $order = BookOrder::find($request->order_id);
-        if($order != null)
+            if($order != null)
         {
         $order['order_status'] =  $request->order_status;
         if($request->order_status >=1 && $request->order_status <= 4)

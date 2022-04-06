@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use Auth;
 class RegisterController extends Controller
 {
 
@@ -114,7 +114,8 @@ class RegisterController extends Controller
                 return errorResponse($message, $errorMessage);
             }
             $user = User::where("mobile",$request->mobile)->where("otp",$request->otp)->first();
-            if($user){
+            // dd($user );
+            if($user != null){
             $request->password = "qwertyuiop@123";
             if(Auth::attempt(['email' => $user->email, 'password' => $request->password])){ 
                 $user = Auth::user(); 

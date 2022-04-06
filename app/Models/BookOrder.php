@@ -3,6 +3,7 @@
 namespace  App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class BookOrder extends Model
 {
@@ -29,5 +30,9 @@ class BookOrder extends Model
         'remark',
         'type'
     ];
+
+    public function getCreatedAtAttribute($value){
+        return Carbon::parse($value)->diffForhumans();
+    }
     
 }

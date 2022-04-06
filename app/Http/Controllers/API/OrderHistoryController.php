@@ -24,36 +24,6 @@ class OrderHistoryController extends Controller
             return errorResponse('No Data Found!');
     }
 
-    // public function dayOrderDetail()
-    // {
-    //     $user = Auth::guard('api')->user()->id;
-    //     $daydata = BookOrder::whereDate('created_at',date('Y-m-d'))->where('user_id',$user)->get();
-    //     if($daydata != '[]'){
-    //         return successResponse('Order Details',$daydata);
-    //     }
-    //     return errorResponse('No Data Found!');
-    // }
-
-    // public function monthOrderDetail()
-    // {   
-    //     $user = Auth::guard('api')->user()->id;
-    //     $Monthdata = BookOrder::whereMonth('created_at',date('m'))->where('user_id',$user)->get();
-    //     if($Monthdata != '[]'){
-    //         return successResponse('Order Details',$Monthdata);
-    //     }
-    //         return errorResponse('No Data Found!');
-    // }
-    
-    // public function yearOrderDetail()
-    // {
-    //     $user = Auth::guard('api')->user()->id;
-    //     $Yeardata = BookOrder::whereYear('created_at', date('Y'))->where('user_id',$user)->get();
-    //     if($Yeardata != '[]'){
-    //         return successResponse('Order Details',$Yeardata);
-    //     }
-    //         return errorResponse('No Data Found!');
-    // }
-    
     public function orderstatus(Request $request)
     {
         $orderstatus = Orderstatus::get();

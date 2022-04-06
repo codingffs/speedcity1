@@ -8,6 +8,7 @@ use App\Http\Controllers\API\FaqController;
 use App\Http\Controllers\API\NotificationController;
 use App\Http\Controllers\API\OrderHistoryController;
 use App\Http\Controllers\API\AuthAdminController;
+use App\Http\Controllers\API\ProfileController;
 use App\Http\Controllers\API\BookOrderController;
 use App\Http\Controllers\API\ParcelWeightController;
 use App\Http\Controllers\API\ParcelTypeController;
@@ -40,9 +41,10 @@ Route::prefix('admin')->group( function (){
     Route::get('orderstatus', [OrderHistoryController::class,"orderstatus"]);
     Route::get('parceltype',[ParcelTypeController::class,'parceltype'])->name('parceltype');
     Route::get('banner',[BannerController::class,'banner'])->name('banner');
-
+    
     Route::group(['middleware' => ['passportapi']], function(){
         
+        Route::post('updateprofile',[ProfileController::class,'update']);
         Route::post('orderhistory', [OrderHistoryController::class,"orderhistory"]); 
         // Route::get('orderdetail/month/{startDate}/{endDate}', [OrderHistoryController::class,"monthOrderDetail"]); 
         // Route::get('orderdetail/year/{startDate}/{endDate}', [OrderHistoryController::class,"yearOrderDetail"]); 

@@ -110,4 +110,7 @@ function get_parcel_status($order_status)
     $order_status = Orderstatus::find($order_status);
     return $order_status->title;
 }
+
+function gettime()
+{}
 ?>

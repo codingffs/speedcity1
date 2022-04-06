@@ -35,9 +35,6 @@ class BookOrderController extends Controller
         $bookorder = BookOrder::create($input);
         $success['status'] = 200;
 
-
-        $success['data'] = $bookorder;
-
         $data = [
             'user_id' => $user->id,
             'title' => "parcel ".$input['parcel_id'],
