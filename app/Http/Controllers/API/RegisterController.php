@@ -114,7 +114,6 @@ class RegisterController extends Controller
                 return errorResponse($message, $errorMessage);
             }
             $user = User::where("mobile",$request->mobile)->where("otp",$request->otp)->first();
-            // dd($user );
             if($user != null){
             $request->password = "qwertyuiop@123";
             if(Auth::attempt(['email' => $user->email, 'password' => $request->password])){ 
