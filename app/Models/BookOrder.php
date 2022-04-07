@@ -34,5 +34,10 @@ class BookOrder extends Model
     public function getCreatedAtAttribute($value){
         return Carbon::parse($value)->diffForhumans();
     }
+
+    public function getOrderStatusAttribute($value){
+        $orderstatus = Orderstatus::find($value);
+        return $orderstatus->title;
+    }
     
 }
