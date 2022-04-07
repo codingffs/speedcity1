@@ -54,15 +54,15 @@ class BranchOrderController extends Controller
         $order['order_status'] =  $request->order_status;
         if($request->order_status >=1 && $request->order_status <= 4)
         {
-            $order['status'] = 1;
+            $order['status'] = "inprogress";
             //inprogress
         }
         elseif($request->order_status == 0)
         {
-            $order['status'] = 0;
+            $order['status'] = "pending";
             //pending
         }
-        $order['status'] = 2;
+        $order['status'] = "completed";
         // completed
         $order->update();
         $user_id = Auth::guard('api')->user()->id;

@@ -30,7 +30,7 @@ use App\Http\Controllers\API\BranchOrderController;
 
 Route::prefix('admin')->group( function (){ 
     Route::post('user-login',[RegisterController::class,'userLogin1'])->name('user-login');
-    Route::post('user-register',[RegisterController::class,'userRegister'])->name('user-register');
+    Route::post('userregister',[RegisterController::class,'userRegister'])->name('user-register');
     Route::post('register', [AuthAdminController::class,'register']); 
     Route::get('logout', [RegisterController::class,"logout"]); 
     Route::get('faq', [FaqController::class, "index1"]);
