@@ -19,6 +19,7 @@ class OrderHistoryController extends Controller
         $user = Auth::guard('api')->user()->id;
         $Orderlist = BookOrder::where('status',$request->status)->where('user_id',$user)->get();
         if($Orderlist != '[]'){
+            // $Orderlist['order_status'] = 
             return successResponse('Order Details',$Orderlist);
         }
             return errorResponse('No Data Found!');
